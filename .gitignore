@@ -1,0 +1,22 @@
+# Ignore everything
+*
+
+# But not these files...
+!UNLICENSE
+!.gitignore
+!.gitattributes
+!*.tex
+!*.bib
+!*.md
+!*.pdf
+!*.synctex.gz
+
+# ...even if they are in subdirectories
+!*/
+
+# If the files to be tracked are in subdirectories
+!.devcontainer/**/*
+!config/**/*
+!media/**/*
+#!*/a/b/file1.txt
+#!*/a/b/c/*

@@ -1,0 +1,110 @@
+\Chapter{Umsetzung des Testmodells}
+\label{ch_creation}
+
+Hauptteil\ldots
+
+\section{Hauptteil}
+Inline Maths: $t_{sim} >> t_{real}$
+
+Zwei Bilder vertikal geteilt. Das Format der beiden Bilder zueinander ist relevant, die minipage breiten
+müssen dementsprechend angepasst werden!:
+\begin{figure}[h]
+  \hfill
+  \begin{minipage}[t]{0.65\textwidth}
+    \includegraphics[width=1\textwidth]{media/exampleA1.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.3\textwidth}
+    \includegraphics[width=1\textwidth]{media/exampleA2.jpg}
+  \end{minipage}
+  \hfill
+  \captionsetup{width=0.8\textwidth}
+  \caption[Projektierung]{Projektierung einer Antriebseinheit}
+  \label{antrieb1}
+  \vspace{-0.4cm}
+\end{figure}
+Tabellenbeispiele \ref{erg2-ref} und \ref{erg1-rech}:
+
+\newpage
+
+\subsection{Unterkapitel vier Bilder}
+
+\improvement[inline]{The following section needs to be rewritten!}
+Vier Bilder vertikal und horizontal geteilt. Das Format der beiden Bilder zueinander ist relevant, die minipage breiten
+müssen dementsprechend angepasst werden!:
+\begin{figure}[h]
+  \hfill
+  \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[width=1\textwidth]{media/RED.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[width=1\textwidth]{media/RED.jpg}
+  \end{minipage}
+  \hfill
+
+  \vspace{0.01\textwidth}
+
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=1\textwidth]{media/RED.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \missingfigure[figwidth=7.7cm]{Vergleich des Aufwands}
+  \end{minipage}
+  \hfill
+
+  \captionsetup{width=0.8\textwidth}
+  \caption[Vergleich Arbeitsspeicherbelegung - Rechenoperationen]{Vergleich Simulationsaufwand (Arbeitsspeicherbelegung) - Menge der Rechenoperationen}
+  \label{vergleich1dot5}
+  \vspace{-0.4cm}
+\end{figure}
+Tabellenbeispiele \ref{erg2-ref} und \ref{erg1-rech}:
+
+\begin{longtblr}[
+  theme=matchingCaption,
+  caption={Testergebnis - Referenzprojekt (2)},
+  entry={Referenzprojekt (2)},
+  label={erg2-ref}
+  ]{
+  colspec={Q[c,m]Q[c,m]},
+  rowsep=4pt,
+  hlines={black, 1pt},
+  vlines={black, 1pt},
+  rowhead=1,
+  row{odd}={tableContrast},
+  row{1}={blue9,font=\large\bfseries}
+  }
+  Messwert                      & Durchschnitt \\
+  Prozessorauslastung (\%)      & 29,6         \\
+  \ac{sps}-Zykluszeit (ms)      & 1,0154       \\
+  Simulationslast (\%)          & 5,8          \\
+  Simulationslast okay (\%)     & 99,98        \\
+  Simulationslast kritisch (\%) & 0,016        \\
+  Simulationslast überlast (\%) & 0,004        \\
+  Prozessorauslastung (\%)      & 29,6         \\
+  Weitere Einträge              & 1,0154       \\
+  Weitere Einträge              & 9,8          \\
+  Weitere Einträge              & 9,1          \\
+\end{longtblr}
+
+\begin{longtblr}[
+  theme=matchingCaption,
+  caption={Testergebnis - Rechenoperationen (1)},
+  entry={Rechenoperationen (1)},
+  label={erg1-rech}
+  ]{
+  colspec={Q[c,m]Q[c,m]Q[c,m]Q[c,m]},
+  rowsep=4pt,
+  hlines={black, 1pt},
+  vlines={black, 1pt},
+  rowhead=1,
+  row{odd}={tableContrast},
+  row{1}={blue9,font=\large\bfseries}
+  }
+  Instanz                                                & \SetCell{c,4cm} Privilegierte \ac{cpu} Zeit (\%) & \SetCell{c,3cm}Working Set MB & \SetCell{c,3cm}Private Bytes MB \\
+  \SetCell{c,3.5cm}Siemens Automation. Portal            & 17,2                                             & 3823                          & 4379                            \\
+  \SetCell{c,3.5cm}Siemens. Simatic-Simulation. Instance & 6,1                                              & 707                           & 2143                            \\
+  SIMIT-CS                                               & 77,5                                             & 163                           & 39                              \\
+\end{longtblr}

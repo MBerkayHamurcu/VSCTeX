@@ -1,0 +1,52 @@
+\begin{titlepage}
+  \begin{figure}[htbp]
+    \begin{minipage}[]{\linewidth}
+      \vspace{\fill}
+      \hspace*{9cm}
+      \vspace{3 mm}
+      \centering
+      {\includegraphics[height=3cm]{media/DHBW_Logo.png}}
+    \end{minipage}
+  \end{figure}
+  \begin{figure}[htbp]
+    % Optional restriction notice if needed
+    \ifdefined\restrictedActive
+      \begin{minipage}[]{\linewidth}
+        \vspace{-3cm}
+        \centering
+        \textbf{\large \textbf{\confidentialText}}\\
+        \vspace{10pt}
+        \tikz\draw[fill=red](20,0)circle(20pt);
+      \end{minipage}
+    \fi
+  \end{figure}
+  \begin{center}
+
+    \vspace{-8mm}		{\Large\textbf{\projectTitle} \\}
+    \vspace{13mm}	{\large \textbf{\projectType }\\ }
+    \vspace{20mm}
+    \vspace{6mm}	des Studiengangs \glqq\studyProgram\grqq\\
+    \vspace{3mm} 	an der Dualen Hochschule Baden-Württemberg, \dhbw\\
+
+    \vspace{9mm}	von\\ \large{} %This \large{ } is only for equal vertical space between the authors!
+    \vspace{1mm} 	{\large\textbf{\authorOne}}\\
+    \vspace{6mm}	Abgabedatum\\
+    \vspace{2mm}		\submissionDate\\
+  \end{center}
+  \vspace{10mm}
+  \vspace{-4mm}
+  \begin{spacing}{1.5}
+    \begin{tabbing}
+      mmmmmmmmmmmmmmmmmmmmmmmmm   		\= \kill
+      \textbf{\projectTimeframeText}  		\>  \projectTimeframe\\
+
+      %%Bearbeitungsdauer!			
+
+      \textbf{\matriculationNumberText}  	\>  \matriculationNumber \\
+      \textbf{\courseText}							\>	\course\\
+      \textbf{\companyText}      	\>  \company, \companyLocation\\
+      \textbf{\tutorText}              	\>  \tutor\\
+      \textbf{\secondTutorText}              	\>  \secondTutor\\
+    \end{tabbing}
+  \end{spacing}
+\end{titlepage}

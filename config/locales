@@ -1,0 +1,29 @@
+# Select your required locale by uncommenting
+# the according one or adding another locale.
+# If multiple locales are uncommented, the
+# one appearing first from top to bottom
+# will be selected.
+
+# English (United States)
+#en_US
+
+# English (United Kingdom)
+#en_GB
+
+# German (Germany)
+de_DE
+
+# German (Austria)
+#de_AT
+
+# German (Belgium)
+#de_BE
+
+# German (Switzerland)
+#de_CH
+
+# Turkisch (Turkey)
+#tr_TR
+
+# French (France)
+#fr_FR

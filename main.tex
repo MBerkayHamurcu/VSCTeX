@@ -1,0 +1,78 @@
+% Load Header
+\input{frame/preamble}
+
+% Load the defined acronyms
+\input{frame/acronyms}
+
+\begin{document}
+
+% Optional To-Do notes list
+\ifdefined\toDoListActive
+  %
+  \listoftodos[To-Do's]
+  %
+\fi
+
+% Disable page numbering
+\pagenumbering{gobble}
+
+\input{frame/frontpage}
+
+% Optional restriction notice if needed
+\ifdefined\restrictedActive
+  %  
+  \input{frame/restrictionNotice}
+  %
+\fi
+
+\input{frame/declarationOfAuthenticity}
+
+\input{content/abstract}
+
+% Table of contents
+\newpage
+\pdfbookmark{\contentsname}{toc}
+\pagestyle{plain}
+\tableofcontents
+% Begin Roman page numbering from page 4
+\pagenumbering{Roman}
+\setcounter{page}{4}
+
+% Table of units
+\input{frame/units}
+
+\begingroup
+% Table of acronyms
+\printacronyms[include=abbrev,name=\tableOfAcronymsName,template=longtable]
+\markboth{\tableOfAcronymsName}{\tableOfAcronymsName}
+% Add table of acronyms to the table of content
+\addcontentsline{toc}{chapter}{\tableOfAcronymsName}
+\endgroup
+
+\listoffigures
+
+\listoftables
+
+\listoflistedEquations
+
+% List of code blocks
+\lstlistoflistings
+
+% Load content (automatically generated import file)
+\input{content/AUTOGEN_contentCollection}
+
+% List of Citations
+\renewcommand*\bibname{\bibliographyName}
+\printbibheading
+\printbibliography[type=book,heading=subbibliography,title={\printMedia}]
+\newpage
+\printbibliography[nottype=book,heading=subbibliography,title={\webMedia}]
+
+% Apppendix
+\beginAppendix
+
+\appendix
+
+\input{appendix/measurements}
+
+\end{document}

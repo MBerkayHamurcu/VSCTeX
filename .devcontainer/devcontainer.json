@@ -1,0 +1,193 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+{
+  "name": "VSCTeX",
+  "image": "ubuntu:latest",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  //"build": {
+  //  "dockerfile": "Dockerfile"
+  //},
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/prulloac/devcontainer-features/latex:1": {
+      "scheme": "basic"
+    }
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  //
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "tlmgr option sys_bin /usr/local/bin && apt-get update && apt-get install -y locales cpanminus jq && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Log4perl Log::Dispatch::File); tlmgr update --self; tlmgr install latexindent && bash .devcontainer/scripts/setLocale.bash && bash .devcontainer/scripts/installPackages.bash && bash .devcontainer/scripts/cleanAux.bash",
+  //
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // LTeX – LanguageTool grammar/spell checking
+        "valentjn.vscode-ltex",
+        // Real-time collaboration extension for VS Code
+        "MS-vsliveshare.vsliveshare"
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "latex-workshop.latex.autoBuild.run": "onSave",
+        "latex-workshop.latex.recipe.default": "Generate document - fastrun",
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "Generate document - fastrun",
+            "tools": [
+              "latexmkFast"
+            ]
+          },
+          {
+            "name": "Generate document",
+            "tools": [
+              "latexmk"
+            ]
+          },
+          {
+            "name": "Clean up all auxiliary files",
+            "tools": [
+              "runScript_cleanAux"
+            ]
+          },
+          {
+            "name": "Generate content collection",
+            "tools": [
+              "runScript_createContentCollection"
+            ]
+          },
+          {
+            "name": "Reapply locales configuration",
+            "tools": [
+              "runScript_setLocale"
+            ]
+          },
+          {
+            "name": "Install packages in configuration",
+            "tools": [
+              "runScript_installPackages"
+            ]
+          },
+          {
+            "name": "Enable compiling on save",
+            "tools": [
+              "runScript_modifyUserSettingsABS"
+            ]
+          },
+          {
+            "name": "Disable compiling on save",
+            "tools": [
+              "runScript_modifyUserSettingsABN"
+            ]
+          }
+        ],
+        "latex-workshop.latex.tools": [
+          {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+              "-interaction=nonstopmode",
+              "-synctex=1",
+              "-file-line-error",
+              "-pdf",
+              "-outdir=%OUTDIR%",
+              "-auxdir=%DIR%/aux",
+              "%DOCFILE%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "latexmkFast",
+            "command": "latexmk",
+            "args": [
+              "-interaction=nonstopmode",
+              "-synctex=1",
+              "-file-line-error",
+              "-pdf",
+              "-nobibtex",
+              "--quiet",
+              "-silent",
+              "-view=none",
+              "-outdir=%OUTDIR%",
+              "-auxdir=%DIR%/aux",
+              "%DOCFILE%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_cleanAux",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/cleanAux.bash"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_createContentCollection",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/createContentCollection.bash"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_setLocale",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/setLocale.bash"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_installPackages",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/installPackages.bash"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsABS",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "latex-workshop.latex.autoBuild.run",
+              "onSave"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsABN",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "latex-workshop.latex.autoBuild.run",
+              "never"
+            ],
+            "env": {}
+          }
+        ],
+        "latex-workshop.latex.rootFile.indicator": "\\begin{document}",
+        "latex-workshop.latex.search.rootFiles.include": [
+          "*.tex"
+        ],
+        "latex-workshop.latex.build.rootfileInStatus": true,
+        "latex-workshop.latex.build.forceRecipeUsage": false,
+        "latex-workshop.latex.autoBuild.interval": 1,
+        "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+        "latex-workshop.latex.clean.method": "glob",
+        "latex-workshop.latex.clean.subfolder.enabled": true,
+        "latex-workshop.latex.watch.pdf.delay": 20000,
+        "ltex.language": "de-DE",
+        "ltex.java.initialHeapSize": 32,
+        "ltex.java.maximumHeapSize": 256,
+        "ltex.configurationTarget": {
+          "dictionary": "userExternalFile",
+          "disabledRules": "userExternalFile",
+          "hiddenFalsePositives": "userExternalFile"
+        }
+      }
+    }
+  }
+}
