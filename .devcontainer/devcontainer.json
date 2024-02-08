@@ -30,6 +30,8 @@
       ],
       "settings": {
         "files.eol": "\n",
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 80,
         "latex-workshop.latex.autoBuild.run": "onSave",
         "latex-workshop.latex.recipe.default": "Generate document - fastrun",
         "latex-workshop.latex.recipes": [
@@ -92,7 +94,7 @@
               "-file-line-error",
               "-pdf",
               "-outdir=%OUTDIR%",
-              "-auxdir=%DIR%/aux",
+              "-auxdir=%DIR%/auxiliary",
               "%DOCFILE%"
             ],
             "env": {}
@@ -110,7 +112,7 @@
               "-silent",
               "-view=none",
               "-outdir=%OUTDIR%",
-              "-auxdir=%DIR%/aux",
+              "-auxdir=%DIR%/auxiliary",
               "%DOCFILE%"
             ],
             "env": {}
@@ -178,7 +180,7 @@
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
         "latex-workshop.latex.clean.method": "glob",
         "latex-workshop.latex.clean.subfolder.enabled": true,
-        "latex-workshop.latex.watch.pdf.delay": 20000,
+        "latex-workshop.latex.watch.pdf.delay": 3000,
         "ltex.language": "de-DE",
         "ltex.java.initialHeapSize": 32,
         "ltex.java.maximumHeapSize": 256,

@@ -33,10 +33,10 @@
 
 % Titles formatting
 \usepackage[noindentafter]{titlesec}
-\titleformat{\chapter}[hang]{\LARGE\bfseries\color{black}}{\thechapter.\enskip}{0pt}{}
-\titleformat{\section}[hang]{\Large\bfseries\color{black}}{\thesection.\enskip}{0pt}{}
-\titleformat{\subsection}[hang]{\large\bfseries\color{black}}{\thesubsection.\enskip}{0pt}{}
-\titleformat{\subsubsection}[hang]{\bfseries\color{black}}{\thesubsubsection.\enskip}{0pt}{}
+\titleformat{\chapter}[hang]{\LARGE\bfseries\color{black}}{\thechapter\enskip}{0pt}{}
+\titleformat{\section}[hang]{\Large\bfseries\color{black}}{\thesection\enskip}{0pt}{}
+\titleformat{\subsection}[hang]{\large\bfseries\color{black}}{\thesubsection\enskip}{0pt}{}
+\titleformat{\subsubsection}[hang]{\bfseries\color{black}}{\thesubsubsection\enskip}{0pt}{}
 % Spaces after the titles
 \titlespacing{\chapter}			{	0em}		{	-4ex}	{	2ex}
 
@@ -44,10 +44,10 @@
 \newcommand{\Chapter}[2][UNDEFINED]{%
   \ifstrequal{#1}{UNDEFINED}{%
     \chapter{#2}
-    \markboth{\thechapter. #2}{\thechapter. #2}
+    \markboth{\thechapter\space #2}{\thechapter\space #2}
   }{%
     \chapter[#1]{#2}
-    \markboth{\thechapter. #1}{\thechapter. #1}
+    \markboth{\thechapter\space #1}{\thechapter\space #1}
   }}
 
 % Page header and footer
@@ -266,11 +266,6 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
   \addtocontents{lot}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
   % Add list of tables to the table of content
   \addcontentsline{toc}{chapter}{\listtablename}
-}
-
-\g@addto@macro\listoflistedEquations{%
-  % Add list of tables to the table of content
-  \addcontentsline{toc}{chapter}{\listOfEquationsName}
 }
 
 \g@addto@macro\lstlistoflistings{%
