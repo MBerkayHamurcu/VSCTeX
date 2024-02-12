@@ -1,5 +1,7 @@
 #!/bin/bash
 
+tlmgr update --self
+
 filePath="config/packages"
 
 # Check if the argument is a valid file
