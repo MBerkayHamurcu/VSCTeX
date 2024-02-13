@@ -40,16 +40,6 @@
 % Spaces after the titles
 \titlespacing{\chapter}			{	0em}		{	-4ex}	{	2ex}
 
-% Define new \Chapter macro for printing the correct title in the header
-\newcommand{\Chapter}[2][UNDEFINED]{%
-  \ifstrequal{#1}{UNDEFINED}{%
-    \chapter{#2}
-    \markboth{\thechapter\space #2}{\thechapter\space #2}
-  }{%
-    \chapter[#1]{#2}
-    \markboth{\thechapter\space #1}{\thechapter\space #1}
-  }}
-
 % Page header and footer
 \usepackage{fancyhdr}
 
@@ -58,7 +48,7 @@
 
 \fancypagestyle{plain}{%
   \fancyhf{}
-  \fancyhead[L]{Kopfzeile\ldots}
+  \fancyhead[L]{\headingTopLeft\ldots}
   \fancyhead[C]{}
   \fancyhead[R]{\small \nouppercase \leftmark}
   \fancyfoot[L]{\authorOne}
@@ -83,7 +73,7 @@
 
 \fancypagestyle{appendix}{%
   \fancyhf{}
-  \fancyhead[L]{Kopfzeile\ldots}
+  \fancyhead[L]{\headingTopLeft\ldots}
   \fancyhead[C]{}
   \fancyhead[R]{}
   \fancyfoot[L]{\authorOne}
@@ -120,7 +110,7 @@
 \usepackage{tikz}
 
 % Captions
-\usepackage[margin=2 cm,font=small,labelfont=bf,]{caption}
+\usepackage[margin=2 cm,font=small,labelfont=bf]{caption}
 \usepackage{subcaption}
 
 % Colors
@@ -170,13 +160,18 @@
 \captionsetup[listedEquation]{labelformat=empty}
 
 % Define custom equations macro
-\newcommand{\Equation}[2]{%
-  \begin{listedEquation}[h]
-    {#2}
-    \caption{#1}
-    \label{#1}
-  \end{listedEquation}
-}
+\newcommandx{\Equation}[2][1=UNDEFINED]{%
+  \ifstrequal{#1}{UNDEFINED}{%
+    \begin{listedEquation}[h]
+      {#2}
+    \end{listedEquation}
+  }{%
+    \begin{listedEquation}[h]
+      {#2}
+      \caption{#1}
+      \label{#1}
+    \end{listedEquation}
+  }}
 
 % Define custom bullet list macro
 \newenvironment{Itemize}
@@ -219,16 +214,22 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 % Watermark support
 \usepackage{eso-pic}
 
+% Import the document variables
+\input{config/variables}
+
 % To-Do notes support
-\usepackage[colorinlistoftodos,textsize=tiny,ngerman]{todonotes}
+\newcommand{\toDosDisabler}{disable}
+\ifdefined\toDosActive
+
+  \renewcommand{\toDosDisabler}{}
+\fi
+
+\usepackage[colorinlistoftodos,textsize=tiny,ngerman,\toDosDisabler]{todonotes}
 \newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
 \newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
 \newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
-
-% Import the document variables
-\input{config/variables}
 
 % PDF settings
 \usepackage[%
@@ -252,10 +253,53 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
   %
 \fi
 
-% Add table of content entry
-% to the list macros
-\makeatletter% --> De-TeX-FAQ
+\makeatletter
 
+% Define custom chapter macros
+\newcommand{\Chapter}{\@ifstar{\@ChapterStar}{\@ChapterNoStar}}
+
+% \Chapter*
+\newcommand{\@ChapterStar}{\@ifnextchar[{\@optStarChapter}{\@noOptStarChapter}}
+
+% \Chapter
+\newcommand{\@ChapterNoStar}{\@ifnextchar[{\@optChapter}{\@noOptChapter}}
+
+% No optional argument given
+\newcommand{\@noOptStarChapter}[1]{%
+  \chapter*{#1} % Create numbered chapter with title
+  \ifnum\thechapter>0
+
+    \addcontentsline{toc}{chapter}{#1}
+  \fi
+  \markboth{#1}{#1} % Set header to title
+  \label{#1}
+}
+\newcommand{\@noOptChapter}[1]{%
+  \chapter{#1}
+  \markboth{\thechapter\space #1}{\thechapter\space #1}
+  \label{#1}}
+
+% Optional argument is given
+\newcommand{\@optStarChapter}{\@dblarg\@largOptStarChapter}
+\newcommand{\@largOptStarChapter}[2][]{%
+  % Create numbered chapter with short title in the toc
+  % Optional arg: #1, mandatory arg: #2
+  \chapter*[#1]{#2}
+  \ifnum\thechapter>0
+
+    \addcontentsline{toc}{chapter}{#1}
+  \fi
+  \markboth{#1}{#1} % Set header to short title
+  \label{#1}
+}
+\newcommand{\@optChapter}{\@dblarg\@largOptChapter}
+\newcommand{\@largOptChapter}[2][]{%
+  \chapter[#1]{#2}
+  \markboth{\thechapter\space #1}{\thechapter\space #1}
+  \label{#1}
+}
+
+% Add table of content entries for the lists
 \g@addto@macro\listoffigures{%
   \addtocontents{lof}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
   % Add list of figures to the table of content
@@ -275,10 +319,11 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 }
 
 \g@addto@macro\printbibheading{%
+  % Add the bibliography to the table of content
   \addcontentsline{toc}{chapter}{\bibname}
 }
 
-\makeatother% --> \makeatother
+\makeatother
 
 % Prepare appendix
 \newcommand{\beginAppendix}{%

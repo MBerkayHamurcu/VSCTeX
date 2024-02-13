@@ -7,10 +7,9 @@
 \begin{document}
 
 % Optional To-Do notes list
-\ifdefined\toDoListActive
-  %
-  \listoftodos[To-Do's]
-  %
+\ifdefined\toDosActive
+
+  \listoftodos[\toDosName]
 \fi
 
 % Disable page numbering
@@ -20,9 +19,8 @@
 
 % Optional restriction notice if needed
 \ifdefined\restrictedActive
-  %  
+
   \input{frame/restrictionNotice}
-  %
 \fi
 
 \input{frame/declarationOfAuthenticity}

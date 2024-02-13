@@ -63,9 +63,13 @@ Git LFS is included in the distribution of *Git for Windows*. If you installed g
 
 You can find the official installation instructions for MacOS [here](https://github.com/git-lfs/git-lfs?tab=readme-ov-file#on-macos).
 
-### (Optional) JabRef
+### Bibliography management
 
-This is an optional tool for managing your bibliography. If you do not already have a preferred tool for this purpose, you can install JabRef from [here](https://www.jabref.org/#download). Make sure to set the (default) library mode to BibLaTeX when using the tool with this template.
+Make sure to set the library mode to BibLaTeX when using a bibliography management tool with this template
+
+#### (Optional) JabRef
+
+This is an optional tool for managing your bibliography. If you do not already have a preferred tool for this purpose, you can install JabRef from the official source [here](https://www.jabref.org/#download).
 
 
 
@@ -113,13 +117,13 @@ The Dev Container provides some features and tools to help you write and compile
 
 The Dev Container provides some custom macros that you can use in your LaTeX files. Here are some of them:
 
-- `\Chapter`: This macro is a replacement for `\chapter`. It behaves like `\chapter` with the addition of adding the correct entry to your headings.
+- `\Chapter`: This macro is a replacement for `\chapter`. It behaves like `\chapter` with the addition of adding the correct entry to your headings and creating a label that can be referenced later via \ref{short chapter title if defined, else chapter title}.
 - `\Equation`: This macro is a shortcut for creating an equation with a caption and a label for reference
 - `\todo`: This macro is a way to add a todo note to your document. The note will appear in the margin of your document and in the optional To-Do list on the first page. In the examplery content of the template you can see some To-Do notes macros beyond the ones defined in the `todonotes` package by default like \unsure, \change or \info.
 - `Itemize`: This environment is a variation of the `itemize` environment. It sets the item separation and the indentation to zero, making the list more compact.
 - In general, try to adhere to the examples in the template for accessing its features (acronyms, tables, images, etc.)
 
-Note that these macros do not have alternative asterisk implementation. 
+Note that only the `\Chapter` macro has a starred implementation.
 
 
 
