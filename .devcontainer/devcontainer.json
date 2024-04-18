@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
   "name": "VSCTeX",
-  "image": "ubuntu:latest",
+  "image": "ubuntu:22.04",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   //"build": {
   //  "dockerfile": "Dockerfile"
@@ -17,7 +17,7 @@
   // "forwardPorts": [],
   //
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "tlmgr option sys_bin /usr/local/bin && apt-get update && apt-get install -y locales cpanminus jq && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Log4perl Log::Dispatch::File); tlmgr update --self; tlmgr install latexindent && bash .devcontainer/scripts/setLocale.bash && bash .devcontainer/scripts/installPackages.bash && bash .devcontainer/scripts/cleanAux.bash",
+  "postCreateCommand": "tlmgr option sys_bin /usr/local/bin && apt-get update && apt-get install -y locales cpanminus jq && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Log4perl Log::Dispatch::File); tlmgr update --all; tlmgr install latexindent && bash .devcontainer/scripts/setLocale.bash && bash .devcontainer/scripts/installPackages.bash && bash .devcontainer/scripts/cleanAux.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -auxdir=auxiliary main.tex",
   //
   // Configure tool-specific properties.
   "customizations": {
@@ -182,8 +182,8 @@
         "latex-workshop.latex.clean.subfolder.enabled": true,
         "latex-workshop.latex.watch.pdf.delay": 3000,
         "ltex.language": "de-DE",
-        "ltex.java.initialHeapSize": 32,
-        "ltex.java.maximumHeapSize": 256,
+        "ltex.java.initialHeapSize": 256,
+        "ltex.java.maximumHeapSize": 1024,
         "ltex.configurationTarget": {
           "dictionary": "userExternalFile",
           "disabledRules": "userExternalFile",
