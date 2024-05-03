@@ -13,13 +13,13 @@
   centering,
   left=2.5cm,
   right=2.5cm,
-  top=2.5cm,
-  bottom=2.5cm,
+  top=3cm,
+  bottom=3cm,
   headsep=1cm,
   footskip=1.5cm,
 ]{geometry}
 
-\setlength{\marginparwidth}{2.25cm}
+\setlength{\marginparwidth}{2cm}
 
 % Encoding and font settings
 \usepackage{setspace}
@@ -162,11 +162,11 @@
 % Define custom equations macro
 \newcommandx{\Equation}[2][1=UNDEFINED]{%
   \ifstrequal{#1}{UNDEFINED}{%
-    \begin{listedEquation}[h]
+    \begin{listedEquation}[H]
       {#2}
     \end{listedEquation}
   }{%
-    \begin{listedEquation}[h]
+    \begin{listedEquation}[H]
       {#2}
       \caption{#1}
       \label{#1}
@@ -323,7 +323,22 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
   \addcontentsline{toc}{chapter}{\bibname}
 }
 
+% Customize the abstract environment
+\renewenvironment{abstract}{
+  \newpage
+  \if@twocolumn
+    \section*{\abstractname}%
+  \else
+    \small
+    \begin{flushleft}%
+      {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
+    \end{flushleft}%
+  \fi}
+{\if@twocolumn\else\endflushleft\fi}
+
 \makeatother
+
+\usepackage{float}
 
 % Prepare appendix
 \newcommand{\beginAppendix}{%

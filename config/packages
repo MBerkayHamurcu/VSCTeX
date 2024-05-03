@@ -13,6 +13,7 @@ pgf
 titlesec
 parskip
 newfloat
+float
 biber
 tabularray
 ninecolors

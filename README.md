@@ -79,6 +79,7 @@ To setup the Dev Container on your host machine, follow these steps:
 
 1. **Clone** this repository by running the **git clone** command. Only downloading the repository from GitHub will cause errors because of unresolved git LFS references.
 1. **Open** the downloaded **folder** in VS Code. Confirm the "Yes, I trust the authors" option.
+1. **Install** the `Dev Containers` (ms-vscode-remote.remote-containers) VS Code extension. Generally VS Code will automatically recommend/promt you to install it.
 1. VS Code will detect the `.devcontainer` folder in the project and prompt you to reopen the folder in a container. Confirm the **Reopen in Container** action. Alternatively, you can use the command palette (Keyboard shortcut: Ctrl+Shift+P) and select **Dev Containers: Reopen in Container**.
 1. **Wait** for the Dev Container to build **and** configure. Starting the Dev Container for the first time (effectively building the container) will take some time depending on your internet connection and computer. 10 minutes and more are possible. Starting the container after this first build process will take less than a minute.
 1. If the **container** has **fully started**, which is indicated by the absence of any loading indicators, you can now edit your LaTeX files and use the features of VSCTeX

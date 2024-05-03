@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
   "name": "VSCTeX",
-  "image": "ubuntu:22.04",
+  "image": "ubuntu:24.04",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   //"build": {
   //  "dockerfile": "Dockerfile"
@@ -38,12 +38,15 @@
           {
             "name": "Generate document - fastrun",
             "tools": [
+              "runScript_createContentCollection",
               "latexmkFast"
             ]
           },
           {
             "name": "Generate document",
             "tools": [
+              "runScript_cleanAux",
+              "runScript_createContentCollection",
               "latexmk"
             ]
           },
@@ -51,12 +54,6 @@
             "name": "Clean up all auxiliary files",
             "tools": [
               "runScript_cleanAux"
-            ]
-          },
-          {
-            "name": "Generate content collection",
-            "tools": [
-              "runScript_createContentCollection"
             ]
           },
           {

@@ -5,17 +5,17 @@ Hauptteil\ldots
 \section{Hauptteil}
 Inline Maths: $t_{sim} >> t_{real}$
 
-Zwei Bilder vertikal geteilt. Das Format der beiden Bilder zueinander ist relevant, die minipage breiten
+Zwei Bilder vertikal geteilt. Das Format der beiden Bilder zueinander ist relevant, die subfigure breiten
 müssen dementsprechend angepasst werden!:
-\begin{figure}[h]
+\begin{figure}[H]
   \hfill
-  \begin{minipage}[t]{0.65\textwidth}
+  \begin{subfigure}[t]{0.65\textwidth}
     \includegraphics[width=1\textwidth]{media/exampleA1.jpg}
-  \end{minipage}
+  \end{subfigure}
   \hfill
-  \begin{minipage}[t]{0.3\textwidth}
+  \begin{subfigure}[t]{0.3\textwidth}
     \includegraphics[width=1\textwidth]{media/exampleA2.jpg}
-  \end{minipage}
+  \end{subfigure}
   \hfill
   \captionsetup{width=0.8\textwidth}
   \caption[Projektierung]{Projektierung einer Antriebseinheit}
@@ -28,29 +28,29 @@ müssen dementsprechend angepasst werden!:
 \subsection{Unterkapitel vier Bilder}
 
 \improvement[inline]{The following section needs to be rewritten!}
-Vier Bilder vertikal und horizontal geteilt. Das Format der beiden Bilder zueinander ist relevant, die minipage breiten
+Vier Bilder vertikal und horizontal geteilt. Das Format der beiden Bilder zueinander ist relevant, die subfigure breiten
 müssen dementsprechend angepasst werden!:
-\begin{figure}[h]
+\begin{figure}[H]
   \hfill
-  \begin{minipage}[t]{0.49\textwidth}
+  \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=1\textwidth]{media/RED.jpg}
-  \end{minipage}
+  \end{subfigure}
   \hfill
-  \begin{minipage}[t]{0.49\textwidth}
+  \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=1\textwidth]{media/RED.jpg}
-  \end{minipage}
+  \end{subfigure}
   \hfill
 
   \vspace{0.01\textwidth}
 
   \hfill
-  \begin{minipage}[b]{0.49\textwidth}
+  \begin{subfigure}[b]{0.49\textwidth}
     \includegraphics[width=1\textwidth]{media/RED.jpg}
-  \end{minipage}
+  \end{subfigure}
   \hfill
-  \begin{minipage}[b]{0.49\textwidth}
+  \begin{subfigure}[b]{0.49\textwidth}
     \missingfigure[figwidth=7.7cm,figcolor=white]{Vergleich des Aufwands}
-  \end{minipage}
+  \end{subfigure}
   \hfill
 
   \captionsetup{width=0.8\textwidth}
@@ -93,7 +93,8 @@ Tabellenbeispiele \ref{erg2-ref} und \ref{erg1-rech}:
   entry={Rechenoperationen (1)},
   label={erg1-rech}
   ]{
-  colspec={Q[c,m]Q[c,m]Q[c,m]Q[c,m]},
+  width=1\linewidth,
+  colspec={Q[1,c,m]Q[1,c,m]Q[1,c,m]Q[1,c,m]},
   rowsep=4pt,
   hlines={black, 1pt},
   vlines={black, 1pt},
@@ -101,8 +102,8 @@ Tabellenbeispiele \ref{erg2-ref} und \ref{erg1-rech}:
   row{odd}={tableContrast},
   row{1}={blue9,font=\large\bfseries}
   }
-  Instanz                                                & \SetCell{c,4cm} Privilegierte \ac{cpu} Zeit (\%) & \SetCell{c,3cm}Working Set MB & \SetCell{c,3cm}Private Bytes MB \\
-  \SetCell{c,3.5cm}Siemens Automation. Portal            & 17,2                                             & 3823                          & 4379                            \\
-  \SetCell{c,3.5cm}Siemens. Simatic-Simulation. Instance & 6,1                                              & 707                           & 2143                            \\
-  SIMIT-CS                                               & 77,5                                             & 163                           & 39                              \\
+  Instanz                               & Privilegierte \ac{cpu} Zeit (\%) & Working Set MB & Private Bytes MB \\
+  Siemens Automation. Portal            & 17,2                             & 3823           & 4379             \\
+  Siemens. Simatic-Simulation. Instance & 6,1                              & 707            & 2143             \\
+  SIMIT-CS                              & 77,5                             & 163            & 39               \\
 \end{longtblr}
