@@ -9,6 +9,7 @@
 \usepackage
 [
   % showframe, % For debugging purposes
+  driver=pdftex,
   a4paper,
   centering,
   left=2.5cm,
@@ -16,10 +17,10 @@
   top=3cm,
   bottom=3cm,
   headsep=1cm,
+  headheight=21pt,
   footskip=1.5cm,
+  marginparwidth=2cm
 ]{geometry}
-
-\setlength{\marginparwidth}{2cm}
 
 % Encoding and font settings
 \usepackage{setspace}
@@ -43,14 +44,13 @@
 % Page header and footer
 \usepackage{fancyhdr}
 
-\setlength{\headheight}{15pt}
-\addtolength{\topmargin}{-3pt}
+\newcommand{\headTextPaddingBottom}{\rule[-2ex]{0pt}{2ex}}
 
 \fancypagestyle{plain}{%
   \fancyhf{}
-  \fancyhead[L]{\headingTopLeft}
+  \fancyhead[L]{\headTextPaddingBottom\headingTopLeft}
   \fancyhead[C]{}
-  \fancyhead[R]{\small \nouppercase \leftmark}
+  \fancyhead[R]{\headTextPaddingBottom\small \nouppercase \leftmark}
   \fancyfoot[L]{\authorOne}
   \fancyfoot[C]{}
   \fancyfoot[R]{\large \thepage}
@@ -73,7 +73,7 @@
 
 \fancypagestyle{appendix}{%
   \fancyhf{}
-  \fancyhead[L]{\headingTopLeft}
+  \fancyhead[L]{\headTextPaddingBottom\headingTopLeft}
   \fancyhead[C]{}
   \fancyhead[R]{}
   \fancyfoot[L]{\authorOne}
@@ -135,7 +135,7 @@
   keywordstyle=\color{magenta},
   numberstyle=\tiny\color{codegray},
   stringstyle=\color{codepurple},
-  basicstyle=\ttfamily\footnotesize,
+  basicstyle=\ttfamily\scriptsize\linespread{0.65},
   breakatwhitespace=false,
   breaklines=true,
   captionpos=t,
@@ -338,6 +338,9 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 
 \makeatother
 
+% Text bullets for the abstract
+\newcommand{\kwtextbullet}{\hspace{-0.05cm}\textbullet\hspace{0.08cm}}
+
 \usepackage{float}
 
 % Prepare appendix
@@ -359,5 +362,7 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
     \Huge \textbf{\appendixName}
   \end{center}
   \vspace*{\fill}
+  \vspace*{1.5cm}
+  
   \newpage
 }

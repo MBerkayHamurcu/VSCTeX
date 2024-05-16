@@ -105,8 +105,6 @@
               "-file-line-error",
               "-pdf",
               "-nobibtex",
-              "--quiet",
-              "-silent",
               "-view=none",
               "-outdir=%OUTDIR%",
               "-auxdir=%DIR%/auxiliary",

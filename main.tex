@@ -1,4 +1,4 @@
-% Load Header
+% Load preamble
 \input{frame/preamble}
 
 % Load the defined acronyms
@@ -62,9 +62,9 @@
 % List of Citations
 \renewcommand*\bibname{\bibliographyName}
 \printbibheading
-\printbibliography[type=book,heading=subbibliography,title={\printMedia}]
+\printbibliography[filter=printMediaFilter,heading=subbibliography,title={\printMediaTitle}]
 \newpage
-\printbibliography[nottype=book,heading=subbibliography,title={\webMedia}]
+\printbibliography[filter=webMediaFilter,heading=subbibliography,title={\webMediaTitle}]
 
 % Apppendix
 \beginAppendix
