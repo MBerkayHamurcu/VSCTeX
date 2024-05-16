@@ -23,8 +23,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        // LTeX – LanguageTool grammar/spell checking
-        "valentjn.vscode-ltex",
+        // LTeX (neo) – LanguageTool grammar/spell checking
+        "neo-ltex.ltex",
         // Real-time collaboration extension for VS Code
         "MS-vsliveshare.vsliveshare"
       ],
@@ -78,6 +78,18 @@
             "name": "Disable compiling on save",
             "tools": [
               "runScript_modifyUserSettingsABN"
+            ]
+          },
+          {
+            "name": "Enable editor max column width",
+            "tools": [
+              "runScript_modifyUserSettingsCWEN"
+            ]
+          },
+          {
+            "name": "Disable editor max column width",
+            "tools": [
+              "runScript_modifyUserSettingsCWDIS"
             ]
           }
         ],
@@ -161,6 +173,26 @@
               ".devcontainer/scripts/modifyUserSettings.bash",
               "latex-workshop.latex.autoBuild.run",
               "never"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsCWEN",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "editor.wordWrap",
+              "wordWrapColumn"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsCWDIS",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "editor.wordWrap",
+              "off"
             ],
             "env": {}
           }
