@@ -23,8 +23,6 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        // LTeX (neo) – LanguageTool grammar/spell checking
-        "neo-ltex.ltex",
         // Real-time collaboration extension for VS Code
         "MS-vsliveshare.vsliveshare"
       ],
@@ -78,6 +76,12 @@
             "name": "Disable editor max column width",
             "tools": [
               "runScript_modifyUserSettingsCWDIS"
+            ]
+          },
+          {
+            "name": "Install LTeX extension",
+            "tools": [
+              "runScript_installLTeXExtension"
             ]
           },
           {
@@ -193,6 +197,14 @@
               ".devcontainer/scripts/modifyUserSettings.bash",
               "editor.wordWrap",
               "off"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_installLTeXExtension",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/installLTeX.bash"
             ],
             "env": {}
           }
