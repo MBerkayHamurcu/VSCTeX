@@ -38,7 +38,7 @@
           {
             "name": "Generate document - fastrun",
             "tools": [
-              "runScript_createContentCollection",
+              "runScript_createCollections",
               "latexmkFast"
             ]
           },
@@ -46,7 +46,7 @@
             "name": "Generate document",
             "tools": [
               "runScript_cleanAux",
-              "runScript_createContentCollection",
+              "runScript_createCollections",
               "latexmk"
             ]
           },
@@ -54,18 +54,6 @@
             "name": "Clean up all auxiliary files",
             "tools": [
               "runScript_cleanAux"
-            ]
-          },
-          {
-            "name": "Reapply locales configuration",
-            "tools": [
-              "runScript_setLocale"
-            ]
-          },
-          {
-            "name": "Install packages in configuration",
-            "tools": [
-              "runScript_installPackages"
             ]
           },
           {
@@ -90,6 +78,18 @@
             "name": "Disable editor max column width",
             "tools": [
               "runScript_modifyUserSettingsCWDIS"
+            ]
+          },
+          {
+            "name": "Install packages in configuration",
+            "tools": [
+              "runScript_installPackages"
+            ]
+          },
+          {
+            "name": "Reapply locales configuration",
+            "tools": [
+              "runScript_setLocale"
             ]
           }
         ],
@@ -133,10 +133,10 @@
             "env": {}
           },
           {
-            "name": "runScript_createContentCollection",
+            "name": "runScript_createCollections",
             "command": "bash",
             "args": [
-              ".devcontainer/scripts/createContentCollection.bash"
+              ".devcontainer/scripts/createCollections.bash"
             ],
             "env": {}
           },
