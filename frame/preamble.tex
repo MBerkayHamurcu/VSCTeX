@@ -231,18 +231,8 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
-% PDF settings
-\usepackage[%
-  pdftitle={\projectTitle},
-  pdfauthor={\authorOne},
-  pdfsubject={\projectTitle},
-  pdfcreator={latexmk},
-  pdfpagemode=UseOutlines, % Show the table of contents in the sidepanel by default 
-  pdfdisplaydoctitle=true, % Show the document title instead of the file name
-  pdflang={\documentLanguage},
-  bookmarksnumbered=true,
-  plainpages=false,
-]{hyperref}
+% Mainly for `H` alignment support
+\usepackage{float}
 
 % Optional watermark
 \ifdefined\watermarkActive
@@ -252,6 +242,9 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
           \rotatebox{45}{\textsf{\textbf{\color{lightgray}\watermarkText}}}}}}}
   %
 \fi
+
+% Automatic includeonly management
+\input{frame/AUTOGEN_includeonly}
 
 \makeatletter
 
@@ -341,8 +334,6 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 % Text bullets for the abstract
 \newcommand{\kwtextbullet}{\hspace{-0.05cm}\textbullet\hspace{0.08cm}}
 
-\usepackage{float}
-
 % Prepare appendix
 \newcommand{\beginAppendix}{%
   \newpage
@@ -366,3 +357,16 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 
   \newpage
 }
+
+% PDF settings
+\usepackage[%
+  pdftitle={\projectTitle},
+  pdfauthor={\authorOne},
+  pdfsubject={\projectTitle},
+  pdfcreator={latexmk},
+  pdfpagemode=UseOutlines, % Show the table of contents in the sidepanel by default 
+  pdfdisplaydoctitle=true, % Show the document title instead of the file name
+  pdflang={\documentLanguage},
+  bookmarksnumbered=true,
+  plainpages=false,
+]{hyperref} % Loading hyperref as the last package
