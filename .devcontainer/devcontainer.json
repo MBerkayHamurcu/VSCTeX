@@ -1,28 +1,14 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+// For format details, see https://aka.ms/devcontainer.json
 {
   "name": "VSCTeX",
   "image": "ubuntu:24.04",
-  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  //"build": {
-  //  "dockerfile": "Dockerfile"
-  //},
-  // Features to add to the dev container. More info: https://containers.dev/features.
-  "features": {
-    "ghcr.io/prulloac/devcontainer-features/latex:1": {
-      "scheme": "basic"
-    }
-  },
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
-  //
-  // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "tlmgr option sys_bin /usr/local/bin && apt-get update && apt-get install -y locales cpanminus jq && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Log4perl Log::Dispatch::File); tlmgr update --all; tlmgr install latexindent && bash .devcontainer/scripts/setLocale.bash && bash .devcontainer/scripts/installPackages.bash && bash .devcontainer/scripts/cleanAux.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -auxdir=auxiliary main.tex",
-  //
+  "onCreateCommand": "apt update && apt upgrade && apt install -y locales wget cpanminus jq at && bash .devcontainer/scripts/setLocale.bash && wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && tar -xf install-tl-unx.tar.gz && rm install-tl-unx.tar.gz && cd install-tl-* && perl ./install-tl --no-interaction --scheme=basic && cd .. && rm -rf install-tl-* && TEXLIVE_DIR=$(ls -d /usr/local/texlive/* | grep 20) && TEXLIVE_EXECUTABLES_DIR=\"$(ls -d $TEXLIVE_DIR/bin/*)\" && $TEXLIVE_EXECUTABLES_DIR/tlmgr install latex latex-bin latexmk latexindent && ls $TEXLIVE_EXECUTABLES_DIR | xargs -I % ln -s $TEXLIVE_EXECUTABLES_DIR/% /usr/local/bin/% && PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH && export PATH && tlmgr option sys_bin /usr/local/bin && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Dispatch::File) ; bash .devcontainer/scripts/installPackages.bash && bash .devcontainer/scripts/cleanAux.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -auxdir=auxiliary main.tex && service atd start && echo \"bash -c '.devcontainer/scripts/installLTeX.bash'\" | at now +1 minute",
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
       "extensions": [
+        // Core features extension for LaTeX typesetting with VS Code
+        "James-Yu.latex-workshop",
         // Real-time collaboration extension for VS Code
         "MS-vsliveshare.vsliveshare"
       ],
@@ -76,12 +62,6 @@
             "name": "Disable editor max column width",
             "tools": [
               "runScript_modifyUserSettingsCWDIS"
-            ]
-          },
-          {
-            "name": "Install LTeX extension",
-            "tools": [
-              "runScript_installLTeXExtension"
             ]
           },
           {
@@ -197,14 +177,6 @@
               ".devcontainer/scripts/modifyUserSettings.bash",
               "editor.wordWrap",
               "off"
-            ],
-            "env": {}
-          },
-          {
-            "name": "runScript_installLTeXExtension",
-            "command": "bash",
-            "args": [
-              ".devcontainer/scripts/installLTeX.bash"
             ],
             "env": {}
           }
