@@ -37,7 +37,7 @@ else
 fi
 
 if [ "$KEY" = "latex-workshop.latex.recipes" ]; then
-    echo "Editing latex-workshop recipes"
+    echo "Editing latex-workshop recipe"
     jq '."latex-workshop.latex.recipes" = (."latex-workshop.latex.recipes" | map(if .name == "'"$RECIPE"'" then .tools = ('"$VALUE"' | fromjson) else . end))' "$FILE" > temp.json && mv temp.json "$FILE"
     exit 0
 fi
