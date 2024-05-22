@@ -244,7 +244,13 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 \fi
 
 % Automatic includeonly management
-\input{frame/AUTOGEN_includeonly}
+\ifdefined\fullCompile
+
+  % Compile all \include macros if not in fast mode
+\else
+
+  \input{frame/AUTOGEN_includeonly}
+\fi
 
 \makeatletter
 
@@ -320,8 +326,10 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 \renewenvironment{abstract}{
   \newpage
   \if@twocolumn
+
     \section*{\abstractname}%
   \else
+
     \small
     \begin{flushleft}%
       {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%

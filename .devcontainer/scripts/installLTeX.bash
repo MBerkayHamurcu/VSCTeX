@@ -8,6 +8,8 @@ if /vscode/vscode-server/bin/linux-x64/*/bin/remote-cli/code --list-extensions |
     exit 0
 fi
 
+cd .devcontainer
+
 wget https://github.com/neo-ltex/vscode-ltex/releases/download/13.1.1/ltex-13.1.1-offline-linux-x64.vsix
 
 /vscode/vscode-server/bin/linux-x64/*/bin/remote-cli/code --install-extension ltex-13.1.1-offline-linux-x64.vsix

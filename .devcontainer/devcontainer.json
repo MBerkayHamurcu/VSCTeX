@@ -2,7 +2,7 @@
 {
 	"name": "VSCTeX",
 	"image": "ubuntu:24.04",
-	"onCreateCommand": "apt update && apt upgrade && apt install -y locales wget cpanminus jq at && bash .devcontainer/scripts/setLocale.bash && wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && tar -xf install-tl-unx.tar.gz && rm install-tl-unx.tar.gz && cd install-tl-* && perl ./install-tl --no-interaction --scheme=basic && cd .. && rm -rf install-tl-* && TEXLIVE_DIR=$(ls -d /usr/local/texlive/* | grep 20) && TEXLIVE_EXECUTABLES_DIR=\"$(ls -d $TEXLIVE_DIR/bin/*)\" && $TEXLIVE_EXECUTABLES_DIR/tlmgr install latex latex-bin latexmk latexindent && ls $TEXLIVE_EXECUTABLES_DIR | xargs -I % ln -s $TEXLIVE_EXECUTABLES_DIR/% /usr/local/bin/% && PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH && export PATH && tlmgr option sys_bin /usr/local/bin && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Dispatch::File) ; bash .devcontainer/scripts/installPackages.bash && bash .devcontainer/scripts/cleanAux.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -auxdir=auxiliary main.tex && service atd start && echo \"bash -c '.devcontainer/scripts/installLTeX.bash'\" | at now +1 minute",
+  "onCreateCommand": "apt update && apt upgrade && apt install -y locales wget cpanminus jq at inotify-tools && bash .devcontainer/scripts/setLocale.bash && wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && tar -xf install-tl-unx.tar.gz && rm install-tl-unx.tar.gz && cd install-tl-* && perl ./install-tl --no-interaction --no-doc-install --scheme=basic && cd .. && rm -rf install-tl-* && TEXLIVE_DIR=$(ls -d /usr/local/texlive/* | grep 20) && TEXLIVE_EXECUTABLES_DIR=\"$(ls -d $TEXLIVE_DIR/bin/*)\" && ls $TEXLIVE_EXECUTABLES_DIR | xargs -I % ln -s $TEXLIVE_EXECUTABLES_DIR/% /usr/local/bin/% && PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH && export PATH && bash .devcontainer/scripts/installPackages.bash && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Dispatch::File) ; apt autoremove --purge && apt clean && rm -rf auxiliary && bash .devcontainer/scripts/createCollections.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -view=none -aux-directory=auxiliary -pdflatex='pdflatex %O \"\\def\\fullCompile{} \\input{%S}\"' main.tex && service atd start && echo \"bash -c '.devcontainer/scripts/installLTeX.bash'\" | at now +1 minute",
 	"postStartCommand": "bash .devcontainer/scripts/watchFileChanges.bash &>/dev/null &",
 	// Configure tool-specific properties.
 	"customizations": {
@@ -27,14 +27,14 @@
 					{
 						"name": "Generate document",
 						"tools": [
-							"runScript_cleanAux",
+							"cleanAux",
 							"runScript_createCollections",
 							"latexmk"
 						]
 					},
 					{
 						"name": "Clean up all auxiliary files",
-						"tools": ["runScript_cleanAux"]
+						"tools": ["cleanAux"]
 					},
 					{
 						"name": "Enable compiling on save",
@@ -63,19 +63,20 @@
 				],
 				"latex-workshop.latex.tools": [
 					{
-						"name": "latexmk",
-						"command": "latexmk",
-						"args": [
-							"-interaction=nonstopmode",
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+              "-interaction=nonstopmode",
 							"-synctex=1",
-							"-file-line-error",
-							"-pdf",
-							"-view=none",
-							"-aux-directory=auxiliary",
-							"main.tex"
-						],
-						"env": {}
-					},
+              "-file-line-error",
+              "-pdf",
+              "-view=none",
+              "-aux-directory=auxiliary",
+              "-pdflatex=pdflatex %O \"\\def\\fullCompile{} \\input{%S}\"",
+              "main.tex"
+            ],
+            "env": {}
+          },
 					{
 						"name": "latexmkFast",
 						"command": "latexmk",
@@ -92,9 +93,12 @@
 						"env": {}
 					},
 					{
-						"name": "runScript_cleanAux",
-						"command": "bash",
-						"args": [".devcontainer/scripts/cleanAux.bash"],
+						"name": "cleanAux",
+						"command": "rm",
+						"args": [
+              "-rf",
+              "auxiliary"
+            ],
 						"env": {}
 					},
 					{
