@@ -1,73 +1,90 @@
 // For format details, see https://aka.ms/devcontainer.json
 {
-	"name": "VSCTeX",
-	"image": "ubuntu:24.04",
+  "name": "VSCTeX",
+  "image": "ubuntu:24.04",
   "onCreateCommand": "apt update && apt upgrade && apt install -y locales wget cpanminus jq at inotify-tools && bash .devcontainer/scripts/setLocale.bash && wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && tar -xf install-tl-unx.tar.gz && rm install-tl-unx.tar.gz && cd install-tl-* && perl ./install-tl --no-interaction --no-doc-install --scheme=basic && cd .. && rm -rf install-tl-* && TEXLIVE_DIR=$(ls -d /usr/local/texlive/* | grep 20) && TEXLIVE_EXECUTABLES_DIR=\"$(ls -d $TEXLIVE_DIR/bin/*)\" && ls $TEXLIVE_EXECUTABLES_DIR | xargs -I % ln -s $TEXLIVE_EXECUTABLES_DIR/% /usr/local/bin/% && PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH && export PATH && bash .devcontainer/scripts/installPackages.bash && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Dispatch::File) ; apt autoremove --purge && apt clean && rm -rf auxiliary && bash .devcontainer/scripts/createCollections.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -view=none -aux-directory=auxiliary -pdflatex='pdflatex %O \"\\def\\fullCompile{} \\input{%S}\"' main.tex && service atd start && echo \"bash -c '.devcontainer/scripts/installLTeX.bash'\" | at now +1 minute",
-	"postStartCommand": "bash .devcontainer/scripts/watchFileChanges.bash &>/dev/null &",
-	// Configure tool-specific properties.
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				// Core features extension for LaTeX typesetting with VS Code
-				"James-Yu.latex-workshop",
-				// Real-time collaboration extension for VS Code
-				"MS-vsliveshare.vsliveshare"
-			],
-			"settings": {
-				"files.eol": "\n",
-				"editor.wordWrap": "wordWrapColumn",
-				"editor.wordWrapColumn": 80,
-				"latex-workshop.latex.autoBuild.run": "onSave",
-				"latex-workshop.latex.recipe.default": "Generate document - fastrun",
-				"latex-workshop.latex.recipes": [
-					{
-						"name": "Generate document - fastrun",
-						"tools": ["runScript_createCollections", "latexmkFast"]
-					},
-					{
-						"name": "Generate document",
-						"tools": [
-							"cleanAux",
-							"runScript_createCollections",
-							"latexmk"
-						]
-					},
-					{
-						"name": "Clean up all auxiliary files",
-						"tools": ["cleanAux"]
-					},
-					{
-						"name": "Enable compiling on save",
-						"tools": ["runScript_modifyUserSettingsABEN"]
-					},
-					{
-						"name": "Disable compiling on save",
-						"tools": ["runScript_modifyUserSettingsABDIS"]
-					},
-					{
-						"name": "Enable editor max column width",
-						"tools": ["runScript_modifyUserSettingsCWEN"]
-					},
-					{
-						"name": "Disable editor max column width",
-						"tools": ["runScript_modifyUserSettingsCWDIS"]
-					},
-					{
-						"name": "Install packages in configuration",
-						"tools": ["runScript_installPackages"]
-					},
-					{
-						"name": "Reapply locales configuration",
-						"tools": ["runScript_setLocale"]
-					}
-				],
-				"latex-workshop.latex.tools": [
-					{
+  "postStartCommand": "bash .devcontainer/scripts/watchFileChanges.bash &>/dev/null &",
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Core features extension for LaTeX typesetting with VS Code
+        "James-Yu.latex-workshop",
+        // Real-time collaboration extension for VS Code
+        "MS-vsliveshare.vsliveshare"
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 80,
+        "latex-workshop.latex.autoBuild.run": "onSave",
+        "latex-workshop.latex.recipe.default": "Generate document - fastrun",
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "Generate document - fastrun",
+            "tools": [
+              "runScript_createCollections",
+              "latexmkFast"
+            ]
+          },
+          {
+            "name": "Generate document",
+            "tools": [
+              "cleanAux",
+              "runScript_createCollections",
+              "latexmk"
+            ]
+          },
+          {
+            "name": "Clean up all auxiliary files",
+            "tools": [
+              "cleanAux"
+            ]
+          },
+          {
+            "name": "Enable compiling on save",
+            "tools": [
+              "runScript_modifyUserSettingsABEN"
+            ]
+          },
+          {
+            "name": "Disable compiling on save",
+            "tools": [
+              "runScript_modifyUserSettingsABDIS"
+            ]
+          },
+          {
+            "name": "Enable editor max column width",
+            "tools": [
+              "runScript_modifyUserSettingsCWEN"
+            ]
+          },
+          {
+            "name": "Disable editor max column width",
+            "tools": [
+              "runScript_modifyUserSettingsCWDIS"
+            ]
+          },
+          {
+            "name": "Install packages in configuration",
+            "tools": [
+              "runScript_installPackages"
+            ]
+          },
+          {
+            "name": "Reapply locales configuration",
+            "tools": [
+              "runScript_setLocale"
+            ]
+          }
+        ],
+        "latex-workshop.latex.tools": [
+          {
             "name": "latexmk",
             "command": "latexmk",
             "args": [
               "-interaction=nonstopmode",
-							"-synctex=1",
+              "-synctex=1",
               "-file-line-error",
               "-pdf",
               "-view=none",
@@ -77,109 +94,117 @@
             ],
             "env": {}
           },
-					{
-						"name": "latexmkFast",
-						"command": "latexmk",
-						"args": [
-							"-nobibtex",
-							"-interaction=nonstopmode",
-							"-synctex=1",
-							"-file-line-error",
-							"-pdf",
-							"-view=none",
-							"-aux-directory=auxiliary",
-							"main.tex"
-						],
-						"env": {}
-					},
-					{
-						"name": "cleanAux",
-						"command": "rm",
-						"args": [
+          {
+            "name": "latexmkFast",
+            "command": "latexmk",
+            "args": [
+              "-nobibtex",
+              "-interaction=nonstopmode",
+              "-synctex=1",
+              "-file-line-error",
+              "-pdf",
+              "-view=none",
+              "-aux-directory=auxiliary",
+              "main.tex"
+            ],
+            "env": {}
+          },
+          {
+            "name": "cleanAux",
+            "command": "rm",
+            "args": [
               "-rf",
               "auxiliary"
             ],
-						"env": {}
-					},
-					{
-						"name": "runScript_createCollections",
-						"command": "bash",
-						"args": [".devcontainer/scripts/createCollections.bash"],
-						"env": {}
-					},
-					{
-						"name": "runScript_setLocale",
-						"command": "bash",
-						"args": [".devcontainer/scripts/setLocale.bash"],
-						"env": {}
-					},
-					{
-						"name": "runScript_installPackages",
-						"command": "bash",
-						"args": [".devcontainer/scripts/installPackages.bash"],
-						"env": {}
-					},
-					{
-						"name": "runScript_modifyUserSettingsABEN",
-						"command": "bash",
-						"args": [
-							".devcontainer/scripts/modifyUserSettings.bash",
-							"latex-workshop.latex.recipes",
-							"\"[\\\"runScript_createCollections\\\", \\\"latexmkFast\\\"]\"",
-							"Generate document - fastrun"
-						],
-						"env": {}
-					},
-					{
-						"name": "runScript_modifyUserSettingsABDIS",
-						"command": "bash",
-						"args": [
-							".devcontainer/scripts/modifyUserSettings.bash",
-							"latex-workshop.latex.recipes",
-							"\"[\\\"runScript_createCollections\\\"]\"",
-							"Generate document - fastrun"
-						],
-						"env": {}
-					},
-					{
-						"name": "runScript_modifyUserSettingsCWEN",
-						"command": "bash",
-						"args": [
-							".devcontainer/scripts/modifyUserSettings.bash",
-							"editor.wordWrap",
-							"wordWrapColumn"
-						],
-						"env": {}
-					},
-					{
-						"name": "runScript_modifyUserSettingsCWDIS",
-						"command": "bash",
-						"args": [
-							".devcontainer/scripts/modifyUserSettings.bash",
-							"editor.wordWrap",
-							"off"
-						],
-						"env": {}
-					}
-				],
-				"latex-workshop.latex.rootFile.indicator": "\\begin{document}",
-				"latex-workshop.latex.search.rootFiles.include": ["*.tex"],
-				"latex-workshop.latex.build.rootfileInStatus": true,
-				"latex-workshop.latex.build.forceRecipeUsage": false,
-				"latex-workshop.latex.autoBuild.interval": 1,
-				"latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
-				"latex-workshop.latex.clean.method": "glob",
-				"latex-workshop.latex.clean.subfolder.enabled": true,
-				"latex-workshop.latex.watch.pdf.delay": 3000,
-				"ltex.language": "de-DE",
-				"ltex.java.initialHeapSize": 256,
-				"ltex.java.maximumHeapSize": 1024,
-				"ltex.configurationTarget": {
-					"dictionary": "userExternalFile",
-					"disabledRules": "userExternalFile",
-					"hiddenFalsePositives": "userExternalFile"
-				}
-			}
-		}
-	}
+            "env": {}
+          },
+          {
+            "name": "runScript_createCollections",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/createCollections.bash"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_setLocale",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/setLocale.bash"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_installPackages",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/installPackages.bash"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsABEN",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "latex-workshop.latex.recipes",
+              "\"[\\\"runScript_createCollections\\\", \\\"latexmkFast\\\"]\"",
+              "Generate document - fastrun"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsABDIS",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "latex-workshop.latex.recipes",
+              "\"[\\\"runScript_createCollections\\\"]\"",
+              "Generate document - fastrun"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsCWEN",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "editor.wordWrap",
+              "wordWrapColumn"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsCWDIS",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "editor.wordWrap",
+              "off"
+            ],
+            "env": {}
+          }
+        ],
+        "latex-workshop.latex.rootFile.indicator": "\\begin{document}",
+        "latex-workshop.latex.search.rootFiles.include": [
+          "*.tex"
+        ],
+        "latex-workshop.latex.build.rootfileInStatus": true,
+        "latex-workshop.latex.build.forceRecipeUsage": false,
+        "latex-workshop.latex.autoBuild.interval": 1,
+        "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+        "latex-workshop.latex.clean.method": "glob",
+        "latex-workshop.latex.clean.subfolder.enabled": true,
+        "latex-workshop.latex.watch.pdf.delay": 3000,
+        "ltex.language": "de-DE",
+        "ltex.java.initialHeapSize": 256,
+        "ltex.java.maximumHeapSize": 1024,
+        "ltex.configurationTarget": {
+          "dictionary": "userExternalFile",
+          "disabledRules": "userExternalFile",
+          "hiddenFalsePositives": "userExternalFile"
+        }
+      }
+    }
+  }
 }
