@@ -10,19 +10,20 @@ while read -r file; do
 
   fileName=$(cat indent.log | grep "Filename:" | awk '{print $NF}' | sed 's|/workspaces/VSCTeX/||g' | sed 's/__latexindent_temp_//' | sed 's/.tex//')
 
-  if ! grep -wq "$fileName" content/AUTOGEN_contentCollection.tex && ! grep -wq "$fileName" appendix/AUTOGEN_appendixCollection.tex || grep -wq "$fileName" frame/AUTOGEN_includeonly.tex || grep -wq "$fileName" frame/AUTOGEN_includeonly.tex; then
+  if ! grep -wq "$fileName" content/AUTOGEN_contentCollection.tex && ! grep -wq "$fileName" appendix/AUTOGEN_appendixCollection.tex || sed -n -e 's#^\\includeonly{\(.*\)}#\1#p' frame/AUTOGEN_includeonly.tex | grep -wq "$fileName"; then
     continue
   fi
 
-  includeonlyContent=$(cat frame/AUTOGEN_includeonly.tex | grep -Po '(?<=\\includeonly{).*(?=})')
-  
+  includeonly=$(cat frame/AUTOGEN_includeonly.tex | grep -Po '(?<=\\includeonly{).*(?=})')
+
   echo -e "$autogenWarning" > frame/AUTOGEN_includeonly.tex
-  
-  if [ -z "$includeonlyContent" ]; then
-    includeonlyContent="$fileName"
+
+  if [ -z "$includeonly" ]; then
+    includeonly="$fileName"
   else
-    includeonlyContent="$includeonlyContent,$fileName"
+    includeonly="$includeonly,$fileName"
   fi
-  
-  echo "\\includeonly{$includeonlyContent}" >> frame/AUTOGEN_includeonly.tex
+
+  echo "\\includeonly{$includeonly}" >> frame/AUTOGEN_includeonly.tex
+  echo "% lastChanges{$includeonly}" >> frame/AUTOGEN_includeonly.tex
 done

@@ -23,8 +23,10 @@
           {
             "name": "Generate document - fastrun",
             "tools": [
+              "runScript_handleEmptyIncludeonly",
               "runScript_createCollections",
-              "latexmkFast"
+              "latexmkFast",
+              "clearIncludeonly"
             ]
           },
           {
@@ -32,7 +34,8 @@
             "tools": [
               "cleanAux",
               "runScript_createCollections",
-              "latexmk"
+              "latexmk",
+              "clearIncludeonly"
             ]
           },
           {
@@ -119,6 +122,23 @@
             "env": {}
           },
           {
+            "name": "clearIncludeonly",
+            "command": "bash",
+            "args": [
+              "-c",
+              "sed -i 's#\\includeonly{[^}]*}#\\includeonly{}#g' frame/AUTOGEN_includeonly.tex"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_handleEmptyIncludeonly",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/handleEmptyIncludeonly.bash"
+            ],
+            "env": {}
+          },
+          {
             "name": "runScript_createCollections",
             "command": "bash",
             "args": [
@@ -148,7 +168,7 @@
             "args": [
               ".devcontainer/scripts/modifyUserSettings.bash",
               "latex-workshop.latex.recipes",
-              "\"[\\\"runScript_createCollections\\\", \\\"latexmkFast\\\"]\"",
+              "\"[\\\"runScript_handleEmptyIncludeonly\\\",\\\"runScript_createCollections\\\", \\\"latexmkFast\\\", \\\"clearIncludeonly\\\"]\"",
               "Generate document - fastrun"
             ],
             "env": {}
