@@ -1,4 +1,4 @@
-% Load Header
+% Load preamble
 \input{frame/preamble}
 
 % Load the defined acronyms
@@ -15,62 +15,69 @@
 % Disable page numbering
 \pagenumbering{gobble}
 
-\input{frame/frontpage}
+\include{frame/frontpage}
 
 % Optional restriction notice if needed
 \ifdefined\restrictedActive
 
-  \input{frame/restrictionNotice}
+  \include{frame/restrictionNotice}
 \fi
 
-\input{frame/declarationOfAuthenticity}
+\include{frame/declarationOfAuthenticity}
 
-\input{content/abstract}
+\include{content/abstract}
 
-% Table of contents
-\newpage
-\pdfbookmark{\contentsname}{toc}
-\pagestyle{plain}
-\tableofcontents
-% Begin Roman page numbering from page 4
-\pagenumbering{Roman}
-\setcounter{page}{4}
+\ifdefined\fullCompile
 
-% Table of units
-\input{frame/units}
+  % Table of contents
+  \newpage
+  \pdfbookmark{\contentsname}{toc}
+  \pagestyle{plain}
+  \tableofcontents
+  % Begin Roman page numbering from page 4
+  \pagenumbering{Roman}
+  \setcounter{page}{4}
 
-\begingroup
-% Table of acronyms
-\printacronyms[include=abbrev,name=\tableOfAcronymsName,template=longtable]
-\markboth{\tableOfAcronymsName}{\tableOfAcronymsName}
-% Add table of acronyms to the table of content
-\addcontentsline{toc}{chapter}{\tableOfAcronymsName}
-\endgroup
+  % Table of units
+  \include{frame/units}
 
-\listoffigures
+  \begingroup
+  % Table of acronyms
+  \printacronyms[include=abbrev,name=\tableOfAcronymsName,template=longtable]
+  \markboth{\tableOfAcronymsName}{\tableOfAcronymsName}
+  % Add table of acronyms to the table of content
+  \addcontentsline{toc}{chapter}{\tableOfAcronymsName}
+  \endgroup
 
-\listoftables
+  \listoffigures
 
-\listoflistedEquations
+  \listoftables
 
-% List of code blocks
-\lstlistoflistings
+  \listoflistedEquations
+
+  % List of code blocks
+  \lstlistoflistings
+\fi
 
 % Load content (automatically generated import file)
 \input{content/AUTOGEN_contentCollection}
 
-% List of Citations
-\renewcommand*\bibname{\bibliographyName}
-\printbibheading
-\printbibliography[type=book,heading=subbibliography,title={\printMedia}]
-\newpage
-\printbibliography[nottype=book,heading=subbibliography,title={\webMedia}]
+\ifdefined\fullCompile
+
+  % List of Citations
+  \renewcommand*\bibname{\bibliographyName}
+  \printbibheading
+  \printbibliography[filter=printMediaFilter,heading=subbibliography,title={\printMediaTitle}]
+  \newpage
+  \printbibliography[filter=webMediaFilter,heading=subbibliography,title={\webMediaTitle}]
+\fi
 
 % Apppendix
 \beginAppendix
 
-\appendix
+\Appendix
 
-\input{appendix/measurements}
+% Load appendix (automatically generated import file)
+\input{appendix/AUTOGEN_appendixCollection}
 
 \end{document}

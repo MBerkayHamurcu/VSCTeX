@@ -33,13 +33,21 @@
 \renewcommand*\lstlistlistingname{Quellcodeverzeichnis}
 \newcommand{\listOfEquationsName}{Formelverzeichnis}
 \newcommand{\bibliographyName}{Literaturverzeichnis}
-\newcommand{\printMedia}{Printquellen}
-\newcommand{\webMedia}{Internetquellen}
+\newcommand{\printMediaTitle}{Printquellen}
+\newcommand{\webMediaTitle}{Internetquellen}
 \newcommand{\BIBand}{und}
 \newcommand{\appendixName}{Anhang}
 \newcommand{\toDosName}{To-Do's}
 
-% Enable an option by uncommenting the line 
+% Custom bib classification
+\defbibfilter{printMediaFilter}{
+  type=book or type=article
+}
+\defbibfilter{webMediaFilter}{
+  not type=book and not type=article
+}
+
+% Enable an option by uncommenting the line
 % \newcommand{\watermarkActive}{}
 % \newcommand{\restrictedActive}{}
 \newcommand{\toDosActive}{}

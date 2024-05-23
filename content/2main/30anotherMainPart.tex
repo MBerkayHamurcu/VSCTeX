@@ -8,6 +8,8 @@ Inline Maths: $t_{sim} >> t_{real}$
 Zwei Bilder vertikal geteilt. Das Format der beiden Bilder zueinander ist relevant, die subfigure breiten
 müssen dementsprechend angepasst werden!:
 \begin{figure}[H]
+  \centering
+
   \hfill
   \begin{subfigure}[t]{0.65\textwidth}
     \includegraphics[width=1\textwidth]{media/exampleA1.jpg}
@@ -17,10 +19,11 @@ müssen dementsprechend angepasst werden!:
     \includegraphics[width=1\textwidth]{media/exampleA2.jpg}
   \end{subfigure}
   \hfill
+
   \captionsetup{width=0.8\textwidth}
   \caption[Projektierung]{Projektierung einer Antriebseinheit}
+
   \label{antrieb1}
-  \vspace{-0.4cm}
 \end{figure}
 
 \newpage
@@ -31,6 +34,8 @@ müssen dementsprechend angepasst werden!:
 Vier Bilder vertikal und horizontal geteilt. Das Format der beiden Bilder zueinander ist relevant, die subfigure breiten
 müssen dementsprechend angepasst werden!:
 \begin{figure}[H]
+  \centering
+
   \hfill
   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=1\textwidth]{media/RED.jpg}
@@ -55,8 +60,8 @@ müssen dementsprechend angepasst werden!:
 
   \captionsetup{width=0.8\textwidth}
   \caption[Vergleich Arbeitsspeicherbelegung - Rechenoperationen]{Vergleich Simulationsaufwand (Arbeitsspeicherbelegung) - Menge der Rechenoperationen}
+
   \label{vergleich1dot5}
-  \vspace{-0.4cm}
 \end{figure}
 Tabellenbeispiele \ref{erg2-ref} und \ref{erg1-rech}:
 
@@ -66,13 +71,13 @@ Tabellenbeispiele \ref{erg2-ref} und \ref{erg1-rech}:
   entry={Referenzprojekt (2)},
   label={erg2-ref}
   ]{
-  colspec={Q[c,m]Q[c,m]},
-  rowsep=4pt,
-  hlines={black, 1pt},
-  vlines={black, 1pt},
+  colspec={Q[1,c,m]Q[1,c,m]},
+  rowsep=2pt,
+  hlines={black, 0.5pt},
+  vlines={black, 0.5pt},
   rowhead=1,
   row{odd}={tableContrast},
-  row{1}={blue9,font=\large\bfseries}
+  row{1}={blue9,font=\bfseries}
   }
   Messwert                      & Durchschnitt \\
   Prozessorauslastung (\%)      & 29,6         \\
@@ -95,12 +100,12 @@ Tabellenbeispiele \ref{erg2-ref} und \ref{erg1-rech}:
   ]{
   width=1\linewidth,
   colspec={Q[1,c,m]Q[1,c,m]Q[1,c,m]Q[1,c,m]},
-  rowsep=4pt,
-  hlines={black, 1pt},
-  vlines={black, 1pt},
+  rowsep=2pt,
+  hlines={black, 0.5pt},
+  vlines={black, 0.5pt},
   rowhead=1,
   row{odd}={tableContrast},
-  row{1}={blue9,font=\large\bfseries}
+  row{1}={blue9,font=\bfseries}
   }
   Instanz                               & Privilegierte \ac{cpu} Zeit (\%) & Working Set MB & Private Bytes MB \\
   Siemens Automation. Portal            & 17,2                             & 3823           & 4379             \\

@@ -9,6 +9,7 @@
 \usepackage
 [
   % showframe, % For debugging purposes
+  driver=pdftex,
   a4paper,
   centering,
   left=2.5cm,
@@ -16,10 +17,10 @@
   top=3cm,
   bottom=3cm,
   headsep=1cm,
+  headheight=21pt,
   footskip=1.5cm,
+  marginparwidth=2cm
 ]{geometry}
-
-\setlength{\marginparwidth}{2cm}
 
 % Encoding and font settings
 \usepackage{setspace}
@@ -43,14 +44,13 @@
 % Page header and footer
 \usepackage{fancyhdr}
 
-\setlength{\headheight}{15pt}
-\addtolength{\topmargin}{-3pt}
+\newcommand{\headTextPaddingBottom}{\rule[-2ex]{0pt}{2ex}}
 
 \fancypagestyle{plain}{%
   \fancyhf{}
-  \fancyhead[L]{\headingTopLeft}
+  \fancyhead[L]{\headTextPaddingBottom\headingTopLeft}
   \fancyhead[C]{}
-  \fancyhead[R]{\small \nouppercase \leftmark}
+  \fancyhead[R]{\headTextPaddingBottom\small \nouppercase \leftmark}
   \fancyfoot[L]{\authorOne}
   \fancyfoot[C]{}
   \fancyfoot[R]{\large \thepage}
@@ -73,7 +73,7 @@
 
 \fancypagestyle{appendix}{%
   \fancyhf{}
-  \fancyhead[L]{\headingTopLeft}
+  \fancyhead[L]{\headTextPaddingBottom\headingTopLeft}
   \fancyhead[C]{}
   \fancyhead[R]{}
   \fancyfoot[L]{\authorOne}
@@ -110,7 +110,7 @@
 \usepackage{tikz}
 
 % Captions
-\usepackage[margin=2 cm,font=small,labelfont=bf]{caption}
+\usepackage[font=small,labelfont=bf,belowskip=-0.6cm]{caption}
 \usepackage{subcaption}
 
 % Colors
@@ -135,7 +135,7 @@
   keywordstyle=\color{magenta},
   numberstyle=\tiny\color{codegray},
   stringstyle=\color{codepurple},
-  basicstyle=\ttfamily\footnotesize,
+  basicstyle=\ttfamily\scriptsize\linespread{0.65},
   breakatwhitespace=false,
   breaklines=true,
   captionpos=t,
@@ -231,18 +231,8 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
-% PDF settings
-\usepackage[%
-  pdftitle={\projectTitle},
-  pdfauthor={\authorOne},
-  pdfsubject={\projectTitle},
-  pdfcreator={latexmk},
-  pdfpagemode=UseOutlines, % Show the table of contents in the sidepanel by default 
-  pdfdisplaydoctitle=true, % Show the document title instead of the file name
-  pdflang={\documentLanguage},
-  bookmarksnumbered=true,
-  plainpages=false,
-]{hyperref}
+% Mainly for `H` alignment support
+\usepackage{float}
 
 % Optional watermark
 \ifdefined\watermarkActive
@@ -251,6 +241,15 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
       \makebox(10,20)[c]{\resizebox{0.8\textwidth}{!}{%
           \rotatebox{45}{\textsf{\textbf{\color{lightgray}\watermarkText}}}}}}}
   %
+\fi
+
+% Automatic includeonly management
+\ifdefined\fullCompile
+
+  % Compile all \include macros if not in fast mode
+\else
+
+  \input{frame/AUTOGEN_includeonly}
 \fi
 
 \makeatletter
@@ -327,8 +326,10 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 \renewenvironment{abstract}{
   \newpage
   \if@twocolumn
+
     \section*{\abstractname}%
   \else
+
     \small
     \begin{flushleft}%
       {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
@@ -338,7 +339,8 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 
 \makeatother
 
-\usepackage{float}
+% Text bullets for the abstract
+\newcommand{\kwtextbullet}{\hspace{-0.05cm}\textbullet\hspace{0.08cm}}
 
 % Prepare appendix
 \newcommand{\beginAppendix}{%
@@ -352,12 +354,34 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
   \pagenumbering{Roman}
   \setcounter{page}{\value{svpage}}
   \addtocontents{toc}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
-
-  \thispagestyle{appendix}
-  \vspace*{\fill}
-  \begin{center}
-    \Huge \textbf{\appendixName}
-  \end{center}
-  \vspace*{\fill}
-  \newpage
 }
+
+\newcommand{\Appendix}{%
+  \ifdefined\fullCompile
+
+    \thispagestyle{appendix}
+    \vspace*{\fill}
+    \begin{center}
+      \Huge \textbf{\appendixName}
+    \end{center}
+    \vspace*{\fill}
+    \vspace*{1.5cm}
+
+    \newpage
+
+    \appendix
+  \fi
+}
+
+% PDF settings
+\usepackage[%
+  pdftitle={\projectTitle},
+  pdfauthor={\authorOne},
+  pdfsubject={\projectTitle},
+  pdfcreator={latexmk},
+  pdfpagemode=UseOutlines, % Show the table of contents in the sidepanel by default 
+  pdfdisplaydoctitle=true, % Show the document title instead of the file name
+  pdflang={\documentLanguage},
+  bookmarksnumbered=true,
+  plainpages=false,
+]{hyperref} % Loading hyperref as the last package

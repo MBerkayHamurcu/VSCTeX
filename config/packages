@@ -1,3 +1,5 @@
+latexmk
+latexindent
 babel-german
 hyphen-german
 caption

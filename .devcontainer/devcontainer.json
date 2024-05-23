@@ -1,65 +1,72 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+// For format details, see https://aka.ms/devcontainer.json
 {
   "name": "VSCTeX",
   "image": "ubuntu:24.04",
-  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  //"build": {
-  //  "dockerfile": "Dockerfile"
-  //},
-  // Features to add to the dev container. More info: https://containers.dev/features.
-  "features": {
-    "ghcr.io/prulloac/devcontainer-features/latex:1": {
-      "scheme": "basic"
-    }
-  },
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
-  //
-  // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "tlmgr option sys_bin /usr/local/bin && apt-get update && apt-get install -y locales cpanminus jq && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Log4perl Log::Dispatch::File); tlmgr update --all; tlmgr install latexindent && bash .devcontainer/scripts/setLocale.bash && bash .devcontainer/scripts/installPackages.bash && bash .devcontainer/scripts/cleanAux.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -auxdir=auxiliary main.tex",
-  //
+  "onCreateCommand": "apt update && apt -y upgrade && apt -y install locales wget cpanminus jq at inotify-tools && bash .devcontainer/scripts/setLocale.bash && wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && tar -xf install-tl-unx.tar.gz && rm install-tl-unx.tar.gz && cd install-tl-* && perl ./install-tl --no-interaction --no-doc-install --scheme=basic && cd .. && rm -rf install-tl-* && TEXLIVE_DIR=$(ls -d /usr/local/texlive/* | grep 20) && TEXLIVE_EXECUTABLES_DIR=\"$(ls -d $TEXLIVE_DIR/bin/*)\" && ls $TEXLIVE_EXECUTABLES_DIR | xargs -I % ln -s $TEXLIVE_EXECUTABLES_DIR/% /usr/local/bin/% && PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH && export PATH && bash .devcontainer/scripts/installPackages.bash && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Dispatch::File) ; apt autoremove --purge && apt clean && rm -rf auxiliary && bash .devcontainer/scripts/createCollections.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -view=none -aux-directory=auxiliary -pdflatex='pdflatex %O \"\\def\\fullCompile{} \\input{%S}\"' main.tex",
+  "postStartCommand": "service atd start && echo \"bash -c '.devcontainer/scripts/watchFileChanges.bash'\" | at now +1 minute && echo \"bash -c '.devcontainer/scripts/installLTeX.bash'\" | at now +5 minute",
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
       "extensions": [
-        // LTeX – LanguageTool grammar/spell checking
-        "valentjn.vscode-ltex",
+        // Core features extension for LaTeX typesetting with VS Code
+        "James-Yu.latex-workshop",
         // Real-time collaboration extension for VS Code
         "MS-vsliveshare.vsliveshare"
       ],
       "settings": {
         "files.eol": "\n",
+        "editor.formatOnSave": true,
         "editor.wordWrap": "wordWrapColumn",
         "editor.wordWrapColumn": 80,
         "latex-workshop.latex.autoBuild.run": "onSave",
-        "latex-workshop.latex.recipe.default": "Generate document - fastrun",
+        "latex-workshop.latex.recipe.default": "Generate document - fast mode",
         "latex-workshop.latex.recipes": [
           {
-            "name": "Generate document - fastrun",
+            "name": "Generate document - fast mode",
             "tools": [
-              "runScript_createContentCollection",
-              "latexmkFast"
+              "runScript_handleEmptyIncludeonly",
+              "runScript_createCollections",
+              "latexmkFast",
+              "clearIncludeonly"
             ]
           },
           {
-            "name": "Generate document",
+            "name": "Generate document - complete mode",
             "tools": [
-              "runScript_cleanAux",
-              "runScript_createContentCollection",
-              "latexmk"
+              "cleanAux",
+              "runScript_createCollections",
+              "latexmk",
+              "clearIncludeonly"
             ]
           },
           {
             "name": "Clean up all auxiliary files",
             "tools": [
-              "runScript_cleanAux"
+              "cleanAux"
             ]
           },
           {
-            "name": "Reapply locales configuration",
+            "name": "Enable compiling on save",
             "tools": [
-              "runScript_setLocale"
+              "runScript_modifyUserSettingsABEN"
+            ]
+          },
+          {
+            "name": "Disable compiling on save",
+            "tools": [
+              "runScript_modifyUserSettingsABDIS"
+            ]
+          },
+          {
+            "name": "Enable editor max column width",
+            "tools": [
+              "runScript_modifyUserSettingsCWEN"
+            ]
+          },
+          {
+            "name": "Disable editor max column width",
+            "tools": [
+              "runScript_modifyUserSettingsCWDIS"
             ]
           },
           {
@@ -69,15 +76,9 @@
             ]
           },
           {
-            "name": "Enable compiling on save",
+            "name": "Reapply locales configuration",
             "tools": [
-              "runScript_modifyUserSettingsABS"
-            ]
-          },
-          {
-            "name": "Disable compiling on save",
-            "tools": [
-              "runScript_modifyUserSettingsABN"
+              "runScript_setLocale"
             ]
           }
         ],
@@ -90,9 +91,10 @@
               "-synctex=1",
               "-file-line-error",
               "-pdf",
-              "-outdir=%OUTDIR%",
-              "-auxdir=%DIR%/auxiliary",
-              "%DOCFILE%"
+              "-view=none",
+              "-aux-directory=auxiliary",
+              "-pdflatex=pdflatex %O \"\\def\\fullCompile{} \\input{%S}\"",
+              "main.tex"
             ],
             "env": {}
           },
@@ -100,33 +102,48 @@
             "name": "latexmkFast",
             "command": "latexmk",
             "args": [
+              "-nobibtex",
               "-interaction=nonstopmode",
               "-synctex=1",
               "-file-line-error",
               "-pdf",
-              "-nobibtex",
-              "--quiet",
-              "-silent",
               "-view=none",
-              "-outdir=%OUTDIR%",
-              "-auxdir=%DIR%/auxiliary",
-              "%DOCFILE%"
+              "-aux-directory=auxiliary",
+              "main.tex"
             ],
             "env": {}
           },
           {
-            "name": "runScript_cleanAux",
-            "command": "bash",
+            "name": "cleanAux",
+            "command": "rm",
             "args": [
-              ".devcontainer/scripts/cleanAux.bash"
+              "-rf",
+              "auxiliary"
             ],
             "env": {}
           },
           {
-            "name": "runScript_createContentCollection",
+            "name": "clearIncludeonly",
             "command": "bash",
             "args": [
-              ".devcontainer/scripts/createContentCollection.bash"
+              "-c",
+              "sed -i 's#\\includeonly{[^}]*}#\\includeonly{}#g' frame/AUTOGEN_includeonly.tex"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_handleEmptyIncludeonly",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/handleEmptyIncludeonly.bash"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_createCollections",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/createCollections.bash"
             ],
             "env": {}
           },
@@ -147,22 +164,44 @@
             "env": {}
           },
           {
-            "name": "runScript_modifyUserSettingsABS",
+            "name": "runScript_modifyUserSettingsABEN",
             "command": "bash",
             "args": [
               ".devcontainer/scripts/modifyUserSettings.bash",
-              "latex-workshop.latex.autoBuild.run",
-              "onSave"
+              "latex-workshop.latex.recipes",
+              "\"[\\\"runScript_handleEmptyIncludeonly\\\",\\\"runScript_createCollections\\\", \\\"latexmkFast\\\", \\\"clearIncludeonly\\\"]\"",
+              "Generate document - fast mode"
             ],
             "env": {}
           },
           {
-            "name": "runScript_modifyUserSettingsABN",
+            "name": "runScript_modifyUserSettingsABDIS",
             "command": "bash",
             "args": [
               ".devcontainer/scripts/modifyUserSettings.bash",
-              "latex-workshop.latex.autoBuild.run",
-              "never"
+              "latex-workshop.latex.recipes",
+              "\"[\\\"runScript_createCollections\\\"]\"",
+              "Generate document - fast mode"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsCWEN",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "editor.wordWrap",
+              "wordWrapColumn"
+            ],
+            "env": {}
+          },
+          {
+            "name": "runScript_modifyUserSettingsCWDIS",
+            "command": "bash",
+            "args": [
+              ".devcontainer/scripts/modifyUserSettings.bash",
+              "editor.wordWrap",
+              "off"
             ],
             "env": {}
           }
