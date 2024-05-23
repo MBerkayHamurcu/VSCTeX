@@ -354,16 +354,23 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
   \pagenumbering{Roman}
   \setcounter{page}{\value{svpage}}
   \addtocontents{toc}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
+}
 
-  \thispagestyle{appendix}
-  \vspace*{\fill}
-  \begin{center}
-    \Huge \textbf{\appendixName}
-  \end{center}
-  \vspace*{\fill}
-  \vspace*{1.5cm}
+\newcommand{\Appendix}{%
+\ifdefined\fullCompile
 
-  \newpage
+\thispagestyle{appendix}
+\vspace*{\fill}
+\begin{center}
+  \Huge \textbf{\appendixName}
+\end{center}
+\vspace*{\fill}
+\vspace*{1.5cm}
+
+\newpage
+
+\appendix
+\fi
 }
 
 % PDF settings

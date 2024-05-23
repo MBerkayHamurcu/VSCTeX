@@ -19,3 +19,5 @@ do
     echo "\\include{$APPEND}"
     mkdir -p auxiliary/$(dirname $APPEND)
 done >>appendix/AUTOGEN_appendixCollection.tex
+
+mkdir -p auxiliary/frame
