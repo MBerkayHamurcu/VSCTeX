@@ -15,5 +15,3 @@ wget https://github.com/neo-ltex/vscode-ltex/releases/download/13.1.1/ltex-13.1.
 /vscode/vscode-server/bin/linux-x64/*/bin/remote-cli/code --install-extension ltex-13.1.1-offline-linux-x64.vsix
 
 rm ltex-13.1.1-offline-linux-x64.vsix
-
-service atd stop

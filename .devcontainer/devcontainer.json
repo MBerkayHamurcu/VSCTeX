@@ -2,8 +2,8 @@
 {
   "name": "VSCTeX",
   "image": "ubuntu:24.04",
-  "onCreateCommand": "apt update && apt upgrade && apt install -y locales wget cpanminus jq at inotify-tools && bash .devcontainer/scripts/setLocale.bash && wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && tar -xf install-tl-unx.tar.gz && rm install-tl-unx.tar.gz && cd install-tl-* && perl ./install-tl --no-interaction --no-doc-install --scheme=basic && cd .. && rm -rf install-tl-* && TEXLIVE_DIR=$(ls -d /usr/local/texlive/* | grep 20) && TEXLIVE_EXECUTABLES_DIR=\"$(ls -d $TEXLIVE_DIR/bin/*)\" && ls $TEXLIVE_EXECUTABLES_DIR | xargs -I % ln -s $TEXLIVE_EXECUTABLES_DIR/% /usr/local/bin/% && PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH && export PATH && bash .devcontainer/scripts/installPackages.bash && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Dispatch::File) ; apt autoremove --purge && apt clean && rm -rf auxiliary && bash .devcontainer/scripts/createCollections.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -view=none -aux-directory=auxiliary -pdflatex='pdflatex %O \"\\def\\fullCompile{} \\input{%S}\"' main.tex && service atd start && echo \"bash -c '.devcontainer/scripts/installLTeX.bash'\" | at now +1 minute",
-  "postStartCommand": "bash .devcontainer/scripts/watchFileChanges.bash &>/dev/null &",
+  "onCreateCommand": "apt update && apt -y upgrade && apt -y install locales wget cpanminus jq at inotify-tools && bash .devcontainer/scripts/setLocale.bash && wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && tar -xf install-tl-unx.tar.gz && rm install-tl-unx.tar.gz && cd install-tl-* && perl ./install-tl --no-interaction --no-doc-install --scheme=basic && cd .. && rm -rf install-tl-* && TEXLIVE_DIR=$(ls -d /usr/local/texlive/* | grep 20) && TEXLIVE_EXECUTABLES_DIR=\"$(ls -d $TEXLIVE_DIR/bin/*)\" && ls $TEXLIVE_EXECUTABLES_DIR | xargs -I % ln -s $TEXLIVE_EXECUTABLES_DIR/% /usr/local/bin/% && PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH && export PATH && bash .devcontainer/scripts/installPackages.bash && (cpanm YAML::Tiny File::HomeDir Unicode::GCString Log::Dispatch::File) ; apt autoremove --purge && apt clean && rm -rf auxiliary && bash .devcontainer/scripts/createCollections.bash && latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -view=none -aux-directory=auxiliary -pdflatex='pdflatex %O \"\\def\\fullCompile{} \\input{%S}\"' main.tex && service atd start && echo \"bash -c '.devcontainer/scripts/installLTeX.bash'\" | at now +1 minute",
+  "postStartCommand": "service atd start && echo \"bash -c '.devcontainer/scripts/watchFileChanges.bash'\" | at now +1 minute",
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
@@ -18,10 +18,10 @@
         "editor.wordWrap": "wordWrapColumn",
         "editor.wordWrapColumn": 80,
         "latex-workshop.latex.autoBuild.run": "onSave",
-        "latex-workshop.latex.recipe.default": "Generate document - fastrun",
+        "latex-workshop.latex.recipe.default": "Generate document - fast mode",
         "latex-workshop.latex.recipes": [
           {
-            "name": "Generate document - fastrun",
+            "name": "Generate document - fast mode",
             "tools": [
               "runScript_handleEmptyIncludeonly",
               "runScript_createCollections",
@@ -30,7 +30,7 @@
             ]
           },
           {
-            "name": "Generate document",
+            "name": "Generate document - complete mode",
             "tools": [
               "cleanAux",
               "runScript_createCollections",
@@ -169,7 +169,7 @@
               ".devcontainer/scripts/modifyUserSettings.bash",
               "latex-workshop.latex.recipes",
               "\"[\\\"runScript_handleEmptyIncludeonly\\\",\\\"runScript_createCollections\\\", \\\"latexmkFast\\\", \\\"clearIncludeonly\\\"]\"",
-              "Generate document - fastrun"
+              "Generate document - fast mode"
             ],
             "env": {}
           },
@@ -180,7 +180,7 @@
               ".devcontainer/scripts/modifyUserSettings.bash",
               "latex-workshop.latex.recipes",
               "\"[\\\"runScript_createCollections\\\"]\"",
-              "Generate document - fastrun"
+              "Generate document - fast mode"
             ],
             "env": {}
           },
