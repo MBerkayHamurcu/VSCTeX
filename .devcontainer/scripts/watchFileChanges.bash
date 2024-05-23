@@ -10,7 +10,13 @@ while read -r file; do
 
   fileName=$(cat indent.log | grep "Filename:" | awk '{print $NF}' | sed 's|/workspaces/VSCTeX/||g' | sed 's/__latexindent_temp_//' | sed 's/.tex//')
 
-  if ! grep -wq "$fileName" content/AUTOGEN_contentCollection.tex && ! grep -wq "$fileName" appendix/AUTOGEN_appendixCollection.tex || sed -n -e 's#^\\includeonly{\(.*\)}#\1#p' frame/AUTOGEN_includeonly.tex | grep -wq "$fileName"; then
+  if [[ $fileName == *"AUTOGEN"* ]] ||
+   { ! grep -wq "$fileName" content/AUTOGEN_contentCollection.tex &&
+     ! grep -wq "$fileName" appendix/AUTOGEN_appendixCollection.tex &&
+     [[ $fileName == "content/"* ]] &&
+     [[ $fileName == "frame/"* ]]; } ||
+    [[ $fileName == "config/"* ]] ||
+    grep -wq "$fileName" <(sed -n -e 's#^\\includeonly{\(.*\)}#\1#p' frame/AUTOGEN_includeonly.tex); then
     continue
   fi
 

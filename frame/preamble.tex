@@ -357,20 +357,20 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 }
 
 \newcommand{\Appendix}{%
-\ifdefined\fullCompile
+  \ifdefined\fullCompile
 
-\thispagestyle{appendix}
-\vspace*{\fill}
-\begin{center}
-  \Huge \textbf{\appendixName}
-\end{center}
-\vspace*{\fill}
-\vspace*{1.5cm}
+    \thispagestyle{appendix}
+    \vspace*{\fill}
+    \begin{center}
+      \Huge \textbf{\appendixName}
+    \end{center}
+    \vspace*{\fill}
+    \vspace*{1.5cm}
 
-\newpage
+    \newpage
 
-\appendix
-\fi
+    \appendix
+  \fi
 }
 
 % PDF settings
