@@ -1,17 +1,6 @@
 % Set document variables
 \newcommand{\documentLanguage}{de} % or f.i. en
 
-\newcommand{\confidentialText}{Vertraulich}
-\newcommand{\projectTimeframeText}{Bearbeitungszeitraum}
-\newcommand{\matriculationNumberText}{Matrikelnummer}
-\newcommand{\courseText}{Kurs}
-\newcommand{\companyText}{Ausbildungsfirma}
-\newcommand{\tutorText}{Betreuer}
-\newcommand{\secondTutorText}{Zweitbetreuer}
-\newcommand{\tableContinuationText}{Fortsetzung auf der nächsten Seite}
-\newcommand{\tableContinuationCaptionText}{(Fortsetzung)}
-\newcommand{\watermarkText}{Wasserzeichen}
-
 \newcommand{\projectTitle}{EDIT\_ME\_TITEL}
 \newcommand{\projectType}{EDIT\_ME\_Arbeitsart}
 \newcommand{\authorOne}{EDIT\_ME\_Berkay Hamurcu}
@@ -27,10 +16,11 @@
 \newcommand{\dhbw}{EDIT\_ME\_Ort}
 \newcommand{\headingTopLeft}{EDIT\_ME\_Kopfzeile}
 
-% Set heading names
+% Set heading and misc names
 \renewcommand*\contentsname{Inhaltsverzeichnis}
 \newcommand{\tableOfAcronymsName}{Abkürzungsverzeichnis}
 \renewcommand*\lstlistlistingname{Quellcodeverzeichnis}
+\renewcommand*\lstlistingname{Quellcode}
 \newcommand{\listOfEquationsName}{Formelverzeichnis}
 \newcommand{\bibliographyName}{Literaturverzeichnis}
 \newcommand{\printMediaTitle}{Printquellen}
@@ -38,6 +28,18 @@
 \newcommand{\BIBand}{und}
 \newcommand{\appendixName}{Anhang}
 \newcommand{\toDosName}{To-Do's}
+
+\newcommand{\mainLogo}{media/DHBW_Logo.png}
+\newcommand{\confidentialText}{Vertraulich}
+\newcommand{\projectTimeframeText}{Bearbeitungszeitraum}
+\newcommand{\matriculationNumberText}{Matrikelnummer}
+\newcommand{\courseText}{Kurs}
+\newcommand{\companyText}{Ausbildungsfirma}
+\newcommand{\tutorText}{Betreuer}
+\newcommand{\secondTutorText}{Zweitbetreuer}
+\newcommand{\tableContinuationText}{Fortsetzung auf der nächsten Seite}
+\newcommand{\tableContinuationCaptionText}{(Fortsetzung)}
+\newcommand{\watermarkText}{Wasserzeichen}
 
 % Custom bib classification
 \defbibfilter{printMediaFilter}{
@@ -48,6 +50,7 @@
 }
 
 % Enable an option by uncommenting the line
+% \newcommand{\secondLogo}{media/DHBWEngineering_Logo.pdf}
 % \newcommand{\watermarkActive}{}
 % \newcommand{\restrictedActive}{}
 \newcommand{\toDosActive}{}
