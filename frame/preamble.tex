@@ -87,6 +87,17 @@
 \usepackage{xargs}
 \usepackage{url}
 
+% Graphics support
+\usepackage{graphicx}
+\ifdefined\restrictedActive
+
+  \usepackage{tikz}
+\fi
+
+% Captions
+\usepackage{subcaption}
+\captionsetup{font=small,labelfont=bf,belowskip=-0.6cm}
+
 % Citation
 \usepackage[
   backend=biber,
@@ -101,14 +112,6 @@
 \addbibresource{literature.bib}
 \BiblatexSplitbibDefernumbersWarningOff
 \appto\bibfont{\setlength{\emergencystretch}{5pt}}
-
-% Graphics support
-\usepackage{graphicx}
-\usepackage{tikz}
-
-% Captions
-\usepackage[font=small,labelfont=bf,belowskip=-0.6cm]{caption}
-\usepackage{subcaption}
 
 % Colors
 \usepackage{xcolor}
@@ -149,26 +152,24 @@
   language=C
 }
 
+% Import the document variables
+\input{config/variables}
+
 % Maths
 \usepackage{amsmath}
 
 % Prepare list of equations
-\DeclareCaptionType{listedEquation}[][\listOfEquationsName]
-\captionsetup[listedEquation]{labelformat=empty}
+\DeclareCaptionType{listedEquation}[\equationName][\listOfEquationsName]
 
 % Define custom equations macro
-\newcommandx{\Equation}[2][1=UNDEFINED]{%
-  \ifstrequal{#1}{UNDEFINED}{%
-    \begin{listedEquation}[H]
-      {#2}
-    \end{listedEquation}
-  }{%
-    \begin{listedEquation}[H]
-      {#2}
-      \caption{#1}
-      \label{#1}
-    \end{listedEquation}
-  }}
+\newcommand{\Equation}[2]{%
+  \begin{listedEquation}[H]
+    {#2}
+
+    \caption{#1}
+    \label{#1}
+  \end{listedEquation}
+}
 
 % Define custom bullet list macro
 \newenvironment{Itemize}
@@ -210,9 +211,6 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 
 % Watermark support
 \usepackage{eso-pic}
-
-% Import the document variables
-\input{config/variables}
 
 % To-Do notes support
 \newcommand{\toDosDisabler}{disable}

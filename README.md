@@ -125,7 +125,7 @@ The Dev Container provides some features and tools to help you write and compile
 The Dev Container provides some custom macros that you can use in your LaTeX files. In general, try to adhere to the examples in the template for accessing its features (acronyms, tables, images, etc.). Here are some of them:
 
 - `\Chapter`: This macro is a replacement for `\chapter`. It behaves like `\chapter` with the addition of adding the correct entry to your headings and creating a label that can be referenced later via \autoref{short chapter title if defined, else chapter title}.
-- `\Equation`: This macro is a shortcut for creating an equation with a caption and a label for reference
+- `\Equation`: This macro is a shortcut for creating an equation that is listed in the list of equations with a caption and a label for reference
 - `\todo`: This macro is a way to add a todo note to your document. The note will appear in the margin of your document and in the optional To-Do list on the first page. In the examplery content of the template you can see some To-Do notes macros beyond the ones defined in the `todonotes` package by default like \unsure, \change or \info.
 - `Itemize`: This environment is a variation of the `itemize` environment. It sets the item separation and the indentation to zero, making the list more compact.
 

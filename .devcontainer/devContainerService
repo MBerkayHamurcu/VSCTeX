@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# devContainerService     Starting the required dev container scripts
+
+start(){
+  nohup bash /workspaces/VSCTeX/.devcontainer/scripts/installLTeX.bash &>/dev/null &
+  nohup bash /workspaces/VSCTeX/.devcontainer/scripts/watchFileChanges.bash &>/dev/null &
+}
+
+case "$1" in
+        start)
+                start
+                ;;
+        *)
+                echo $"Usage: $0 {start}"
+esac
