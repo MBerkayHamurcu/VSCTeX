@@ -26,15 +26,13 @@ A Dev Container is a way to create a consistent and isolated development environ
 - Auxiliary files are hidden in a subfolder
 - Linux, Windows and MacOS compatibility
 
-
-
 ## Prerequisites
 
 Before you start, you need to install the following software on your host machine:
 
 ### Visual Studio Code
 
-This is the IDE that you will use to edit your LaTeX files and interact with the Dev Container. You can download it from the official source <a href="https://code.visualstudio.com/download" target="_blank">here</a>.
+This is the IDE that you will use to edit your LaTeX files and interact with the Dev Container. You can download it from the official source [here](https://code.visualstudio.com/download "Visual Studio Code - Download")
 
 ### Docker
 
@@ -42,15 +40,15 @@ This is the software that runs the Dev Container. Depending on your operating sy
 
 #### Linux
 
-You can find the official installation instructions for Linux <a href="https://docs.docker.com/desktop/install/linux-install/" target="_blank">here</a>.
+You can find the official installation instructions for Linux [here](https://docs.docker.com/desktop/install/linux-install/ "Docker for Linux - Download")
 
 #### Windows
 
-You can find the official installation instructions for Windows <a href="https://docs.docker.com/desktop/install/windows-install/" target="_blank">here</a>.
+You can find the official installation instructions for Windows [here](https://docs.docker.com/desktop/install/windows-install/ "Docker for Windows - Download")
 
 #### MacOS
 
-You can find the official installation instructions for MacOS <a href="https://docs.docker.com/desktop/install/mac-install/" target="_blank">here</a>.
+You can find the official installation instructions for MacOS [here](https://docs.docker.com/desktop/install/mac-install/ "Docker for MacOs - Download")
 
 ### git LFS
 
@@ -58,55 +56,58 @@ Git LFS is a git extension that allows working with large files in git repositor
 
 #### Linux
 
-You can find the official installation instructions for Linux <a href="https://github.com/git-lfs/git-lfs?tab=readme-ov-file#on-linux" target="_blank">here</a>.
+You can find the official installation instructions for Linux [here](https://github.com/git-lfs/git-lfs?tab=readme-ov-file#on-linux "git LFS for Linux - Download")
 
 #### Windows
 
-Git LFS is included in the distribution of *Git for Windows*. If you installed git via another method, you can download git LFS from the official source <a href="https://git-lfs.com" target="_blank">here</a>.
+Git LFS is included in the distribution of *Git for Windows*. If you installed git via another method, you can download git LFS from the official source [here](https://git-lfs.com "git LFS for Windows - Download")
 
 #### MacOS
 
-You can find the official installation instructions for MacOS <a href="https://github.com/git-lfs/git-lfs?tab=readme-ov-file#on-macos" target="_blank">here</a>.
+You can find the official installation instructions for MacOS [here](https://github.com/git-lfs/git-lfs?tab=readme-ov-file#on-macos "git LFS for MacOs - Download")
 
 ### Bibliography management
 
-Make sure to set the library mode to BibLaTeX when using a bibliography management tool with this template
+Make sure to set the library mode to **BibLaTeX** when using a bibliography management tool with this template
+
+> [!TIP]
+> You can use the following programs (optional) for `literature.bib`. The bibliography management tool makes it easier to create and maintain your literature.
 
 #### (Optional) JabRef
 
-This is an optional tool for managing your bibliography. If you do not already have a preferred tool for this purpose, you can install JabRef from the official source <a href="https://www.jabref.org/#download" target="_blank">here</a>.
+This is an optional tool for managing your bibliography. If you do not already have a preferred tool for this purpose, you can install JabRef from the official source [here](https://www.jabref.org/#download "Jabref - Download")
 
+#### (Optional) Zotero [with Better BibTex]
 
+But you can also use Zotero for free if you like,  you can download it [here](https://www.zotero.org/ "Zotero - Download"). Better BibTex is required for this so that your literature from the bibliography management tool is automatically synchronized with your `literature.bib`,  you can download it [here](https://retorque.re/zotero-better-bibtex/ "Better BibTex - Download"). Install the `.xpi` file you downloaded in Zotero under: Tools --> Add-ons --> ![Icon_Zotero_installing_Better_BibTex](.devcontainer/static/Icon_Zotero_installing_Better_BibTex.png) --> Install Add-on From File. Finally, export your literature and use and configure **Better BibLaTex** according to your preferences.
 
 ## Setting up the Dev Container
 
 To setup the Dev Container on your host machine, follow these steps:
 
 1. **Clone** this repository by running the **git clone** command. Only downloading the repository from GitHub will cause errors because of unresolved git LFS references.
-1. **Install** the `Dev Containers` (ms-vscode-remote.remote-containers) VS Code extension.
-1. **Open** the downloaded folder in VS Code. Confirm the "Yes, I trust the authors" option.
-1. VS Code will detect the `.devcontainer` folder in the project and prompt you to reopen the folder in a container. Confirm the **Reopen in Container** action. Alternatively, you can use the command palette (Keyboard shortcut: Ctrl+Shift+P) and select **Dev Containers: Reopen in Container**.
-1. **Wait** for the Dev Container to build and configure. Starting the Dev Container for the first time (effectively building the container) will take some time depending on your internet connection and computer. It may take a few minutes or longer. Starting the container after this first build process won't take much longer than a few seconds.
-1. If the container has **fully started**, you can now edit your LaTeX files and use the features of VSCTeX!
-1. Be sure to **continue reading** in order to avoid confusion due to a lack of knowledge about the behavior of this setup.
-
-
+2. **Install** the `Dev Containers` (ms-vscode-remote.remote-containers) VS Code extension.
+3. **Open** the downloaded folder in VS Code. Confirm the "Yes, I trust the authors" option.
+4. VS Code will detect the `.devcontainer` folder in the project and prompt you to reopen the folder in a container. Confirm the **Reopen in Container** action. Alternatively, you can use the command palette (Keyboard shortcut: Ctrl+Shift+P) and select **Dev Containers: Reopen in Container**.
+5. **Wait** for the Dev Container to build and configure. Starting the Dev Container for the first time (effectively building the container) will take some time depending on your internet connection and computer. It may take a few minutes or longer. Starting the container after this first build process won't take much longer than a few seconds.
+6. If the container has **fully started**, you can now edit your LaTeX files and use the features of VSCTeX!
+7. Be sure to **continue reading** in order to avoid confusion due to a lack of knowledge about the behavior of this setup.
 
 ## Configuring the Dev Container
 
 The Dev Container comes with a minimal setup for this LaTeX template to work. However, you can make customizations and configurations according to your needs. Here are some of the files and folders you can modify:
 
 - `config/packages`: This text file contains the LaTeX packages that are required for the template. You can add packages as you wish and can install your setup running the `Install packages in configuration` recipe with the LaTeX Workshop extension:
+
 <p align="center">
   <img src=".devcontainer/static/runningWorkshopRecipe.png" alt="Running a LaTeX Workshop recipe" width="80%"/>
 </p>
+
 - `config/variables.tex`: In this file you can change the values of the document variables, such as the title, author, date, etc. There are also options like the to-do list feature, a second logo on the front page, a watermark and the restriction notice you can turn on or off via this file.
 - `config/locales`: This text file contains a selection of locales you can choose one from and is therefore relevant if you want to change the default language of this Dev Container to another. It can also be extended with other valid locales. You can again apply your locales setting in the container by running the `Reapply locales configuration` recipe with the LaTeX Workshop extension. Beware that changing the language could need some configuration like installing further packages, since this Dev Container only loads the basic Tex Live installation schema, or reconfiguring little parts of the template beyond the `config/variables.tex` file
 - `.devcontainer/devcontainer.json`: This file contains the configuration of the Dev Container itself, such as the instructions for building the container, extensions, settings, etc. You can change these options too, but only if you know what you are doing. A misconfiguration of this file will cause the Dev Container to fail to start or work correctly.
-- The language of the LTeX Language Server is set to de-DE, can be changed via a so called "magic command" like in the example in `abstract.tex` and is automatically changed if you run the "Reapply locales configuration" recipe via the LaTeX Workshop extension. For supported locales of the extension check their documentation: <a href="https://valentjn.github.io/ltex/settings.html#ltexlanguage" target="_blank">LTeX supported languages</a>
+- The language of the LTeX Language Server is set to de-DE, can be changed via a so called "magic command" like in the example in `abstract.tex` and is automatically changed if you run the "Reapply locales configuration" recipe via the LaTeX Workshop extension. For supported locales of the extension check their documentation: [LTeX supported languages](https://valentjn.github.io/ltex/settings.html#ltexlanguage "LTeX supported languages")
 - You cannot rename `main.tex` without reprogramming the scripts and recipes this name is hard coded in
-
-
 
 ## Using the Dev Container
 
@@ -117,8 +118,6 @@ The Dev Container provides some features and tools to help you write and compile
 - **View your PDF files**: You can use the LaTeX Workshop extension to view your PDF files. In the presence of the generated SyncTeX file you can press `control + left mouse key` (on windows) on any text or image in the document preview to automatically be taken to the according code location.
 - **Manage your git repository**: You need to use your host machine's git installation, not the Dev Container's. This is because the Dev Container does not have git installed. If you want to use your host machine's git CLI, you can run `Terminal: Create New Integrated Terminal (Local)` form the VS Code command palette.
 - **Automatic import** of .tex files in the content and appendix folder in the order they appear in the explorer.
-
-
 
 ## Template macros
 
@@ -131,13 +130,11 @@ The Dev Container provides some custom macros that you can use in your LaTeX fil
 
 Note that only the `\Chapter` macro has a starred implementation.
 
-
-
 ## Further notes
 
-- Beware that the LaTeX Workshop is only started and only runs recipes if a `.tex` file is the active file in the editor. The LaTeX Workshop extension is noticably a major part of this Dev Container so check out their work and profiles: <a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop" target="_blank">LaTeX Workshop - Visual Studio Marketplace</a>
+- Beware that the LaTeX Workshop is only started and only runs recipes if a `.tex` file is the active file in the editor. The LaTeX Workshop extension is noticably a major part of this Dev Container so check out their work and profiles: [LaTeX Workshop - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop "LaTeX Workshop - Visual Studio Marketplace")
 - You can safely ignore the "git not found" warning when the Dev Container starts. It only reminds you that the repository contains a `.git` folder (if you `git initialize`d this repository) but the container itself does not have git installed.
 - Do not store anything of value in the `auxiliary` folder, it is automatically deleted with every full compilation
 - If you want to configure the VS Code user settings of your container you can run `Preferences: Open Remote Settings (JSON)` in the command palette
 
-**You find VSCTeX useful? Give the repo a star :star:**
+**You find VSCTeX useful? Give the repo a star ⭐️**
