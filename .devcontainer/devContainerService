@@ -3,8 +3,8 @@
 # devContainerService     Starting the required Dev Container scripts
 
 start(){
-  nohup bash /workspaces/VSCTeX/.devcontainer/scripts/installLTeX.bash &>/dev/null &
-  nohup bash /workspaces/VSCTeX/.devcontainer/scripts/watchFileChanges.bash &>/dev/null &
+  nohup bash /workspaces/*/.devcontainer/scripts/installLTeX.bash &>/dev/null &
+  nohup bash /workspaces/*/.devcontainer/scripts/watchFileChanges.bash &>/dev/null &
 }
 
 case "$1" in
