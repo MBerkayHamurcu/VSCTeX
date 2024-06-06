@@ -9,7 +9,7 @@ The Dev Container comes with a minimal setup for this LaTeX template to work. Ho
 - `config/packages`: This text file contains the LaTeX packages that are required for the template. You can add packages as you wish and can install your setup running the `Install packages in configuration` recipe with the LaTeX Workshop extension:
 
 <p align="center">
-  <img src=".devcontainer/static/runningWorkshopRecipe.png" alt="Running a LaTeX Workshop recipe" height="480px"/>
+  <img src=".devcontainer/static/runningWorkshopRecipe.png" alt="Running a LaTeX Workshop recipe" width="90%"/>
 </p>
 
 - `config/variables.tex`: In this file you can change the values of the document variables, such as the title, author, date, etc. There are also options like the to-do list feature, a second logo on the front page, a watermark and the restriction notice you can turn on or off via this file.
@@ -424,7 +424,7 @@ und ein abschließendes Beispiel zur Referenzierung von Tabellen (\ref{erg1-rech
 ```
 
 <p align="center">
-  <img src=".devcontainer/static/imageAndTableReferences.png" alt="Referencing images, tables etc." height="70px"/>
+  <img src=".devcontainer/static/imageAndTableReferences.png" alt="Referencing images, tables etc." height="60px"/>
 </p>
 
 ### Equations
@@ -435,7 +435,7 @@ in Gleichung \autoref{Boolesche Ungleichung}
 ```
 
 <p align="center">
-  <img src=".devcontainer/static/equationReference.png" alt="Referencing equations" height="50px"/>
+  <img src=".devcontainer/static/equationReference.png" alt="Referencing equations" height="40px"/>
 </p>
 
 ### Sourcecode
@@ -445,7 +445,7 @@ und Referenzierung des Quellcode-Beispiels im Folgetext \autoref{quellcodebeispi
 ```
 
 <p align="center">
-  <img src=".devcontainer/static/sourceCodeReference.png" alt="Referencing Source Code" height="60px"/>
+  <img src=".devcontainer/static/sourceCodeReference.png" alt="Referencing Source Code" height="50px"/>
 </p>
 
 ## Using of todonotes package
@@ -510,7 +510,7 @@ Definitions of colors in `frame/preamble.tex`:
 - ``\hspace`` {“length”} inserts a space of selected “length” in text or math mode.
 
 <p align="center">
-  <img src=".devcontainer/static/blankSpaces.png" alt="Blank spaces" height="200px"/>
+  <img src=".devcontainer/static/blankSpaces.png" alt="Blank spaces" width="90%"/>
 </p>
 
 [Source](https://www.heise.de/tipps-tricks/LaTeX-Leerzeichen-einfuegen-so-klappt-s-4405481.html "LaTeX: Leerzeichen einfügen - so klappt's - Heise")

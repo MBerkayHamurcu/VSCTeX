@@ -54,17 +54,13 @@ You can find the official installation instructions for MacOS [here](https://doc
 
 Git LFS is a git extension that allows working with large files in git repositories by storing them on a remote server and replacing them with text pointers in the local repository. This way, repository space is saved and cloning and fetching is sped up.
 
-#### Linux
+#### Linux and MacOS
 
-You can find the official installation instructions for Linux [here](https://github.com/git-lfs/git-lfs?tab=readme-ov-file#on-linux "git LFS for Linux - Download")
+You can find the official installation instructions for Linux and MacOS [here](https://github.com/git-lfs/git-lfs?tab=readme-ov-file#from-binary "git LFS for Linux and MacOS - Download")
 
 #### Windows
 
-Git LFS is included in the distribution of *Git for Windows*. If you installed git via another method, you can download git LFS from the official source [here](https://git-lfs.com "git LFS for Windows - Download")
-
-#### MacOS
-
-You can find the official installation instructions for MacOS [here](https://github.com/git-lfs/git-lfs?tab=readme-ov-file#on-macos "git LFS for MacOs - Download")
+Git LFS is included in the distribution of *Git for Windows*. **If** you installed git via another method, you can download git LFS from the official source [here](https://git-lfs.com "git LFS for Windows - Download")
 
 ### Bibliography management
 
@@ -79,11 +75,16 @@ Make sure to set the library mode to **BibLaTeX** when using a bibliography mana
 To setup the Dev Container on your host machine, follow these steps:
 
 1. **Clone** this repository by running the **git clone** command. Only downloading the repository from GitHub will cause errors because of unresolved git LFS references.
-1. **Install** the `Dev Containers` (ms-vscode-remote.remote-containers) VS Code extension.
-1. **Open** the downloaded folder in VS Code. Confirm the "Yes, I trust the authors" option.
-1. VS Code will detect the `.devcontainer` folder in the project and prompt you to reopen the folder in a container. Confirm the **Reopen in Container** action. Alternatively, you can use the command palette (Keyboard shortcut: Ctrl+Shift+P) and select **Dev Containers: Reopen in Container**.
-1. **Wait** for the Dev Container to build and configure. Starting the Dev Container for the first time (effectively building the container) will take some time depending on your internet connection and computer. It may take a few minutes or longer. Starting the container after this first build process won't take much longer than a few seconds.
-1. If the container has **fully started**, you can now edit your LaTeX files and use the features of VSCTeX!
-1. Be sure to **continue reading** the [template guide](Template%20guide.md) in order to avoid confusion due to a lack of knowledge about the behavior of this setup.
+2. If you are using **windows**, run the `setWSLConfig.bat` file from the `.devcontainer` folder:
+<p align="center">
+  <img src=".devcontainer/static/settingWSLConfig.png" alt="Windows only: Setting a WSL config" width="80%"/>
+</p>
+
+3. **Install** the `Dev Containers` (ms-vscode-remote.remote-containers) VS Code extension.
+4. **Open** the downloaded folder in VS Code. Confirm the "Yes, I trust the authors" option.
+5. VS Code will detect the `.devcontainer` folder in the project and prompt you to reopen the folder in a container. Confirm the **Reopen in Container** action. Alternatively, you can use the command palette (Keyboard shortcut: Ctrl+Shift+P) and select **Dev Containers: Reopen in Container**.
+6. **Wait** for the Dev Container to build and configure. Starting the Dev Container for the first time (effectively building the container) will take some time depending on your internet connection and computer. It may take a few minutes or longer. Starting the container after this first build process won't take much longer than a few seconds.
+7. If the container has **fully started**, you can now edit your LaTeX files and use the features of VSCTeX!
+8. Be sure to **continue reading** the [template guide](Template%20guide.md) in order to avoid confusion due to a lack of knowledge about the behavior of this setup.
 
 **You find VSCTeX useful? Give the repo a star ⭐️**
