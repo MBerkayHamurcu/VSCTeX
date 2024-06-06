@@ -502,12 +502,12 @@ Definitions of colors in `frame/preamble.tex`:
 
 ## Blank spaces in LaTeX
 
-* ``\,`` inserts a narrow space (0.16667em) in text or math mode.
-* ``\:`` inserts a normal space of 0.2222em in text or math mode.
-* ``\enspace`` inserts a space of 0.5em in text or math mode.
-* ``\quad`` inserts a space of length 1em in text or math mode.
-* ``\qquad`` inserts a space of length 2em in text or math mode.
-* ``\hspace`` {“length”} inserts a space of selected “length” in text or math mode.
+- ``\,`` inserts a narrow space (0.16667em) in text or math mode.
+- ``\:`` inserts a normal space of 0.2222em in text or math mode.
+- ``\enspace`` inserts a space of 0.5em in text or math mode.
+- ``\quad`` inserts a space of length 1em in text or math mode.
+- ``\qquad`` inserts a space of length 2em in text or math mode.
+- ``\hspace`` {“length”} inserts a space of selected “length” in text or math mode.
 
 <p align="center">
   <img src=".devcontainer/static/blankSpaces.png" alt="Blank spaces" height="200px"/>
@@ -517,9 +517,9 @@ Definitions of colors in `frame/preamble.tex`:
 
 Further information on spaces:
 
-``\,`` is used to create thin space.
-``\:`` is used to create medium space.
-``\>`` is used to create alternate medium space.
-``\;`` is used to create thick space.
+- ``\,`` is used to create thin space.
+- ``\:`` is used to create medium space.
+- ``\>`` is used to create alternate medium space.
+- ``\;`` is used to create thick space.
 
 [Source](https://www.tutorialspoint.com/tex_commands/misc.htm)

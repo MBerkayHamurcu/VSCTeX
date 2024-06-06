@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# devContainerService     Starting the required dev container scripts
+# devContainerService     Starting the required Dev Container scripts
 
 start(){
   nohup bash /workspaces/VSCTeX/.devcontainer/scripts/installLTeX.bash &>/dev/null &
