@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Credit to: https://gist.github.com/Nezteb/9eb91294e0ad8dc12fc03f6863023e09
 
 # Usage: modifyUserSettings.bash <key> [<value>]

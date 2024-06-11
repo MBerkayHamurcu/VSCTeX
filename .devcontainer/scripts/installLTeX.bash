@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Wait for the VSCODE_IPC_HOOK_CLI socket to get available
 sleep 300

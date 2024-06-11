@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # devContainerService     Starting the required Dev Container scripts
 

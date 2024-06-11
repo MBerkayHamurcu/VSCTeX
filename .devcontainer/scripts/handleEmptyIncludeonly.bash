@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 filePath="frame/AUTOGEN_includeonly.tex"
 
