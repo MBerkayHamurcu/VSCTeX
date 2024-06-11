@@ -26,41 +26,82 @@ A Dev Container is a way to create a consistent and isolated development environ
 - Auxiliary files are hidden in a subfolder
 - Linux, Windows and MacOS compatibility
 
-## Prerequisites
+## Setting up the Dev Container
 
-Before you start, you need to install the following software on your host machine:
+In order to clone and run the Dev Container, you need to run the following operations on your host machine:
 
-### Visual Studio Code
+### 0. Install git
 
-This is the IDE that you will use to edit your LaTeX files and interact with the Dev Container. You can download it from the official source [here](https://code.visualstudio.com/download "Visual Studio Code - Download")
+#### Linux and MacOS
 
-### Docker
+- You can find the official installation instructions for Linux and MacOS [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git "git for Linux and MacOS")
+
+#### Windows
+
+- You can find the official installer for Windows [here](https://git-scm.com/download/win "git for windows - Download")
+
+### 1. Install git LFS
+
+#### Linux and MacOS
+
+- You can find the official installation instructions for Linux and MacOS [here](https://github.com/git-lfs/git-lfs?tab=readme-ov-file#from-binary "git LFS for Linux and MacOS - Download")
+
+#### Windows
+
+Git LFS is included in the distribution of *Git for Windows*. If you installed git via another method, you can download git LFS from the official source [here](https://git-lfs.com "git LFS for Windows - Download")
+
+### 2. Clone this repository
+
+- **Clone** this repository by running `git clone https://github.com/MBerkayHamurcu/VSCTeX.git`. **Only downloading** the repository from GitHub **will cause errors** because of unresolved git LFS references.
+
+### 3. Install Visual Studio Code
+
+- This is the IDE that you will use to edit your LaTeX files and interact with the Dev Container. You can download it from the official source [here](https://code.visualstudio.com/download "Visual Studio Code - Download")
+
+### 3.1 Install VS Code extension
+
+- Install the `Dev Containers` (ms-vscode-remote.remote-containers) VS Code extension
+
+### 3.2 (Windows only) Configure WSL
+
+- If you are on **Windows**, run the `setWSLConfig.bat` file from the `.devcontainer` folder:
+<p align="center">
+  <img src=".devcontainer/static/settingWSLConfig.png" alt="Windows only: Setting a WSL config" width="90%"/>
+</p>
+
+It will add a `.wslconfig` file to your user directory if one does not already exist.
+
+### 4. Docker
 
 This is the software that runs the Dev Container. Depending on your operating system, the installation process will vary:
 
 #### Linux
 
-You can find the official installation instructions for Linux [here](https://docs.docker.com/desktop/install/linux-install/ "Docker for Linux - Download")
+- You can find the official installation instructions for Linux [here](https://docs.docker.com/desktop/install/linux-install/ "Docker for Linux - Download")
 
 #### Windows
 
-You can find the official installation instructions for Windows [here](https://docs.docker.com/desktop/install/windows-install/ "Docker for Windows - Download")
+- You can download the official installer for Windows [here](https://docs.docker.com/desktop/install/windows-install/ "Docker for Windows - Download")
 
 #### MacOS
 
-You can find the official installation instructions for MacOS [here](https://docs.docker.com/desktop/install/mac-install/ "Docker for MacOs - Download")
+- You can find the official installation instructions for MacOS [here](https://docs.docker.com/desktop/install/mac-install/ "Docker for MacOs - Download")
 
-### git LFS
+### 5. Open the folder
 
-Git LFS is a git extension that allows working with large files in git repositories by storing them on a remote server and replacing them with text pointers in the local repository. This way, repository space is saved and cloning and fetching is sped up.
+- Open the downloaded folder in VS Code. Confirm the "Yes, I trust the authors" option.
 
-#### Linux and MacOS
+### 6. Reopen folder in container
 
-You can find the official installation instructions for Linux and MacOS [here](https://github.com/git-lfs/git-lfs?tab=readme-ov-file#from-binary "git LFS for Linux and MacOS - Download")
+- VS Code will detect the `.devcontainer` folder in the project and prompt you to reopen the folder in a container. Confirm the **Reopen in Container** action. Alternatively, you can use the command palette (Keyboard shortcut: Ctrl+Shift+P) and select **Dev Containers: Reopen in Container**.
 
-#### Windows
+<br>
 
-Git LFS is included in the distribution of *Git for Windows*. **If** you installed git via another method, you can download git LFS from the official source [here](https://git-lfs.com "git LFS for Windows - Download")
+Wait for the Dev Container to build and configure. Starting the Dev Container for the first time (effectively building the container) will take some time depending on your internet connection and computer. It may take a few minutes or longer. Starting the container after this first build process won't take much longer than a few seconds.
+
+If the container has **fully started**, you can now edit your LaTeX files and use the features of VSCTeX!
+
+Be sure to **continue reading** the [template guide](Template%20guide.md) in order to avoid confusion due to a lack of knowledge about the behavior of this setup.
 
 ### Bibliography management
 
@@ -69,22 +110,5 @@ Make sure to set the library mode to **BibLaTeX** when using a bibliography mana
 > [!TIP]
 > Optional: You can use JabRef for managing the `literature.bib` file. The bibliography management tool makes it therefore easier to document and maintain your literature.
 > You can install JabRef from the official source [here](https://www.jabref.org/#download "Jabref - Download")
-
-## Setting up the Dev Container
-
-To setup the Dev Container on your host machine, follow these steps:
-
-1. **Clone** this repository by running the **git clone** command. Only downloading the repository from GitHub will cause errors because of unresolved git LFS references.
-2. If you are using **windows**, run the `setWSLConfig.bat` file from the `.devcontainer` folder:
-<p align="center">
-  <img src=".devcontainer/static/settingWSLConfig.png" alt="Windows only: Setting a WSL config" width="80%"/>
-</p>
-
-3. **Install** the `Dev Containers` (ms-vscode-remote.remote-containers) VS Code extension.
-4. **Open** the downloaded folder in VS Code. Confirm the "Yes, I trust the authors" option.
-5. VS Code will detect the `.devcontainer` folder in the project and prompt you to reopen the folder in a container. Confirm the **Reopen in Container** action. Alternatively, you can use the command palette (Keyboard shortcut: Ctrl+Shift+P) and select **Dev Containers: Reopen in Container**.
-6. **Wait** for the Dev Container to build and configure. Starting the Dev Container for the first time (effectively building the container) will take some time depending on your internet connection and computer. It may take a few minutes or longer. Starting the container after this first build process won't take much longer than a few seconds.
-7. If the container has **fully started**, you can now edit your LaTeX files and use the features of VSCTeX!
-8. Be sure to **continue reading** the [template guide](Template%20guide.md) in order to avoid confusion due to a lack of knowledge about the behavior of this setup.
 
 **You find VSCTeX useful? Give the repo a star ⭐️**
