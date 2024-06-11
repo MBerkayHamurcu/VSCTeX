@@ -38,25 +38,49 @@
   \pagenumbering{Roman}
   \setcounter{page}{4}
 
-  % Table of units
-  \include{frame/units}
+  \ifdefined\listofunitsVisible
 
-  \begingroup
-  % Table of acronyms
-  \printacronyms[include=abbrev,name=\tableOfAcronymsName,template=longtable]
-  \markboth{\tableOfAcronymsName}{\tableOfAcronymsName}
-  % Add table of acronyms to the table of content
-  \addcontentsline{toc}{chapter}{\tableOfAcronymsName}
-  \endgroup
+    % Table of units
+    \include{frame/units}
+  \fi
 
-  \listoffigures
+  \ifdefined\listofacronymsVisible
 
-  \listoftables
+    \begingroup
+    % Table of acronyms
+    \printacronyms[include=abbrev,name=\tableOfAcronymsName,template=longtable]
+    \markboth{\tableOfAcronymsName}{\tableOfAcronymsName}
+    % Add table of acronyms to the table of content
+    \addcontentsline{toc}{chapter}{\tableOfAcronymsName}
+    \endgroup
+  \fi
 
-  \listoflistedEquations
+  \ifdefined\listoffiguresVisible
 
-  % List of code blocks
-  \lstlistoflistings
+    \listoffigures
+  \fi
+
+  \ifdefined\listoftablesVisible
+
+    \listoftables
+  \fi
+
+  \ifdefined\listoflistedEquationsVisible
+
+    \listoflistedEquations
+  \fi
+
+  \ifdefined\listoflistingsVisible
+
+    % List of code blocks
+    \lstlistoflistings
+  \fi
+
+  \ifdefined\listofuserFramesVisible
+
+    % List of frames
+    \listofuserFrames
+  \fi
 \fi
 
 % Load content (automatically generated import file)

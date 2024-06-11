@@ -85,7 +85,7 @@ The following is an example of the embedding of a single image in this Latex-tem
   \caption[Short description]{More detailed description with a reference \cite[S.~9]{Siemens}}
 
   \label{fig:platzhalterx}
-\end{fig:figure}
+\end{figure}
 ```
 
 The short description is optional, as is every macro argument passed via square brackets. If a short description is given, the image will be listed in the list of figures with its short description.
@@ -448,7 +448,39 @@ und Referenzierung des Quellcode-Beispiels im Folgetext \autoref{quellcodebeispi
   <img src=".devcontainer/static/sourceCodeReference.png" alt="Referencing Source Code" height="50px"/>
 </p>
 
-## Using of todonotes package
+## Colored frames
+
+You can use the custom `Frame` environment to render frames around specific content:
+
+```latex
+\begin{Frame}
+  Der Inhalt des Rahmens:
+  $dx=\frac{3^3}{3}$
+\end{Frame}
+```
+If you use it with the optional argument it gets a caption, label and entry in the table of frames automatically:
+
+```latex
+\begin{Frame}[Mit einem Titel]
+  Verwenden anderer Umgebungen innerhalb eines Rahmens:
+
+  \begin{lstlisting}
+  #include <stdint.h>
+
+  uint32_t number = 42 * 0;
+  \end{lstlisting}
+\end{Frame}
+
+\autoref{Mit einem Titel}
+```
+
+<p align="center">
+  <img src=".devcontainer/static/coloredFrames.png" alt="Using colored frames" height="220px"/>
+</p>
+
+The title of the frames, the table of frames and the background color of the frames can be changed in the `config/variables.tex` as usual.
+
+## To-Do notes
 
 Following definitions are made in `frame/preamble.tex`:
 
@@ -468,14 +500,14 @@ Beispielhafter Import einer Grafik \change{Das hier ändern}
 ```
 
 <p align="center">
-  <img src=".devcontainer/static/toDoNotes.png" alt="Using the To-Do notes package" height="40px"/>
+  <img src=".devcontainer/static/toDoNotes.png" alt="Using the To-Do notes" height="40px"/>
 </p>
 
 You can use the following macros: `\unsure`, `\change`, `\info`, `\improvement`, `\thiswillnotshow`
 
 [Source - Information - todonotes – Marking things to do in a LaTeX document](https://ctan.org/pkg/xcolor "todonotes – Marking things to do in a LaTeX document")
 
-## Using of textboxes
+## Textboxes
 
 ```latex
 Mit Inhalten, die mithilfe von Textboxen \colorbox{yellowdark}{markiert} werden sollen \ldots

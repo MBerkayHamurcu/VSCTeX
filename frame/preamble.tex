@@ -181,6 +181,34 @@
   \end{listedEquation}
 }
 
+\usepackage{framed}
+
+% Prepare list of frames
+\DeclareCaptionType{userFrame}[\userFrameName][\listOfUserFramesName]
+
+% Define custom frame environment
+\renewcommand{\FrameCommand}{\fcolorbox{black}{userFrameColor}}
+\newenvironment{Frame}[1][ARGUNDEFINED]{
+  \captionsetup{type=figure,belowskip=0cm}
+
+  \vspace{3pt}
+
+  \ifstrequal{#1}{ARGUNDEFINED}{%
+  }{
+
+    \captionof{userFrame}{#1}
+    \label{#1}
+  }
+
+  \setlength{\fboxsep}{20pt}
+
+  \begin{framed}
+    }{
+  \end{framed}
+
+  \vspace{3pt}
+}
+
 % Define custom bullet list macro
 \newenvironment{Itemize}
 { \begin{itemize}
