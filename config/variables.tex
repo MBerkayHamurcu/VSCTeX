@@ -19,14 +19,16 @@
 \newcommand{\headingTopLeft}{EDIT\_ME\_Kopfzeile}
 
 % Set heading and misc names
-\renewcommand*\contentsname{Inhaltsverzeichnis}
-\renewcommand*\listfigurename{Abbildungsverzeichnis}
-\renewcommand*\figurename{Abbildung}
-\renewcommand*\listtablename{Tabellenverzeichnis}
-\renewcommand*\tablename{Tabelle}
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}{Table of contents}%
+}
+\renewcommand{\listfigurename}{Abbildungsverzeichnis}
+\renewcommand{\figurename}{Abbildung}
+\renewcommand{\listtablename}{Tabellenverzeichnis}
+\renewcommand{\tablename}{Tabelle}
 \newcommand{\tableOfAcronymsName}{Abkürzungsverzeichnis}
-\renewcommand*\lstlistlistingname{Quellcodeverzeichnis}
-\renewcommand*\lstlistingname{Quellcode}
+\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+\renewcommand{\lstlistingname}{Quellcode}
 \newcommand{\equationName}{Formel}
 \newcommand{\listOfEquationsName}{Formelverzeichnis}
 \newcommand{\userFrameName}{Rahmen}
