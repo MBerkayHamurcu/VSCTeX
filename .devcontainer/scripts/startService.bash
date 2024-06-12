@@ -4,6 +4,10 @@ echo -e "\n------startService.bash------\n"
 
 sleep 5
 
+cd /workspaces/*/
+
+bash .devcontainer/scripts/log.bash startService START_CONTAINER
+
 service devContainerService start
 
 if [ "$?" -ne 0 ]; then
