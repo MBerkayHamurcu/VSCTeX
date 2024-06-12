@@ -10,13 +10,16 @@
 !*.md
 !*.pdf
 !*.synctex.gz
+!*.devcontainer.json
+!*.devContainerService
+!*.setWSLConfig.bat
 
 # ...even if they are in subdirectories
 !*/
 
 # If the files to be tracked are in subdirectories
-!.devcontainer/**/*
+!.devcontainer/scripts/**/*
+!.devcontainer/static/**/*
 !config/**/*
-!media/**/*
 #!*/a/b/file1.txt
 #!*/a/b/c/*
