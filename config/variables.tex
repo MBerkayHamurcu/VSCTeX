@@ -1,3 +1,5 @@
+% Beware: Commenting out, changing or removing lines is only allowed where explicitly stated!
+
 % Set document variables
 \newcommand{\documentLanguage}{de} % or f.i. en
 
@@ -18,6 +20,10 @@
 
 % Set heading and misc names
 \renewcommand*\contentsname{Inhaltsverzeichnis}
+\renewcommand*\listfigurename{Abbildungsverzeichnis}
+\renewcommand*\figurename{Abbildung}
+\renewcommand*\listtablename{Tabellenverzeichnis}
+\renewcommand*\tablename{Tabelle}
 \newcommand{\tableOfAcronymsName}{Abkürzungsverzeichnis}
 \renewcommand*\lstlistlistingname{Quellcodeverzeichnis}
 \renewcommand*\lstlistingname{Quellcode}
@@ -53,7 +59,7 @@
   not type=book and not type=article
 }
 
-% Enable an option by uncommenting the line
+% Enable/Disable an option by activating/commenting the according line:
 \newcommand{\listofunitsVisible}{}
 \newcommand{\listofacronymsVisible}{}
 \newcommand{\listoffiguresVisible}{}
