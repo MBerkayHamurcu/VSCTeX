@@ -25,9 +25,9 @@ IF NOT EXIST .wslconfig (
     echo # Boolean to turn on or off support for GUI applications ^(WSLg^) in WSL. Only available for Windows ^11>>.wslconfig
     echo guiApplications=false>>.wslconfig
     echo.>>.wslconfig
-    echo Created .wslconfig file in the user directory.
+    echo Successfully created a .wslconfig file in the user directory.
 ) ELSE (
-    echo .wslconfig file already exists in the user directory.
+    echo A .wslconfig file already exists in the user directory.
 )
 
 echo.
