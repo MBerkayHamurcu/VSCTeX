@@ -85,7 +85,6 @@
 }
 
 \usepackage{xargs}
-\usepackage{url}
 
 % Graphics support
 \usepackage{graphicx}
@@ -93,6 +92,8 @@
 
   \usepackage{tikz}
 \fi
+
+\usepackage{needspace}
 
 % Captions
 \usepackage{subcaption}
@@ -196,6 +197,7 @@
   \ifstrequal{#1}{ARGUNDEFINED}{%
   }{
 
+    \needspace{2\baselineskip}
     \captionof{userFrame}{#1}
     \label{#1}
   }
@@ -418,3 +420,5 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
   bookmarksnumbered=true,
   plainpages=false,
 ]{hyperref} % Loading hyperref as the last package
+
+\usepackage{url}
