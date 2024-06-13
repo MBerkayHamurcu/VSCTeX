@@ -2,13 +2,13 @@
 
 echo -e "\n------startService.bash------\n"
 
-sleep 5
-
 cd /workspaces/*/
 
 bash .devcontainer/scripts/log.bash startService START_CONTAINER
 
 service devContainerService start
+
+sleep 5
 
 if [ "$?" -ne 0 ]; then
   echo -e "Failed to start the Dev Container service.\n"
