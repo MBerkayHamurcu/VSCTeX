@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo -e "\n------startService.bash------\n"
+echo -e "\n------ Starting service... ------\n"
 
 cd /workspaces/*/
 
