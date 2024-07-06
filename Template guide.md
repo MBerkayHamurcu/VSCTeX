@@ -11,6 +11,7 @@ The Dev Container comes with a minimal setup for this LaTeX template to work. Ho
 <p align="center">
   <img src=".devcontainer/static/runningWorkshopRecipe.png" alt="Running a LaTeX Workshop recipe" width="90%"/>
 </p>
+
 > [!IMPORTANT]
 > Please note that you must also include the respective package under ```frame/preamble.tex``` with ```\usepackage{"packagename"}``` so that you can use it in the template.
 
