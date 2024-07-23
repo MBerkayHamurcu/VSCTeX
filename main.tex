@@ -33,10 +33,15 @@
   \newpage
   \pdfbookmark{\contentsname}{toc}
   \pagestyle{plain}
-  \tableofcontents
-  % Begin Roman page numbering from page 4
   \pagenumbering{Roman}
-  \setcounter{page}{4}
+  \ifdefined\restrictedActive
+
+    \setcounter{page}{5}
+  \else
+
+    \setcounter{page}{4}
+  \fi
+  \tableofcontents
 
   \ifdefined\listofunitsVisible
 
