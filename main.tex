@@ -45,8 +45,13 @@
 
   \ifdefined\listofunitsVisible
 
+    \begingroup
     % Table of units
     \include{frame/units}
+    \markboth{\tableOfUnitsName}{\tableOfUnitsName}
+    % Add table of units to the table of content
+    \addcontentsline{toc}{chapter}{\tableOfUnitsName}
+    \endgroup
   \fi
 
   \ifdefined\listofacronymsVisible
