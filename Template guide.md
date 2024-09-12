@@ -67,7 +67,6 @@ Note that only the `\Chapter` macro has a starred implementation.
 - You can safely ignore the "git not found" warning when the Dev Container starts. It only reminds you that the repository contains a `.git` folder (if you `git initialize`d this repository) but the container itself does not have git installed.
 - Do not store anything of value in the `auxiliary` folder, it is automatically deleted with every full compilation
 - If you want to configure the VS Code user settings of your container you can run `Preferences: Open Remote Settings (JSON)` in the command palette
-- 
 
 ## Creating chapters and sections
 
