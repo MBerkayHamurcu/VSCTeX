@@ -35,7 +35,6 @@ while read -r file; do
   fi
 
   echo "\\includeonly{$includeonly}" >> frame/AUTOGEN_includeonly.tex
-  echo "% lastChanges{$includeonly}" >> frame/AUTOGEN_includeonly.tex
 done
 
 bash .devcontainer/scripts/log.bash watchFileChanges END

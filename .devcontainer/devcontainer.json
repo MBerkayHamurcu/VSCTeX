@@ -24,7 +24,6 @@
           {
             "name": "Generate document - fast mode",
             "tools": [
-              "runScript_handleEmptyIncludeonly",
               "runScript_createCollections",
               "latexmkFast",
               "clearIncludeonly"
@@ -84,7 +83,6 @@
           {
             "name": "__autoBuild action__",
             "tools": [
-              "runScript_handleEmptyIncludeonly",
               "runScript_createCollections",
               "latexmkFast",
               "clearIncludeonly"
@@ -178,7 +176,7 @@
             "args": [
               ".devcontainer/scripts/modifyUserSettings.bash",
               "latex-workshop.latex.recipes",
-              "\"[\\\"runScript_handleEmptyIncludeonly\\\",\\\"runScript_createCollections\\\", \\\"latexmkFast\\\", \\\"clearIncludeonly\\\"]\"",
+              "\"[\\\"runScript_createCollections\\\",\\\"latexmkFast\\\", \\\"clearIncludeonly\\\"]\"",
               "__autoBuild action__"
             ],
             "env": {}
