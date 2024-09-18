@@ -256,7 +256,9 @@ Here are some examples of the integration of equations in this template.
 #### with caption (listed in the list of equations)
 
 ```latex
-\Equation{Boolesche Ungleichung}{
+% Syntax: \Equation{CAPTION}{LABEL}{EQUATION}
+
+\Equation{Boolesche Ungleichung \ref{ch:Aufgabenstellung}}{Boolesche Ungleichung}{
   \begin{equation}
     P(\bigcup_{n=1}^n A_n) \leq \sum_{n=1}^n P(A_n)
   \end{equation}

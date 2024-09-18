@@ -110,6 +110,11 @@
   url=false
 ]{biblatex}
 
+% Prevent overfull hboxes in bibliography
+\setcounter{biburllcpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+\setcounter{biburlnumpenalty}{9000}
+
 % Integration of the .bib file
 \addbibresource{literature.bib}
 \BiblatexSplitbibDefernumbersWarningOff
@@ -171,12 +176,14 @@
 \DeclareCaptionType{listedEquation}[\equationName][\listOfEquationsName]
 
 % Define custom equations macro
-\newcommand{\Equation}[2]{%
+\newcommand{\Equation}[3]{%
   \begin{listedEquation}[H]
-    {#2}
-
     \caption{#1}
-    \label{#1}
+    \label{#2}
+
+    \vspace{-0.2cm}
+    {#3}
+    \vspace{-1.2cm}
   \end{listedEquation}
 }
 
