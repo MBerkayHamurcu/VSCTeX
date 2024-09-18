@@ -103,11 +103,15 @@
 \ifdefined\fullCompile
 
   % List of Citations
+  % Standard bibliography
   \renewcommand{\bibname}{\bibliographyName}
-  \printbibheading
-  \printbibliography[filter=printMediaFilter,heading=subbibliography,title={\printMediaTitle}]
-  \newpage
-  \printbibliography[filter=webMediaFilter,heading=subbibliography,title={\webMediaTitle}]
+  \printbibliography
+  % Bibliography filtered by print and web media
+  % \renewcommand{\bibname}{\bibliographyName}
+  % \printbibheading
+  % \printbibliography[filter=printMediaFilter,heading=subbibliography,title={\printMediaTitle}]
+  % \newpage
+  % \printbibliography[filter=webMediaFilter,heading=subbibliography,title={\webMediaTitle}]
 \fi
 
 % Apppendix
