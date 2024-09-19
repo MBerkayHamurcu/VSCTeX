@@ -17,7 +17,13 @@ done >>"$contentCollection"
 # Appendix Collection
 echo -e "$autogenWarning" > "$appendixCollection"
 
-for APPEND in $(find appendix -name "*.tex" | grep -v "AUTOGEN" | sort)
+appendix=$(find appendix -name "*.tex" | grep -v "AUTOGEN" | sort)
+
+if [ -n "$appendix" ]; then
+    printf "\\\\beginAppendix\n\n\Appendix\n\n" >> "$appendixCollection"
+fi
+
+for APPEND in "$appendix"
 do
     echo "\\include{$APPEND}"
     mkdir -p auxiliary/$(dirname $APPEND)
