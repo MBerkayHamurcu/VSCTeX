@@ -1,4 +1,4 @@
-# LaTeX template guide
+# VSCTeX template guide
 
 This document provides concise instructions on how to use this LaTeX template. Reading them at least once before starting to write is recommended.
 
