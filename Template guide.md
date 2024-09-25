@@ -12,8 +12,7 @@ The Dev Container comes with a minimal setup for this LaTeX template to work. Ho
   <img src=".devcontainer/static/runningWorkshopRecipe.png" alt="Running a LaTeX Workshop recipe" width="90%"/>
 </p>
 
-> [!IMPORTANT]
-> Please note that you must also include the respective package under ```frame/preamble.tex``` with ```\usepackage{"packagename"}``` so that you can use it in the template.
+After that you can include the respective package in ```frame/preamble.tex``` for using it in the template.
 
 - `config/variables.tex`: In this file you can change the values of the document variables, such as:
   - the title, author, date, etc.

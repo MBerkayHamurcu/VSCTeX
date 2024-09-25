@@ -108,7 +108,6 @@ Be sure to **continue reading** the [template guide](Template%20guide.md) in ord
 Make sure to set the library mode to **BibLaTeX** when using a bibliography management tool with this template
 
 > [!TIP]
-> Optional: You can use JabRef for managing the `literature.bib` file. The bibliography management tool makes it therefore easier to document and maintain your literature.
-> You can install JabRef from the official source [here](https://www.jabref.org/#download "Jabref - Download")
+> You can use the bibliography management tool JabRef for managing the `literature.bib` file. It makes it easier to document and maintain your literature. You can install JabRef from the official source [here](https://www.jabref.org/#download "Jabref - Download")
 
 **You find VSCTeX useful? Give the repo a star ⭐️**
