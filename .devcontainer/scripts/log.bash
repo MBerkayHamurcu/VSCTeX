@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 cd /workspaces/*/.devcontainer
 
 LOGFILE=devContLog.txt
