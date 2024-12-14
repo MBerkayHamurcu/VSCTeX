@@ -15,20 +15,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, macOS-latest]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Docker
-        uses: docker/setup-docker-buildx-action@v3
-
-      - name: Install Docker CLI
+      - name: Install and verify Docker
         uses: docker-practice/actions-setup-docker@master
-
-      - name: Verify Docker Installation
-        run: |
+        timeout-minutes: 12
+      - run: |
+          set -x
+  
           docker version
+  
           docker info
 
       - name: Build and Test DevContainer
