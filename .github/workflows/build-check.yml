@@ -15,17 +15,17 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest]
+        os: [ubuntu-latest, windows-latest, macOS-latest-large]
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Install and verify Docker
-        uses: docker-practice/actions-setup-docker@master
+        uses: docker/setup-docker-action@v4
         timeout-minutes: 12
       - run: |
           set -x
-  
+
           docker version
   
           docker info
