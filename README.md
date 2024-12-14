@@ -1,6 +1,10 @@
 <h1 align="center">VSCTeX</h1>
 
 <p align="center">
+  <img height="24px" alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/MBerkayHamurcu/VSCTeX/build-check.yml?branch=main&style=for-the-badge">
+</p>
+
+<p align="center">
   <em>An easy-to-use, feature-rich Visual Studio Code Dev Container
     <br>with a ready-to-use thesis style template for typesetting in LaTeX.</em>
   <br>
