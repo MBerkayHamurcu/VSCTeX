@@ -18,20 +18,20 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: Install and verify Docker
+      - name: Install Docker
         uses: docker/setup-docker-action@v4
-        timeout-minutes: 12
-      - run: |
-          set -x
 
-          docker version
-  
-          docker info
-
-      - name: Build and Test DevContainer
+      - name: Build and test DevContainer
         uses: devcontainers/ci@v0.3
         with:
+          push: never
+          imageName: VSCTeX
           runCmd: |
-            echo "Running tests in devcontainer"
+            ls
+
+            service --status-all
+
+            if [[ "$(service --status-all 2>&1)" != *"[ ? ]  devContainerService"* ]]; then exit 1; fi
