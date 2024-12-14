@@ -1,0 +1,26 @@
+name: Recurring Build Check
+
+on:
+  schedule:
+    # Runs at 10:00 UTC every Sunday
+    - cron: "0 10 * * 0"
+  push:
+    branches:
+      - main
+
+jobs:
+  build-check:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and Test DevContainer
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            echo "Running tests in devcontainer"

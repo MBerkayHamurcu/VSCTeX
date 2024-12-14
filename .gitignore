@@ -21,5 +21,6 @@
 !.devcontainer/scripts/**/*
 !.devcontainer/static/**/*
 !config/**/*
+!.github/**/*
 #!*/a/b/file1.txt
 #!*/a/b/c/*
