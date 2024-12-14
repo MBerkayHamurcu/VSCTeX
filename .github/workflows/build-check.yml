@@ -20,6 +20,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Docker
+        uses: docker/setup-docker-buildx-action@v3
+
+      - name: Install Docker CLI
+        uses: docker-practice/actions-setup-docker@master
+
+      - name: Verify Docker Installation
+        run: |
+          docker version
+          docker info
+
       - name: Build and Test DevContainer
         uses: devcontainers/ci@v0.3
         with:
