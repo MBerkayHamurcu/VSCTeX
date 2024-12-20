@@ -1,6 +1,8 @@
 <h1 align="center">VSCTeX</h1>
 
 <p align="center">
+  <img height="24px" alt="GitHub License" src="https://img.shields.io/github/license/MBerkayHamurcu/VSCTeX?style=for-the-badge">
+  &nbsp;
   <img height="24px" alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/MBerkayHamurcu/VSCTeX/build-check.yml?branch=main&style=for-the-badge">
 </p>
 
