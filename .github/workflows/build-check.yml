@@ -33,3 +33,12 @@ jobs:
           imageName: vsctex
           runCmd: |
             if [[ "$(service --status-all 2>&1)" != *"[ ? ]  devContainerService"* ]]; then exit 1; fi
+
+      - name: Upload resulting document
+        uses: actions/upload-artifact@v4
+        with:
+          name: main.pdf
+          path: ./main.pdf
+          if-no-files-found: 'error'
+          retention-days: 14
+          compression-level: 9
