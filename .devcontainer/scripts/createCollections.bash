@@ -20,7 +20,7 @@ echo -e "$autogenWarning" > "$appendixCollection"
 appendix=$(find appendix -name "*.tex" | grep -v "AUTOGEN" | sort)
 
 if [ -n "$appendix" ]; then
-    printf "\\\\beginAppendix\n\n\Appendix\n\n" >> "$appendixCollection"
+    printf "\\\\Appendix\n\n" >> "$appendixCollection"
 fi
 
 for APPEND in "$appendix"

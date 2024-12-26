@@ -379,21 +379,13 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 % Text bullets for the abstract
 \newcommand{\kwtextbullet}{\hspace{-0.05cm}\textbullet\hspace{0.08cm}}
 
-% Prepare appendix
-\newcommand{\beginAppendix}{%
+\newcommand{\Appendix}{%
   \newpage
 
-  \setcounter{chapter}{0}
-  % Switch to roman page numbers in the appendix and
-  % increase the width of the box for those page numbers
-  \newcounter{svpage}
-  \setcounter{svpage}{\value{page}}
-  \pagenumbering{Roman}
-  \setcounter{page}{\value{svpage}}
-  \addtocontents{toc}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
-}
+  \markboth{}{}
 
-\newcommand{\Appendix}{%
+  \addtocontents{toc}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
+
   \ifdefined\fullCompile
 
     \vspace*{\fill}
