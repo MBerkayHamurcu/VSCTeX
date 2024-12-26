@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - name: Install Docker
         uses: docker/setup-docker-action@v4
@@ -31,3 +33,12 @@ jobs:
           imageName: vsctex
           runCmd: |
             if [[ "$(service --status-all 2>&1)" != *"[ ? ]  devContainerService"* ]]; then exit 1; fi
+
+      - name: Upload resulting document
+        uses: actions/upload-artifact@v4
+        with:
+          name: document_template
+          path: ./main.pdf
+          if-no-files-found: 'error'
+          retention-days: 14
+          compression-level: 9
