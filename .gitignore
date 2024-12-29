@@ -11,7 +11,6 @@
 !*.pdf
 !*.synctex.gz
 !*.devcontainer.json
-!*.devContainerService
 !*.setWSLConfig.bat
 
 # ...even if they are in subdirectories
