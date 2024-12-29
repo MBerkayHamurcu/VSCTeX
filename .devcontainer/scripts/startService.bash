@@ -34,6 +34,4 @@ rm /workspaces/*/.devcontainer/DevContainerIsPostCreate
 
 echo -e "Installing the VS Code LTeX extension (grammar & spell checker)...\n"
 
-sleep 30
-
-exec bash .devcontainer/scripts/installLTeX.bash 0
+exec bash .devcontainer/scripts/installLTeX.bash

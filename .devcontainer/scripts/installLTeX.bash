@@ -2,24 +2,13 @@
 
 cd /workspaces/*/.devcontainer
 
-MAX_WAIT_TIME=60
-WAIT_INTERVAL=10
-ELAPSED_TIME=$1
+/vscode/vscode-server/bin/linux-x64/*/bin/remote-cli/code --version
 
-sleep $WAIT_INTERVAL
-
-# Wait for the VS Code CLI to get available
-while ! /vscode/vscode-server/bin/linux-x64/*/bin/remote-cli/code --version &>/dev/null; do
-  if [[ ! $ELAPSED_TIME -lt $MAX_WAIT_TIME ]]; then
+if [ "$?" -ne 0 ]; then
     bash scripts/log.bash installLTeX VSCODE_CLI_not_available
 
     exit 1
-  fi
-
-  ELAPSED_TIME=$((ELAPSED_TIME + WAIT_INTERVAL))
-
-  exec bash scripts/installLTeX.bash "$ELAPSED_TIME"
-done
+fi
 
 if /vscode/vscode-server/bin/linux-x64/*/bin/remote-cli/code --list-extensions | grep -q 'neo-ltex.ltex'; then
   echo -e "The VS Code LTeX extension is already installed.\n"
