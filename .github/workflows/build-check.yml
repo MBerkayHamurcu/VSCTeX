@@ -32,7 +32,7 @@ jobs:
           push: never
           imageName: vsctex
           runCmd: |
-            if [[ "$(service --status-all 2>&1)" != *"[ ? ]  devContainerService"* ]]; then exit 1; fi
+            grep -c "watchFileChanges" .devcontainer/devContLog.txt | grep -q "^1$" || exit 1
 
       - name: Upload resulting document
         uses: actions/upload-artifact@v4
