@@ -1,36 +1,39 @@
 #!/usr/bin/env bash
 
-echo -e "\n------ Starting service... ------\n"
+echo -e "\n------ Starting VSCTeX ------\n"
 
 cd /workspaces/*/
 
-bash .devcontainer/scripts/log.bash startService START_CONTAINER
-
-service devContainerService start
-
 if [ "$?" -ne 0 ]; then
-  echo -e "Failed to start the Dev Container service.\n"
-else
-  echo -e "Successfully started the Dev Container service.\n"
+  echo "VSCTeX error (STS0). Please report this incident to the maintainer."
+  bash .devcontainer/scripts/log.bash startService E0x00
+  exit 1
 fi
 
-for dir in /workspaces/*/;
-do
-  if [ -f "${dir}.devcontainer/DevContainerIsPostCreate" ]; then
-    cd /workspaces/*/
+bash .devcontainer/scripts/log.bash startService START_CONTAINER
 
-    echo -e "Starting initial document compilation...\n"
+echo -e "Successfully started VSCTeX.\n"
 
-    latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -view=none -aux-directory=auxiliary -pdflatex='pdflatex %O "\def\fullCompile{} \input{%S}"' main.tex
+if [ ! -f ".devcontainer/DevContainerIsPostCreate" ]; then
+  nohup bash -c 'bash scripts/watchFileChanges.bash &' >/dev/null 2>&1
+  exit 0
+fi
 
-    if [ "$?" -ne 0 ]; then
-      echo -e "\n\nFailed to compile the document: The Dev Container is ready to be used but the document contains compilation errors.\n"
-    else
-      echo -e "\n\nSuccessfully compiled the document: The Dev Container is ready to be used.\n"
-    fi
+echo -e "Starting initial document compilation...\n"
 
-    rm -f /workspaces/*/.devcontainer/DevContainerIsPostCreate
+latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -view=none -aux-directory=auxiliary -pdflatex='pdflatex %O "\def\fullCompile{} \input{%S}"' main.tex
 
-    break
-  fi
-done
+if [ "$?" -ne 0 ]; then
+  echo -e "\n\nFailed to compile the document. VSCTeX is ready to be used but the document contains compilation errors.\n"
+  rm main.pdf main.synctex.gz
+else
+  echo -e "\n\nSuccessfully compiled the document.\n"
+fi
+
+rm /workspaces/*/.devcontainer/DevContainerIsPostCreate
+
+echo -e "Installing the VS Code LTeX extension (grammar & spell checker)...\n"
+
+sleep 30
+
+exec bash .devcontainer/scripts/installLTeX.bash 0
