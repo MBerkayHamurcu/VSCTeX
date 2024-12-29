@@ -33,6 +33,7 @@ jobs:
           imageName: vsctex
           runCmd: |
             grep -c "watchFileChanges" .devcontainer/devContLog.txt | grep -q "^1$" || exit 1
+            code --list-extensions | grep -q 'neo-ltex.ltex' || exit 1
 
       - name: Upload resulting document
         uses: actions/upload-artifact@v4
