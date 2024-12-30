@@ -1,36 +1,41 @@
 #!/usr/bin/env bash
 
-echo -e "\n------ Starting service... ------\n"
+echo -e "\n------ Starting VSCTeX ------\n"
 
 cd /workspaces/*/
 
-bash .devcontainer/scripts/log.bash startService START_CONTAINER
-
-service devContainerService start
-
 if [ "$?" -ne 0 ]; then
-  echo -e "Failed to start the Dev Container service.\n"
-else
-  echo -e "Successfully started the Dev Container service.\n"
+  echo "VSCTeX error (STS0). Please report this incident to the maintainer."
+  bash .devcontainer/scripts/log.bash startService E0x00
+  exit 1
 fi
 
-for dir in /workspaces/*/;
-do
-  if [ -f "${dir}.devcontainer/DevContainerIsPostCreate" ]; then
-    cd /workspaces/*/
+latexmk --version >/dev/null 2>&1
 
-    echo -e "Starting initial document compilation...\n"
+if [ "$?" -ne 0 ]; then
+  echo "VSCTeX error (STS1). Please report this incident to the maintainer."
+  bash .devcontainer/scripts/log.bash startService E0x01
+  exit 1
+fi
 
-    latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -view=none -aux-directory=auxiliary -pdflatex='pdflatex %O "\def\fullCompile{} \input{%S}"' main.tex
+if [ -f ".devcontainer/DevContainerIsPostCreate" ]; then
+  echo -e "Starting initial document compilation...\n"
+  bash .devcontainer/scripts/log.bash startService DevContainerIsPostCreate
 
-    if [ "$?" -ne 0 ]; then
-      echo -e "\n\nFailed to compile the document: The Dev Container is ready to be used but the document contains compilation errors.\n"
-    else
-      echo -e "\n\nSuccessfully compiled the document: The Dev Container is ready to be used.\n"
-    fi
+  latexmk -interaction=nonstopmode -synctex=1 -file-line-error -pdf -view=none -aux-directory=auxiliary -pdflatex='pdflatex %O "\def\fullCompile{} \input{%S}"' main.tex
 
-    rm -f /workspaces/*/.devcontainer/DevContainerIsPostCreate
-
-    break
+  if [ "$?" -ne 0 ]; then
+    echo -e "\n\nFailed to compile the document. VSCTeX is ready to be used but the document contains compilation errors.\n"
+    rm main.pdf main.synctex.gz
+  else
+    echo -e "\n\nSuccessfully compiled the document.\n"
   fi
-done
+
+  rm /workspaces/*/.devcontainer/DevContainerIsPostCreate
+fi
+
+bash .devcontainer/scripts/log.bash startService START_CONTAINER
+
+echo -e "Successfully started VSCTeX.\n"
+
+nohup bash -c 'bash .devcontainer/scripts/watchFileChanges.bash &' >/dev/null 2>&1
