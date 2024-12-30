@@ -10,6 +10,8 @@
       "extensions": [
         // Core features extension for LaTeX typesetting with VS Code
         "James-Yu.latex-workshop",
+        // Grammar & spell checker extension
+        "neo-ltex.ltex",
         // Real-time collaboration extension for VS Code
         "MS-vsliveshare.vsliveshare"
       ],
