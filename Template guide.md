@@ -1,44 +1,28 @@
 # VSCTeX template guide
 
-This document provides concise instructions on how to use this LaTeX template. Reading them at least once before starting to write is recommended.
+This document provides you with the necessary knowledge for using the VSCTeX typesetting environment and LaTeX template that comes with it. Read it at least once.
 
-## Configuring the Dev Container and template
+## The VSCTeX typesetting environment
 
-The Dev Container comes with a minimal setup for this LaTeX template to work. However, you can make customizations and configurations according to your needs. Here are some of the files and folders you can modify:
+### Configuring the Dev Container and template
 
-- `config/packages`: This text file contains the LaTeX packages that are required for the template. You can add packages as you wish and can install your setup running the `Install packages in configuration` recipe with the LaTeX Workshop extension:
+The Dev Container comes with a minimal setup for this LaTeX template to work. However, you can configure it according to your needs. Here are some of the files and folders you can modify:
+
+- `config/packages`: This text file contains the LaTeX packages that are required for the template. You can add packages as you wish and install them running the `Install packages in configuration` recipe with the LaTeX Workshop extension:
 
 <p align="center">
   <img src=".devcontainer/static/runningWorkshopRecipe.png" alt="Running a LaTeX Workshop recipe" width="90%"/>
 </p>
 
-After that you can include the respective package in ```frame/preamble.tex``` for using it in the template.
-
-- `config/variables.tex`: In this file you can change the values of the document variables, such as:
-  - the title, author, date, etc.
-  - There are also options like
-    - the to-do list feature
-    - a second logo on the front page
-    - a watermark
-    - the restriction notice you can turn on or off via this file.
+- `config/variables.tex`: This file provides an easy way to modify some aspects of the template such as the title, author and date of the document and disabling/enabling features like the to-do list, a second logo on the front page and many more. So before editing the template, check if what you need is already covered here.
 - `config/locales`: This text file contains a selection of locales you can choose one from and is therefore relevant if you want to change the default language of this Dev Container to another. It can also be extended with other valid locales. You can again apply your locales setting in the container by running the `Reapply locales configuration` recipe with the LaTeX Workshop extension. Beware that changing the language could need some configuration like installing further packages, since this Dev Container only loads the basic Tex Live installation schema, or reconfiguring little parts of the template beyond the `config/variables.tex` file
-- `.devcontainer/devcontainer.json`: This file contains the configuration of the Dev Container itself, such as the instructions for building the container, extensions, settings, etc. You can change these options too, but only if you know what you are doing. A misconfiguration of this file will cause the Dev Container to fail to start or work correctly.
 - The language of the LTeX Language Server is set to de-DE, can be changed via a so called "magic command" like in the example in `abstract.tex` and is automatically changed if you run the "Reapply locales configuration" recipe via the LaTeX Workshop extension. For supported locales of the extension check their documentation: [LTeX supported languages](https://valentjn.github.io/ltex/settings.html#ltexlanguage "LTeX supported languages")
-- You cannot rename `main.tex` without reprogramming the scripts and recipes this name is hard coded in
+- You cannot rename `main.tex` without reprogramming the scripts and recipes this name is hard coded in!
+- `.devcontainer/devcontainer.json`: This file contains the configuration of the Dev Container itself, such as the instructions for building the container, extensions and settings. Only mage changes to this file if you know what you are doing. A misconfiguration of this file will cause the Dev Container to fail to start or work incorrectly.
 
-## Using the Dev Container
+### LaTeX Workshop recipes
 
-The Dev Container provides some features and tools to help you write and compile your LaTeX documents. Here are some of the things that you can do:
-
-- **Edit your LaTeX files**: You can use VS Code to edit your LaTeX files as you normally would. The Dev Container will automatically import the `.tex` files in the `content` and `appendix` folder in the order they are listed in the file explorer. The built-in spell and grammar checker (LTeX) helps you correcting your mistakes.
-- **Compile your LaTeX files**: The Dev Container provides two modes of compilation: fast mode and complete mode. Fast mode automatically sets an `\includeonly` macro to the last saved files and skips the BibLaTeX processing to speed up the compilation. Complete mode processes all steps to produce the final output. Per default the LaTeX Workshop extension runs the fast mode compilation when you save a file. You can also run the recipes manually by clicking the desired recipe. If you encounter any warnings during the compilation, you can view them in the "Problems" tab or the "Output" tab of VS Code. Warnings like "Please (re)run Biber on the file" are expected for the fast mode compilation. These minor issues do not happen with the complete compilation mode.
-- **View your PDF files**: You can use the LaTeX Workshop extension to view your PDF files. In the presence of the generated SyncTeX file you can press `control + left mouse key` (on windows) on any text or image in the document preview to automatically be taken to the according code location.
-- **Manage your git repository**: You need to use your host machine's git installation, not the Dev Container's. This is because the Dev Container does not have git installed. If you want to use your host machine's git CLI, you can run `Terminal: Create New Integrated Terminal (Local)` form the VS Code command palette.
-- **Automatic import** of .tex files in the content and appendix folder in the order they appear in the explorer.
-
-## LaTeX Workshop recipes
-
-By clicking the LaTeX Workshop extension activity bar item (TEX-symbol on the VS Code activity bar) you will find various recipes custom to this Dev Container that you can run. Beware that the LaTeX Workshop is started and runs recipes only if a `.tex` file is the active file in the editor.
+By clicking the LaTeX Workshop extension activity bar item (TEX-symbol on the VS Code activity bar) you will find various recipes custom to VSCTeX that you can run. Beware that the LaTeX Workshop is started and runs recipes only if a `.tex` file is the active file in the editor.
 
 <p align="center">
   <img src=".devcontainer/static/latexWorkshopRecipes.png" alt="LaTeX Workshop recipes" height="420px"/>
@@ -49,9 +33,28 @@ By clicking the LaTeX Workshop extension activity bar item (TEX-symbol on the VS
 > * In Generate document - **fast mode**, only the `To-Do-notes list` and the `.tex` files that were saved last will be compiled and therefore visible
 > * In Generate document - **complete mode**, the whole document will be compiled
 
-## Template macros
+### Using the Dev Container
 
-The Dev Container provides some custom macros that you can use in your LaTeX files. In general, try to adhere to the examples in the template for accessing its features (acronyms, tables, images, etc.). Here are some of them:
+The Dev Container provides some features and tools to help you write and compile your LaTeX documents. Here are some of the things that you can do:
+
+- **Edit your LaTeX files**: You can use VS Code to edit your LaTeX files as you normally would. The Dev Container will automatically import the `.tex` files in the `content` and `appendix` folder in the order they are listed in the file explorer. The built-in spell and grammar checker (LTeX) helps you correcting your mistakes.
+- **Compile your LaTeX files**: The Dev Container provides two modes of compilation: fast mode and complete mode. Fast mode automatically sets an `\includeonly` macro to the last saved files and skips the BibLaTeX processing to speed up the compilation. Complete mode processes all steps to produce the final output. Per default the LaTeX Workshop extension runs the fast mode compilation when you save a file. You can also run the recipes manually by clicking the desired recipe. If you encounter any warnings during the compilation, you can view them in the "Problems" tab or the "Output" tab of VS Code. Warnings like "Please (re)run Biber on the file" are expected for the fast mode compilation. These minor issues do not happen with the complete compilation mode.
+- **View your PDF files**: You can use the LaTeX Workshop extension to view your PDF files. In the presence of the generated SyncTeX file you can press `control + left mouse key` (on windows) on any text or image in the document preview to automatically be taken to the according code location.
+- **Manage your git repository**: You need to use your host machine's git installation, not the Dev Container's. This is because the Dev Container does not have git installed. If you want to use your host machine's git CLI, you can run `Terminal: Create New Integrated Terminal (Local)` form the VS Code command palette.
+- **Automatic import** of .tex files in the content and appendix folder in the order they appear in the explorer.
+
+### Further notes
+
+- The LaTeX Workshop extension is noticably a major part of this Dev Container so check out their work and profiles: [LaTeX Workshop - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop "LaTeX Workshop - Visual Studio Marketplace")
+- You can safely ignore the "git not found" warning when the Dev Container starts. It only reminds you that the repository contains a `.git` folder (if you `git initialize`d this repository) but the container itself does not have git installed.
+- Do not store anything of value in the `auxiliary` folder, it is automatically deleted with every full compilation
+- If you want to configure the VS Code settings of your Dev Container environment you can run `Preferences: Open Remote Settings (JSON)` in the command palette
+
+## The LaTeX template
+
+### Template macros
+
+This template provides some custom macros that you can use in your LaTeX files. In general, try to adhere to the given examples for using already included features like acronyms, tables or images. Here are some of them:
 
 - `\Chapter`: This macro is a replacement for `\chapter`. It behaves like `\chapter` with the addition of adding the correct entry to your headings and creating a label that can be referenced later via \autoref{short chapter title if defined, else chapter title}.
 - `\Equation`: This macro is a shortcut for creating an equation that is listed in the list of equations with a caption and a label for reference
@@ -60,14 +63,11 @@ The Dev Container provides some custom macros that you can use in your LaTeX fil
 
 Note that only the `\Chapter` macro has a starred implementation.
 
-## Further notes
+### Bibliography management
 
-- The LaTeX Workshop extension is noticably a major part of this Dev Container so check out their work and profiles: [LaTeX Workshop - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop "LaTeX Workshop - Visual Studio Marketplace")
-- You can safely ignore the "git not found" warning when the Dev Container starts. It only reminds you that the repository contains a `.git` folder (if you `git initialize`d this repository) but the container itself does not have git installed.
-- Do not store anything of value in the `auxiliary` folder, it is automatically deleted with every full compilation
-- If you want to configure the VS Code user settings of your container you can run `Preferences: Open Remote Settings (JSON)` in the command palette
+Make sure to set the library mode to **BibLaTeX** when using a bibliography management tool with this template. You can for instance use JabRef for managing the `literature.bib` file. It makes it easier to document and maintain your literature. JabRef can be installedfrom the official source [here](https://www.jabref.org/#download "Jabref - Download")
 
-## Creating chapters and sections
+### Creating chapters and sections
 
 ```latex
 \Chapter{Chapter}
@@ -75,11 +75,11 @@ Note that only the `\Chapter` macro has a starred implementation.
 \subsection{SubSubchapter}
 ```
 
-## Inserting ...
+### Inserting ...
 
-### Images
+#### Images
 
-#### single Image
+##### Single Image
 
 The following is an example of the embedding of a single image in this Latex-template.
 
@@ -102,7 +102,7 @@ The short description is optional, as is every macro argument passed via square 
   <img src=".devcontainer/static/figureExample.png" alt="Figure example" height="420px"/>
 </p>
 
-#### two Images
+##### Two Images
 
 In this example, two images are integrated into one graphic.
 
@@ -133,7 +133,7 @@ Two images divided vertically. The format of the two images in relation to each 
   <img src=".devcontainer/static/twoImagesExample.png" alt="Two images in one figure example" height="330px"/>
 </p>
 
-#### four Images
+##### Four Images
 
 In this example, 4 images are integrated into one graphic.
 
@@ -176,7 +176,7 @@ Four images divided vertically and horizontally. The format of the two images in
   <img src=".devcontainer/static/fourImagesExample.png" alt="Two images in one figure example" height="420px"/>
 </p>
 
-### Tables
+#### Tables
 
 This template uses the longtabular environment with the tabularray package.
 
@@ -248,11 +248,11 @@ A more neutral table:
   <img src=".devcontainer/static/tableExample2.png" alt="Table example 2" height="320px"/>
 </p>
 
-### Equations
+#### Equations
 
 Here are some examples of the integration of equations in this template.
 
-#### with caption (listed in the list of equations)
+##### with caption (listed in the list of equations)
 
 ```latex
 % Syntax: \Equation{CAPTION}{LABEL}{EQUATION}
@@ -268,7 +268,7 @@ Here are some examples of the integration of equations in this template.
   <img src=".devcontainer/static/captionedEquation.png" alt="Listed and captioned equation" height="160px"/>
 </p>
 
-#### without caption
+##### without caption
 
 ```latex
 \begin{equation}\label{pythTheorem}
@@ -280,7 +280,7 @@ Here are some examples of the integration of equations in this template.
   <img src=".devcontainer/static/unlistedEquation.png" alt="Not listed equation" height="42px"/>
 </p>
 
-#### Inline math
+##### Inline math
 
 ```latex
 $\int_2^3 x^2 \, dx=\frac{3^3}{3}-\frac{2^3}{3}=\frac{19}{3}$
@@ -290,7 +290,7 @@ $\int_2^3 x^2 \, dx=\frac{3^3}{3}-\frac{2^3}{3}=\frac{19}{3}$
   <img src=".devcontainer/static/inlineMath.png" alt="Inline math" height="100px"/>
 </p>
 
-### Source Code
+#### Source Code
 
 ```latex
 \begin{lstlisting}[
@@ -314,7 +314,7 @@ You can create new `style`s based on the `customCStyle` example from the `frame/
   <img src=".devcontainer/static/sourceCode.png" alt="Source Code" height="240px"/>
 </p>
 
-### Itemization
+#### Itemization
 
 ```latex
 \begin{Itemize}
@@ -333,7 +333,7 @@ You can create new `style`s based on the `customCStyle` example from the `frame/
   <img src=".devcontainer/static/bulletList.png" alt="Itemization/Bullet list" height="240px"/>
 </p>
 
-## Use of quotation marks in German
+### Use of quotation marks in German
 
 Here is a simple example of how to use the German quotation marks.
 
@@ -345,7 +345,7 @@ Here is a simple example of how to use the German quotation marks.
 
 [Source](https://www.heise.de/tipps-tricks/LaTeX-Anfuehrungszeichen-einfuegen-so-geht-s-4351643.html "LaTeX: Anführungszeichen einfügen - so geht's")
 
-### Acronyms
+#### Acronyms
 
 You can use the following example to use abbreviations.
 
@@ -373,7 +373,7 @@ To add a new abbreviation, you must add your entry in `frame/acronyms.tex` like 
 }
 ```
 
-#### Additional information for usage
+##### Additional information for usage
 
 ```latex
 1. \ac{TS} % First use
@@ -391,7 +391,7 @@ To add a new abbreviation, you must add your entry in `frame/acronyms.tex` like 
 4. Temperature Sensor
 5. Temperature Sensors.
 
-## Citation
+### Citation
 
 Use the following commands for quoting:
 
@@ -410,9 +410,9 @@ General syntax / usage:
 \cite[p.~"page"]{"source from .bib"}
 ```
 
-## Referencing
+### Referencing
 
-### Chapter - all different types of chapters
+#### Chapter - all different types of chapters
 
 This small example shows different ways of referencing chapters.
 
@@ -426,7 +426,7 @@ Chapter \ref{Konzeption der Schaltung} respectively \nameref{Konzeption der Scha
   <img src=".devcontainer/static/chapterReference.png" alt="Referencing chapters" height="140px"/>
 </p>
 
-### Images and tables
+#### Images and tables
 
 Referencing can be done either with `\ref` *or* `\autoref`, as shown in this example. The objects to be referenced are described in `\autoref`.
 
@@ -438,7 +438,7 @@ und ein abschließendes Beispiel zur Referenzierung von Tabellen (\ref{erg1-rech
   <img src=".devcontainer/static/imageAndTableReferences.png" alt="Referencing images, tables etc." height="60px"/>
 </p>
 
-### Equations
+#### Equations
 
 ```latex
 Wenn die Ereignisse $A_n$ disjunkt sind, dann wird die Ungleichung
@@ -449,7 +449,7 @@ in Gleichung \autoref{Boolesche Ungleichung}
   <img src=".devcontainer/static/equationReference.png" alt="Referencing equations" height="40px"/>
 </p>
 
-### Sourcecode
+#### Sourcecode
 
 ```latex
 und Referenzierung des Quellcode-Beispiels im Folgetext \autoref{quellcodebeispiel}
@@ -459,7 +459,7 @@ und Referenzierung des Quellcode-Beispiels im Folgetext \autoref{quellcodebeispi
   <img src=".devcontainer/static/sourceCodeReference.png" alt="Referencing Source Code" height="50px"/>
 </p>
 
-## Colored frames
+### Colored frames
 
 You can use the custom `Frame` environment to render frames around specific content:
 
@@ -492,7 +492,7 @@ If you use it with the optional argument it gets a caption, label and entry in t
 
 The title of the frames, the table of frames and the background color of the frames can be changed in the `config/variables.tex` as usual.
 
-## To-Do notes
+### To-Do notes
 
 Following definitions are made in `frame/preamble.tex`:
 
@@ -519,7 +519,7 @@ You can use the following macros: `\unsure`, `\change`, `\info`, `\improvement`,
 
 [Source - Information - todonotes – Marking things to do in a LaTeX document](https://ctan.org/pkg/xcolor "todonotes – Marking things to do in a LaTeX document")
 
-## Textboxes
+### Textboxes
 
 ```latex
 Mit Inhalten, die mithilfe von Textboxen \colorbox{yellowdark}{markiert} werden sollen \ldots
@@ -544,7 +544,7 @@ Definitions of colors in `frame/preamble.tex`:
 
 [Source - Information - xcolor – Driver-independent color extensions for LaTeX and pdfLaTeX](https://ctan.org/pkg/xcolor "xcolor – Driver-independent color extensions for LaTeX and pdfLaTeX")
 
-## Blank spaces in LaTeX
+### Blank spaces in LaTeX
 
 - ``\,`` inserts a narrow space (0.16667em) in text or math mode.
 - ``\:`` inserts a normal space of 0.2222em in text or math mode.
