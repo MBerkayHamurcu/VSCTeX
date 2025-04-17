@@ -55,9 +55,13 @@
 ]{biblatex}
 
 % Prevent overfull hboxes in bibliography
-\setcounter{biburllcpenalty}{9000}
-\setcounter{biburlucpenalty}{9000}
-\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburllcpenalty}{10000}
+\setcounter{biburlucpenalty}{10000}
+\setcounter{biburlnumpenalty}{10000}
+
+% Prevent widows and orphans
+\widowpenalty=10000
+\clubpenalty=10000
 
 % Integration of the .bib file
 \addbibresource{literature.bib}
