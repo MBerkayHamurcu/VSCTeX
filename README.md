@@ -8,7 +8,7 @@
 
 <p align="center">
   <em>An easy-to-use, feature-rich Visual Studio Code Dev Container
-    <br>with a ready-to-use thesis style template for typesetting in LaTeX.</em>
+    <br>with a ready-to-use thesis style template for typesetting in LaTeX</em>
   <br>
 </p>
 
@@ -19,17 +19,17 @@ A Dev Container is a way to create a consistent and isolated development environ
 ## Features
 
 - An extensive thesis styled LaTeX template free of errors and warnings
-- Fully containerized: No setup or configuration on your host machine needed (except for docker)
-- Works fully offline, after the initial setup
+- No setup or configuration on your host machine needed except for docker
+- Works fully offline after the initial setup
+- Major compilation time decrease: Custom LaTeX Workshop recipes that only compile the content you are currently working on and only update bibliography references when explicitly requested
 - Spelling and grammar checking via the automatically configured LTeX language server
-- Major compilation time decrease: Custom LaTeX Workshop recipes that only compile the content you are currently working on and only update the bibliography references when explicitly requested
 - Automatic import of `.tex` files from the `content` and `appendix` folder
 - Bibliography via BibLaTeX
 - To-do notes, acronyms and many more features
-- Ready to use git version control setup
+- Ready-to-use git version control setup
 - Online collaboration via the VS Code live-share extension
 - Auxiliary files are hidden in a subfolder
-- Linux, Windows and MacOS compatibility
+- Linux, Windows and MacOS compatible
 
 ## Setting up VSCTeX
 
@@ -43,9 +43,9 @@ This is the IDE that you will use to edit your LaTeX files and interact with the
 
 Install the `Dev Containers` (ms-vscode-remote.remote-containers) VS Code extension
 
-### 2. Download this repository
+### 2. Download VSCTeX
 
-[Download](https://github.com/MBerkayHamurcu/VSCTeX/archive/refs/heads/main.zip "VSCTeX- Download") and extract this repository into a folder.
+Download this repository [here](https://code.visualstudio.com/download "VSCTeX - Download") and extract it into a folder.
 
 ### 2.1 (Windows only) Configure WSL
 

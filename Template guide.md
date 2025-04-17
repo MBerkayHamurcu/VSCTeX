@@ -1,8 +1,21 @@
 # VSCTeX template guide
 
-This document provides you with the necessary knowledge for using the VSCTeX typesetting environment and LaTeX template that comes with it. Read it at least once.
+This document provides you with the necessary knowledge for using the VSCTeX typesetting environment and LaTeX template that comes with it. Read it once to at least the [bibliography-management](Template%20guide.md#bibliography-management) section.
 
 ## The VSCTeX typesetting environment
+
+### LaTeX Workshop recipes
+
+By clicking the LaTeX Workshop extension activity bar item (TeX-symbol on the VS Code activity bar) you will find various recipes custom to VSCTeX that you can run. Beware that the LaTeX Workshop is started and runs recipes only if a `.tex` file is the active file in the editor.
+
+<p align="center">
+  <img src=".devcontainer/static/latexWorkshopRecipes.png" alt="LaTeX Workshop recipes" height="420px"/>
+</p>
+
+> [!NOTE]
+>
+> * In Generate document - **fast mode**, only the `To-Do-notes list` and the `.tex` files that were saved last will be compiled and therefore visible
+> * In Generate document - **complete mode**, the whole document will be compiled
 
 ### Configuring the Dev Container and template
 
@@ -18,34 +31,20 @@ The Dev Container comes with a minimal setup for this LaTeX template to work. Ho
 - `config/locales`: This text file contains a selection of locales you can choose one from and is therefore relevant if you want to change the default language of this Dev Container to another. It can also be extended with other valid locales. You can again apply your locales setting in the container by running the `Reapply locales configuration` recipe with the LaTeX Workshop extension. Beware that changing the language could need some configuration like installing further packages, since this Dev Container only loads the basic Tex Live installation schema, or reconfiguring little parts of the template beyond the `config/variables.tex` file
 - The language of the LTeX Language Server is set to de-DE, can be changed via a so called "magic command" like in the example in `abstract.tex` and is automatically changed if you run the "Reapply locales configuration" recipe via the LaTeX Workshop extension. For supported locales of the extension check their documentation: [LTeX supported languages](https://valentjn.github.io/ltex/settings.html#ltexlanguage "LTeX supported languages")
 - You cannot rename `main.tex` without reprogramming the scripts and recipes this name is hard coded in!
-- `.devcontainer/devcontainer.json`: This file contains the configuration of the Dev Container itself, such as the instructions for building the container, extensions and settings. Only mage changes to this file if you know what you are doing. A misconfiguration of this file will cause the Dev Container to fail to start or work incorrectly.
-
-### LaTeX Workshop recipes
-
-By clicking the LaTeX Workshop extension activity bar item (TEX-symbol on the VS Code activity bar) you will find various recipes custom to VSCTeX that you can run. Beware that the LaTeX Workshop is started and runs recipes only if a `.tex` file is the active file in the editor.
-
-<p align="center">
-  <img src=".devcontainer/static/latexWorkshopRecipes.png" alt="LaTeX Workshop recipes" height="420px"/>
-</p>
-
-> [!NOTE]
->
-> * In Generate document - **fast mode**, only the `To-Do-notes list` and the `.tex` files that were saved last will be compiled and therefore visible
-> * In Generate document - **complete mode**, the whole document will be compiled
+- `.devcontainer/devcontainer.json`: This file contains the configuration of the Dev Container itself, such as the instructions for building the container, extensions and settings. Only make changes to this file if you know what you are doing. Ann erroneous configuration will cause the Dev Container to fail to start or work properly.
 
 ### Using the Dev Container
 
 The Dev Container provides some features and tools to help you write and compile your LaTeX documents. Here are some of the things that you can do:
 
 - **Edit your LaTeX files**: You can use VS Code to edit your LaTeX files as you normally would. The Dev Container will automatically import the `.tex` files in the `content` and `appendix` folder in the order they are listed in the file explorer. The built-in spell and grammar checker (LTeX) helps you correcting your mistakes.
-- **Compile your LaTeX files**: The Dev Container provides two modes of compilation: fast mode and complete mode. Fast mode automatically sets an `\includeonly` macro to the last saved files and skips the BibLaTeX processing to speed up the compilation. Complete mode processes all steps to produce the final output. Per default the LaTeX Workshop extension runs the fast mode compilation when you save a file. You can also run the recipes manually by clicking the desired recipe. If you encounter any warnings during the compilation, you can view them in the "Problems" tab or the "Output" tab of VS Code. Warnings like "Please (re)run Biber on the file" are expected for the fast mode compilation. These minor issues do not happen with the complete compilation mode.
+- **Compile your LaTeX files**: The Dev Container provides two modes of compilation: fast mode and complete mode. Fast mode automatically sets an `\includeonly` macro to the last saved files and skips the BibLaTeX processing to speed up the compilation. Complete mode processes all steps to produce the final output. Per default the LaTeX Workshop extension runs the fast mode compilation when you save a file. You can also run a recipe manually by clicking it while a `.tex` file is the active file in the editor. If you encounter any warnings during the compilation, you can view them in the "Problems" tab or the "Output" tab of VS Code. Warnings like "Please (re)run Biber on the file" are expected for the fast mode compilation. These minor issues do not happen with the complete compilation mode.
 - **View your PDF files**: You can use the LaTeX Workshop extension to view your PDF files. In the presence of the generated SyncTeX file you can press `control + left mouse key` (on windows) on any text or image in the document preview to automatically be taken to the according code location.
 - **Manage your git repository**: You need to use your host machine's git installation, not the Dev Container's. This is because the Dev Container does not have git installed. If you want to use your host machine's git CLI, you can run `Terminal: Create New Integrated Terminal (Local)` form the VS Code command palette.
-- **Automatic import** of .tex files in the content and appendix folder in the order they appear in the explorer.
 
 ### Further notes
 
-- The LaTeX Workshop extension is noticably a major part of this Dev Container so check out their work and profiles: [LaTeX Workshop - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop "LaTeX Workshop - Visual Studio Marketplace")
+- The LaTeX Workshop extension is a major component of this Dev Container so check out their work and profiles: [LaTeX Workshop - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop "LaTeX Workshop - Visual Studio Marketplace")
 - You can safely ignore the "git not found" warning when the Dev Container starts. It only reminds you that the repository contains a `.git` folder (if you `git initialize`d this repository) but the container itself does not have git installed.
 - Do not store anything of value in the `auxiliary` folder, it is automatically deleted with every full compilation
 - If you want to configure the VS Code settings of your Dev Container environment you can run `Preferences: Open Remote Settings (JSON)` in the command palette
