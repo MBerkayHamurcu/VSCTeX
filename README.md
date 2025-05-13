@@ -45,7 +45,7 @@ Install the `Dev Containers` (ms-vscode-remote.remote-containers) VS Code extens
 
 ### 2. Download VSCTeX
 
-Download this repository [here](https://code.visualstudio.com/download "VSCTeX - Download") and extract it into a folder.
+Download this repository [here](https://github.com/MBerkayHamurcu/VSCTeX/archive/refs/heads/main.zip "VSCTeX - Download") and extract it into a folder.
 
 ### 2.1 (Windows only) Configure WSL
 
