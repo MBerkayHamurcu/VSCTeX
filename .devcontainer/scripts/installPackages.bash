@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+tlmgr update --self
+
 tlmgr update --all
 
 filePath="config/packages"
