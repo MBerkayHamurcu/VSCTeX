@@ -19,6 +19,7 @@
 # If the files to be tracked are in subdirectories
 !.devcontainer/scripts/**/*
 !.devcontainer/static/**/*
+!media/**/*
 !config/**/*
 !.github/**/*
 #!*/a/b/file1.txt
