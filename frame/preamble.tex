@@ -388,6 +388,19 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
 
   \markboth{}{}
 
+  % Setup the appendix page numbering
+  \setcounter{chapter}{0}
+
+  \newcounter{svpage}
+  \setcounter{svpage}{\value{page}}
+
+  % Switch to roman page numbers for the appendix
+  \pagenumbering{Roman}
+
+  % Restore the page number we left off of
+  \setcounter{page}{\value{svpage}}
+
+  % Increase the width of the box for roman page numbers
   \addtocontents{toc}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
 
   \ifdefined\fullCompile
