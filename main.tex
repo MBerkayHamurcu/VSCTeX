@@ -104,9 +104,11 @@
   % List of Citations
   % Standard bibliography
   \renewcommand{\bibname}{\bibliographyName}
-  \printbibliography[heading=bibintoc] % Including of Bibliography | with option (heading=bibintoc) in table of contens and in the bookmarks of the pdf file
+
+  % Standard bibliography
+  \printbibliography[heading=bibintoc] % keep the `heading=bibintoc` option for a correct table of contens and in pdf bookmark entry
+
   % Bibliography filtered by print and web media
-  % \renewcommand{\bibname}{\bibliographyName}
   % \printbibheading
   % \printbibliography[filter=printMediaFilter,heading=subbibliography,title={\printMediaTitle}]
   % \newpage
