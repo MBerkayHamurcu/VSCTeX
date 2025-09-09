@@ -56,9 +56,7 @@
 ]{biblatex}
 
 % Prevent overfull hboxes in bibliography
-\setcounter{biburllcpenalty}{10000}
-\setcounter{biburlucpenalty}{10000}
-\setcounter{biburlnumpenalty}{10000}
+\usepackage{xurl}
 
 % Prevent widows and orphans
 \usepackage[defaultlines=2,all]{nowidow}
@@ -430,5 +428,3 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
   bookmarksnumbered=true,
   plainpages=false,
 ]{hyperref} % Loading hyperref as the last package
-
-\usepackage{url}
