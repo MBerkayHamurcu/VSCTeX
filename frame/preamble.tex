@@ -337,30 +337,6 @@ templates/colspec={>{\bfseries{\hspace{-16pt}}}l@{\hspace{1.9cm}}p{0.7\linewidth
   \label{#1}
 }
 
-% Add table of content entries for the lists
-\g@addto@macro\listoffigures{%
-  \addtocontents{lof}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
-  % Add list of figures to the table of content
-  \addcontentsline{toc}{chapter}{\listfigurename}
-}
-
-\g@addto@macro\listoftables{%
-  \addtocontents{lot}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
-  % Add list of tables to the table of content
-  \addcontentsline{toc}{chapter}{\listtablename}
-}
-
-\g@addto@macro\lstlistoflistings{%
-  \addtocontents{lol}{\protect\renewcommand*{\protect\@pnumwidth}{4.0em}}
-  % Add list of code blocks to the table of content
-  \addcontentsline{toc}{chapter}{\lstlistlistingname}
-}
-
-\g@addto@macro\printbibheading{%
-  % Add the bibliography to the table of content
-  \addcontentsline{toc}{chapter}{\bibname}
-}
-
 % Customize the abstract environment
 \renewenvironment{abstract}{
   \newpage

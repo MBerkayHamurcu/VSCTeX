@@ -47,46 +47,79 @@
 
     % Table of units
     \input{frame/units}
-    % Add table of units to the table of content
-    \addcontentsline{toc}{chapter}{\tableOfUnitsName}
+
+    \newpage
+    \phantomsection
   \fi
 
   \ifdefined\listofacronymsVisible
 
-    \begingroup
+    % Add table of acronyms to the table of content
+    \addcontentsline{toc}{chapter}{\tableOfAcronymsName}
+
     % Table of acronyms
     \printacronyms[include=abbrev,name=\tableOfAcronymsName,template=longtable]
     \markboth{\tableOfAcronymsName}{\tableOfAcronymsName}
-    % Add table of acronyms to the table of content
-    \addcontentsline{toc}{chapter}{\tableOfAcronymsName}
-    \endgroup
+
+    \newpage
+    \phantomsection
   \fi
 
-  \ifdefined\listoffiguresVisible
+  \ifdefined\listoffiguresVisible%
+
+    % Add list of figures to the table of content
+    \addcontentsline{toc}{chapter}{\listfigurename}
 
     \listoffigures
+
+    \newpage
+    \phantomsection
   \fi
 
   \ifdefined\listoftablesVisible
 
+    % Add list of tables to the table of content
+    \addcontentsline{toc}{chapter}{\listtablename}
+
     \listoftables
+
+    \newpage
+    \phantomsection
   \fi
 
   \ifdefined\listoflistedEquationsVisible
 
+    % Add list of equations to the table of content
+    \addcontentsline{toc}{chapter}{\listOfEquationsName}
+
     \listoflistedEquations
+
+    \newpage
+    \phantomsection
   \fi
 
   \ifdefined\listoflistingsVisible
 
+    % Add list of code blocks to the table of content
+    \addcontentsline{toc}{chapter}{\lstlistlistingname}
+
     % List of code blocks
     \lstlistoflistings
+
+    \newpage
+    \phantomsection
   \fi
 
   \ifdefined\listofuserFramesVisible
 
+    % Add list of frames to the table of content
+    \addcontentsline{toc}{chapter}{\listOfUserFramesName}
+
     % List of frames
     \listofuserFrames
+
+    \newpage
+    \phantomsection
   \fi
 
   \newpage
