@@ -192,7 +192,7 @@
 % Define custom frame environment
 \renewcommand{\FrameCommand}{\fcolorbox{black}{userFrameColor}}
 \newenvironment{Frame}[1][ARGUNDEFINED]{
-  \captionsetup{type=figure,belowskip=0cm}
+  \captionsetup{type=figure,belowskip=-6pt}
 
   \vspace{3pt}
 
@@ -232,15 +232,16 @@
 \NewTblrTheme{matchingCaption}{
   \SetTblrStyle{caption-tag}{font=\small\bfseries}
   \SetTblrStyle{caption-text}{font=\small\mdseries}
-  %For centering the text of continuation footer
+
   \SetTblrStyle{contfoot}{font=\small\mdseries, halign=\tableContinuationTextPos}
+  \SetTblrStyle{conthead-text}{font=\small\mdseries}
 }
 
 % Adapt the tabularray continuation texts
-\DefTblrTemplate{contfoot-text}{contfootLanguageAdaption}{\tableContinuationText}
-\SetTblrTemplate{contfoot-text}{contfootLanguageAdaption}
-\DefTblrTemplate{conthead-text}{contfootLanguageAdaption}{\tableContinuationCaptionText}
-\SetTblrTemplate{conthead-text}{contfootLanguageAdaption}
+\DefTblrTemplate{contfoot-text}{tblrContLanguageAdaption}{\tableContinuationText}
+\SetTblrTemplate{contfoot-text}{tblrContLanguageAdaption}
+\DefTblrTemplate{conthead-text}{tblrContLanguageAdaption}{\tableContinuationCaptionText}
+\SetTblrTemplate{conthead-text}{tblrContLanguageAdaption}
 
 % Acronyms support
 \usepackage{array}
