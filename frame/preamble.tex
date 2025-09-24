@@ -237,6 +237,16 @@
   \SetTblrStyle{conthead-text}{font=\small\mdseries}
 }
 
+\NewTblrTheme{matchingCaptionNoContinuation}{
+  \SetTblrStyle{caption-tag}{font=\small\bfseries}
+  \SetTblrStyle{caption-text}{font=\small\mdseries}
+
+  \DefTblrTemplate{middlehead,lasthead}{tblrContDisabled}{}
+  \SetTblrTemplate{middlehead,lasthead}{tblrContDisabled}
+  \DefTblrTemplate{firstfoot,middlefoot}{tblrContDisabled}{}
+  \SetTblrTemplate{firstfoot,middlefoot}{tblrContDisabled}
+}
+
 % Adapt the tabularray continuation texts
 \DefTblrTemplate{contfoot-text}{tblrContLanguageAdaption}{\tableContinuationText}
 \SetTblrTemplate{contfoot-text}{tblrContLanguageAdaption}
