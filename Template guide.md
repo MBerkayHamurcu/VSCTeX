@@ -518,31 +518,6 @@ You can use the following macros: `\unsure`, `\change`, `\info`, `\improvement`,
 
 [Source - Information - todonotes – Marking things to do in a LaTeX document](https://ctan.org/pkg/xcolor "todonotes – Marking things to do in a LaTeX document")
 
-### Textboxes
-
-```latex
-Mit Inhalten, die mithilfe von Textboxen \colorbox{yellowdark}{markiert} werden sollen \ldots
-```
-
-<p align="center">
-  <img src=".devcontainer/static/textHighlighting.png" alt="Color highlighting of text" height="40px"/>
-</p>
-
-Definitions of colors in `frame/preamble.tex`:
-
-```latex
-% Colors für using \colorbox from package xcolor
-\definecolor{green1}{cmyk}{0.61, 0, 0.59, 0.38}
-\definecolor{orange1}{cmyk}{0, 0.43, 0.94, 0.26}
-% used for with transparency of the \colourbox
-\definecolor{green2}{cmyk}{0.51, 0, 0.49, 0.28}
-\definecolor{orange2}{cmyk}{0, 0.33, 0.84, 0.16}
-\definecolor{bluebright}{cmyk}{1, 0.17, 0, 0.20}
-\definecolor{yellowdark}{cmyk}{0, 0.16, 1, 0.24}
-```
-
-[Source - Information - xcolor – Driver-independent color extensions for LaTeX and pdfLaTeX](https://ctan.org/pkg/xcolor "xcolor – Driver-independent color extensions for LaTeX and pdfLaTeX")
-
 ### Blank spaces in LaTeX
 
 - ``\,`` inserts a narrow space (0.16667em) in text or math mode.
