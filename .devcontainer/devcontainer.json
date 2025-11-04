@@ -3,7 +3,6 @@
   "name": "VSCTeX",
   "image": "ubuntu:24.04",
   "onCreateCommand": "apt-get update && apt-get install --yes --no-install-recommends gnupg ca-certificates locales wget jq inotify-tools libyaml-tiny-perl libfile-homedir-perl libunicode-string-perl libunicode-stringprep-perl liblog-dispatch-perl && locale-gen en_US.UTF-8 && wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && tar -xf install-tl-unx.tar.gz && rm install-tl-unx.tar.gz && cd install-tl-* && perl ./install-tl --no-interaction --no-doc-install --no-src-install --scheme=scheme-basic && cd .. && rm -rf install-tl-* && TEXLIVE_DIR=$(ls -d /usr/local/texlive/* | grep 20) && TEXLIVE_EXECUTABLES_DIR=\"$(ls -d $TEXLIVE_DIR/bin/*)\" && ls $TEXLIVE_EXECUTABLES_DIR | xargs -I % ln -s $TEXLIVE_EXECUTABLES_DIR/% /usr/local/bin/% && PATH=$(echo /usr/local/texlive/2*/bin/x86_64-linux):$PATH && export PATH && bash .devcontainer/scripts/installPackages.bash && apt-get autoremove --purge && apt-get clean && rm -rf /var/lib/apt/lists/* /var/tmp/* auxiliary && bash .devcontainer/scripts/createCollections.bash && echo DevContainerIsPostCreate > .devcontainer/DevContainerIsPostCreate",
-  "postCreateCommand": "bash .devcontainer/scripts/setLocale.bash",
   "postStartCommand": "bash .devcontainer/scripts/startService.bash",
   // Configure tool-specific properties.
   "customizations": {

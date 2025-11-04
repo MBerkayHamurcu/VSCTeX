@@ -19,6 +19,8 @@ if [ "$?" -ne 0 ]; then
 fi
 
 if [ -f ".devcontainer/DevContainerIsPostCreate" ]; then
+  bash .devcontainer/scripts/setLocale.bash
+
   echo -e "Starting initial document compilation...\n"
   bash .devcontainer/scripts/log.bash startService DevContainerIsPostCreate
 
