@@ -228,6 +228,27 @@
         "latex-workshop.latex.clean.subfolder.enabled": true,
         "latex-workshop.latex.watch.pdf.delay": 3000,
         "ltex.language": "de-DE",
+        "ltex.latex.environments": {
+          "lstlisting": "ignore",
+          "verbatim": "ignore"
+        },
+        "ltex.latex.commands": {
+          "\\info{}": "ignore",
+          "\\info[]{}": "ignore",
+          "\\improvement{}": "ignore",
+          "\\improvement[]{}": "ignore",
+          "\\unsure{}": "ignore",
+          "\\unsure[]{}": "ignore",
+          "\\change{}": "ignore",
+          "\\change[]{}": "ignore",
+          "\\missingfigure{}": "ignore",
+          "\\missingfigure[]{}": "ignore",
+          "\\textsubscript{}": "ignore"
+        },
+        "ltex.markdown.nodes": {
+          "Text": "ignore"
+        },
+        "ltex.ltex-ls.logLevel": "severe",
         "ltex.java.initialHeapSize": 256,
         "ltex.java.maximumHeapSize": 1024,
         "ltex.configurationTarget": {
