@@ -19,6 +19,9 @@ done < "$filePath"
 
 printf "\n## The following line was inserted from the setLocale.bash script\n%s.UTF-8 UTF-8\n" "$selectedLocale" >> /etc/locale.gen
 
+# Generate default locale to bypass perl warning
+locale-gen "en_US.UTF-8"
+
 # Add configured locale
 locale-gen
 
