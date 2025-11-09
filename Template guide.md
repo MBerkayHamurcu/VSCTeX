@@ -379,7 +379,7 @@ To add a new abbreviation, you must add your entry in `frame/acronyms.tex` like 
 2. \ac{TS}
 3. \acp{TS}
 4. \acl{TS}
-5. \aclp{TS}.
+5. \aclp{TS}
 6. \acf{TS} %prints always the full form of the acronym
 ```
 
