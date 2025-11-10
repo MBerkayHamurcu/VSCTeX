@@ -379,7 +379,8 @@ To add a new abbreviation, you must add your entry in `frame/acronyms.tex` like 
 2. \ac{TS}
 3. \acp{TS}
 4. \acl{TS}
-5. \aclp{TS}.
+5. \aclp{TS}
+6. \acf{TS} %prints always the full form of the acronym
 ```
 
 *Results in:*
@@ -388,7 +389,10 @@ To add a new abbreviation, you must add your entry in `frame/acronyms.tex` like 
 2. TS
 3. TSs
 4. Temperature Sensor
-5. Temperature Sensors.
+5. Temperature Sensors
+6. Temperature Sensor (TS)
+
+[Source](https://ctan.math.illinois.edu/macros/latex/contrib/acro/acro-manual.pdf)
 
 ### Citation
 
