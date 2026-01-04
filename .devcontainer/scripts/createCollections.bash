@@ -23,7 +23,7 @@ if [ -n "$appendix" ]; then
     printf "\\\\Appendix\n\n" >> "$appendixCollection"
 fi
 
-for APPEND in "$appendix"
+for APPEND in $appendix
 do
     echo "\\include{$APPEND}"
     mkdir -p auxiliary/$(dirname $APPEND)
