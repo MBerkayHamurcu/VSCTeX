@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-24.04, ubuntu-24.04-arm]
 
     steps:
       - name: Checkout Repository
@@ -38,7 +38,7 @@ jobs:
       - name: Upload resulting document
         uses: actions/upload-artifact@v7
         with:
-          name: document_templatedocker/setup-docker-action
+          name: document_template
           path: ./main.pdf
           if-no-files-found: 'error'
           retention-days: 14
